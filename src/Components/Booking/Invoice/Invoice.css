@@ -1,0 +1,54 @@
+/* ==============Invoice================ */
+body{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/605efb4da30cae001d8f2eee.jpg");
+    background-repeat: none;
+    background-size: cover;
+    margin-top: 5rem;
+   
+    /* opacity: 3px; */
+}
+.logo{
+    position: relative;
+    top: 1rem;
+    left: 13rem;
+    height: 7rem;
+    width: 8rem;
+}
+.logo_text{
+    position: absolute;
+    left: 22rem;
+    top: 3.5rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    color: red;
+}
+
+.body{
+    position: fixed;
+    font-family: Verdana, Tahoma, sans-serif;
+    height: 100rem;
+    width: 100rem;  
+}
+h1{
+    top: 0rem;
+    text-align: center;
+    color: red;
+}
+hr{
+    border: 0.01rem dashed rgb(255, 255, 255);
+    width: 40rem;
+}
+
+.form-group{
+    margin-left: 12rem;
+    position: relative;
+    color: white;   
+}
+.name{
+    margin-left: 14rem;
+   
+}
+.name-item{
+    margin-left: 8rem;
+}
+/*  */

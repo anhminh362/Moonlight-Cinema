@@ -1,1 +1,75 @@
 /* file Admin css */
+/* ===============================Admin=================================== */
+/* background */
+.background-left {
+    background-color: #06121E;
+    /* height: 100vh; */
+}
+
+.background-right {
+    background-color: #0B1A2A;
+    /* height: 100vh; */
+}
+
+/* logo */
+.logo {
+    position: relative;
+    left: 2rem;
+    height: 8rem;
+    width: 8rem;
+}
+
+.logo_text {
+    position: relative;
+    left: 1rem;
+    top: 0rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--title--color);
+}
+
+/* icon-item */
+.icon-item {
+    position: relative;
+    color: #ffff;
+    font-size: 1.6rem;
+    left: 2rem;
+    top: 3rem;
+    text-decoration: none;
+}
+
+.icon-item:hover {
+    color: #FFF;
+}
+
+/* icon-play */
+.icon-play {
+    position: relative;
+    color: #FFC107;
+    font-size: 1.6rem;
+    left: 2rem;
+    top: 3rem;
+    text-decoration: none;
+}
+
+.icon-play:hover {
+    color: #FFC107;
+}
+
+/* Account */
+.icon-acc {
+    font-size: 3rem;
+    color: #ffff;
+}
+
+.text-signout {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #ffff;
+    position: relative;
+    top: -1rem;
+}
+
+.text-signout:hover {
+    color: #FFC107;
+}
