@@ -33,7 +33,7 @@ const Add = () => {
                 price: $("#inputPrice").val(),
             });
             alert("Thêm thành công");
-            $("#closeModalAddbtn").click();
+            $("#closeModalAddBtn").click();
             componentDidMount();
         } catch (error) {
             console.log(error);
@@ -69,7 +69,7 @@ const Add = () => {
                 price: $("#editPrice").val(),
             });
             alert("Sửa thành công");
-            $("#closeModalEditbtn").click();
+            $("#closeModalEditBtn").click();
             componentDidMount();
         } catch (error) {
             console.log(error);
@@ -151,13 +151,13 @@ const Add = () => {
                     <div className="modal-content">
                         <div className="modal-header btn bg-danger text-white">
                             <h5 className="modal-title" id="addModalLabel"> Add Schedule</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalAddbtn"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalAddBtn"></button>
                         </div>
                         <div className="modal-body" style={{background:"#0B1A2A"}}>
                             <form onSubmit={onSubmitHandle} style={{background:"#0B1A2A"}}>
                                 <div className="mb-3">
                                     <label htmlFor="inputMovie" className="form-label text-white">Movie</label>
-                                    <input type="number" className="form-control" id="inputMovie" required />
+                                    <input type="name" className="form-control" id="inputMovie" required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="inputRoom" className="form-label  text-white">Room</label>
@@ -169,15 +169,15 @@ const Add = () => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="inputTimeBegin" className="form-label  text-white">Time Begin</label>
-                                    <input type="date" className="form-control" name="inputTimeBegin" id="inputTimeBegin" required/>
+                                    <input type="time" className="form-control" name="inputTimeBegin" id="inputTimeBegin" required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="inputTimeEnd" className="form-label  text-white">Time End</label>
-                                    <input type="date" className="form-control" name="inputTimeEnd" id="inputTimeEnd" required />
+                                    <input type="time" className="form-control" name="inputTimeEnd" id="inputTimeEnd" required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="inputPrice" className="form-label  text-white">Price</label>
-                                    <input type="text" className="form-control" name="inputPrice" id="inputPrice" required />
+                                    <input type="number" min={1000} className="form-control" name="inputPrice" id="inputPrice" required />
                                 </div>
                                 <button type="submit" className="btn bg-danger text-white">Add</button>
                             </form>
@@ -190,8 +190,8 @@ const Add = () => {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header btn bg-danger text-white">
-                            <h5 className="modal-title" id="editModalLabel">Edit Product</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" id="closeModalEditbtn">
+                            <h5 className="modal-title" id="editModalLabel">Edit Schedule</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" id="closeModalEditBtn">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -204,7 +204,7 @@ const Add = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="editMovie" className=" text-white">Movie</label>
-                                        <input type="number" className="form-control" id="editMovie" defaultValue={selectedProduct.movie_id} />
+                                        <input type="name" className="form-control" id="editMovie" defaultValue={selectedProduct.movie_id} />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="editRoom" className=" text-white">Room</label>
@@ -216,15 +216,15 @@ const Add = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="editTimeBegin" className=" text-white">Time Begin</label>
-                                        <input type="date" className="form-control" id="editTimeBegin" defaultValue={selectedProduct.time_begin} />
+                                        <input type="time" className="form-control" id="editTimeBegin" defaultValue={selectedProduct.time_begin} />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="editTimeEnd" className=" text-white">Time End</label>
-                                        <input type="date" className="form-control" id="editTimeEnd" defaultValue={selectedProduct.time_end} />
+                                        <input type="time" className="form-control" id="editTimeEnd" defaultValue={selectedProduct.time_end} />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="editPrice" className=" text-white">Price</label>
-                                        <input type="text" className="form-control" id="editPrice" defaultValue={selectedProduct.price} />
+                                        <input type="number" min={1000} className="form-control" id="editPrice" defaultValue={selectedProduct.price} />
                                     </div>
                                     <button type="submit" className="btn bg-danger text-white">Update</button>
                                 </div>

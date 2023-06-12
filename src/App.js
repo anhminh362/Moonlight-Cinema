@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Schedule from './Components/Admin/Ad_Schedule/Ad_Schedule';
+import Show from './Components/Admin/Ad_Movie/CRUD/Show';
+import AdSchedule from './Components/Admin/Ad_Schedule/Ad_Schedule';
 
 function App() {
   return (
     <div>
-        <Schedule/>
+      {/* <Show></Show> */}
+      <AdSchedule></AdSchedule>
     </div>
   );
 }
