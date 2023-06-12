@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import Show from './Components/Admin/Ad_Movie/CRUD/Show';
-
+import {Routes, Route} from "react-router-dom";
+import Home from './Components/Hompage/Homepage';
+import "./Styles/global.css";
 function App() {
   return (
-    <div>
-      <Show></Show>
-    </div>
+    
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>    
   );
 }
 
