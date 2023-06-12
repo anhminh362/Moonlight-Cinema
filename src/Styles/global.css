@@ -26,13 +26,13 @@
 /* ===============================Header=================================================================================*/
 /* Header */
 .logo{
-    position: relative;
+    /* position: relative; */
     left: 70px;
     height: 70px;
     width: 90px;
 }
 .logo_text{
-    position: relative;
+    /* position: relative; */
     left: 80px;
     top: 10px;
     font-family: 'Dancing Script', cursive;
