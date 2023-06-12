@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import Show from './CRUD/Show';
+
 
 const AdSchedule = () => {
+    
     return (
-        <div></div>
+        <div>
+            <Show/>
+        </div>
     )
 }
 export default AdSchedule;

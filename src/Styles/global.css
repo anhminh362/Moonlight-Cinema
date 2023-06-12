@@ -39,7 +39,7 @@
     font-size: 25px;
     color: var(--title--color);
 }
-.header ul {
+.header ul{
     display: flex;
     justify-content:center;
     list-style: none;
