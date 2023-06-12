@@ -154,6 +154,9 @@ footer{
     background-color: var(--text--color);
     color: var(--maincolor);
 }
+body{
+    background-color: var(--maincolor);
+}
 .container .row .col-sm-3 .contact_icon{
     position: relative;
     bottom: 20px;
