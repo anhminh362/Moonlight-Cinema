@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Show from './Components/Admin/Ad_Movie/CRUD/Show';
 import AdSchedule from './Components/Admin/Ad_Schedule/Ad_Schedule';

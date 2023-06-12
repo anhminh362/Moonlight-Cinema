@@ -26,13 +26,13 @@
 /* ===============================Header=================================================================================*/
 /* Header */
 .logo{
-    position: relative;
+    /* position: relative; */
     left: 70px;
     height: 70px;
     width: 90px;
 }
 .logo_text{
-    position: relative;
+    /* position: relative; */
     left: 80px;
     top: 10px;
     font-family: 'Dancing Script', cursive;
@@ -153,6 +153,9 @@ footer{
 .container .row .col-sm-3 button:hover{
     background-color: var(--text--color);
     color: var(--maincolor);
+}
+body{
+    background-color: var(--maincolor);
 }
 .container .row .col-sm-3 .contact_icon{
     position: relative;

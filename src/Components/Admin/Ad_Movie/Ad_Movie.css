@@ -1,126 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+/* file css */
+/* ==============================bar-Film=================  */
+.line-line {
+    color: #fff;
+    position: relative;
+    top: 0.7rem;
+}
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-:root{
-    --maincolor: #06111D;
-    --title--color: #E00813;
-    --text--color: beige;
-    --h1-font-size: 3.5rem;
-    --h2-font-size: 3.25rem;
-    --h3-font-size: 3rem;
-    --logo-font-size: 2rem;
-    --font-types-product:3.5rem;
-    --font-medium:700;
-    --font-text-footer:100;
-    /* #### body font */
-    --body-font: 'Georgia', sans-serif;
-    background-color: var(--maincolor);
-}
-/* background */
- .background-left {
-    background-color: #06121E;
-    height: 49.3rem;
-} 
-.background-right{
-    background-color: #0B1A2A;
-    height: 49.3rem;
-}
-/* logo */
-.logo{
-    position: relative;
-    left: 2rem;
-    height: 8rem;
-    width: 8rem;
-}
-.logo_text{
-    position: relative;
-    left: 1rem;
-    top: 0rem;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: var(--title--color);
-}
-/* icon-item */
-.icon-item{
-    position: relative;
-    color: #ffff;
-    font-size: 1.6rem;
-    left: 2rem;
-    top: 3rem;
-    text-decoration: none;
-}
-.icon-item:hover{
-    color: #FFF;
-}
-/* icon-play */
-.icon-play{
-    position: relative;
-    color: #FFC107;
-    font-size: 1.6rem;
-    left: 2rem;
-    top: 3rem;
-    text-decoration: none;
-}
-.icon-play:hover{
-    color: #FFC107;
-}
-/* Account */
-.icon-acc{
-    font-size: 3rem;
-    color: #ffff;
-}
-.text-signout {
-    font-size: 1rem;
-    text-decoration: none;
-    color: #ffff;
-    position: relative;
-    top: -1rem;
-}
-.text-signout:hover{
-    color:#FFC107;
-}
-/* bar  */
-.line-line{
-    color: #fff;
-    position: relative;
-    top: 0.7rem;
-}
-.bar-user{
+.bar-user {
     color: #fff;
     position: relative;
     top: 0.7rem;
     text-decoration: none;
 }
-.bar-film{
+
+.bar-film {
     color: #FFC107;
     position: relative;
     top: 0.7rem;
-   
+
 }
-.bar-user:hover{
+
+.bar-user:hover {
     color: #FFF;
 }
-.bar-film:hover{
+
+.bar-film:hover {
     color: #FFC107;
 }
-.mess{
+
+.mess {
     color: #06111D;
     position: relative;
     top: 0.7rem;
 }
-.name-acc{
+
+.name-acc {
     color: aliceblue;
     position: relative;
     top: 0.7rem;
 }
-.backgroud-bar{
+
+.backgroud-bar {
     background-color: #858C94;
     height: 3rem;
+}
+
+/* table */
+#dataTable {
+    color: #ffff;
+}
+
+.icon-ac-edit {
+    color: #FFC107;
+    font-size: 1.3rem;
+
+}
+
+.icon-ac-del {
+    color: #E00813;
+    font-size: 1.3rem;
+    margin-left: 0.2rem;
+}
+.icon-ac-add{
+    color: #16FF00;
+    font-size: 1.3rem;
+    margin-left: 0.2rem;
+}
+/* Modal */
+.input-btn {
+    border-radius: 4px;
+    border: none;
+}
+
+.input-btn:hover {
+    border-radius: 4px;
+}
+.btn-edit, .btn-schedule{
+    border: none;
+    background-color: #0B1A2A;
+}
+.modal-header {
+    background: #E00813;
+}
+
+.modal-title {
+    color: #FFF;
+}
+
+.close {
+    color: white;
+    background: #E00813;
+    border: none;
+    font-size: 20px;
+}
+
+.modal-body {
+    background: #0B1A2A;
+}
+
+.title-title {
+    color: #FFF;
+    display: flex;
+    align-items: start;
+}
+
+#name {
+    width: 400px;
+}
+.desc p, .trailer_ p, .name p{
+    white-space: nowrap; 
+    width: 150px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* .cat{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+} */
+.form-form label{
+    color:#fff
 }
 /* add */
 .add-btn{
@@ -134,18 +133,4 @@
 .add-btn:hover{
     color: #E00813;
     background-color: #ffff;
-}
-/* table */
-#dataTable{
-    color: #ffff;
-}
-.icon-ac-edit{
-    color: #FFC107;
-    font-size: 1.4rem;
-    
-}
-.icon-ac-del{
-    color: #E00813;
-    font-size: 1.4rem;
-    margin-left: 0.5rem;
 }
