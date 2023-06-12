@@ -4,8 +4,8 @@ import React from 'react';
 const Trend = () => {
     return (
         <div id="formlist1">
-            <h5 class="text-title">Trending</h5>
-            <div class="direction1">
+            <h5 className="text-title">Trending</h5>
+            <div className="direction1">
                 <button id="prev1"><b>{ "<"}</b></button>
                 <button id="next1"><b>{">" }</b></button>
             </div>

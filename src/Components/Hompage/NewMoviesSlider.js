@@ -13,8 +13,8 @@ const New = () => {
     // };
     return (
         <div id="formlist">
-            <h5 class="text-title">New</h5>
-            <div class="direction2">
+            <h5 className="text-title">New</h5>
+            <div className="direction2">
                 <button id="prev2"><b>{"<"}</b></button>
                 <button id="next2"><b>{">"}</b></button>
             </div>
