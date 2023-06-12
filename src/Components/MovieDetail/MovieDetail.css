@@ -1,1 +1,222 @@
 /* file css */
+/*===================== DetailMovie ================================= */      
+.background_img{
+    filter: brightness(30%);
+    height: 100vh;
+    position: absolute;
+    z-index: -10;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 30, 0.9),rgba(0, 0, 30, 0.9));
+    background-position: center;
+    background-size: 100% auto ;
+    background-repeat: no-repeat;
+    column-gap: 30px;
+}
+/* card-img */
+.card-item{
+    max-width: 500px;
+    max-height: 500px;
+    border: 3px solid #E00813;
+    border-radius: 5px;
+}
+/* .card-img .card-item {
+    transition-duration: 0.3s;
+}
+.card-img .card-item:hover {
+    transform: scale(1.1);
+} */
+.title-film{
+    color: aliceblue;
+    font-weight: 30px;
+}
+/* icon */
+.fi-rs-star{
+    color: #F7BB07;
+    background: #000000;
+    border-radius: 2px;
+}
+.fi-br-clock-five{
+    color: #F7BB07;
+    background: #000000;
+    border-radius: 2px;
+}
+.fi-rr-social-network{
+    color: #F7BB07;
+    background: #000000;
+    border-radius: 2px;
+}
+.fi-ss-calendar{
+    color: #F7BB07;
+    background: #000000;
+    border-radius: 2px;
+}
+/* text-detail */
+.text-detail{
+    color: aliceblue;
+}
+.fi-sr-flag-alt{
+    color: aliceblue;
+}
+.contry-item{
+    background-color: #000000;
+    color: aliceblue;
+    border: none;
+}
+.fi-ss-tags{
+    border-radius: 2px #000000;
+    color: aliceblue;
+}
+.type-tiem{
+    background-color: #000000;
+    color: aliceblue;
+    border: none;
+}
+/* trailer film */
+.play-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E00813;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    border-radius: 100%;
+    color: #F7BB07;
+    font-size: 50px;
+    position: relative;
+}
+.play-btn::before{
+    content: '';
+    position: absolute;
+    border: 10px solid #F7BB07;
+    border-radius: 50%;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    animation: bloom1 1.5s linear infinite;
+    opacity: 0;
+    z-index: 1;
+}
+.play-btn::after{
+    content: '';
+    position: absolute;
+    border: 15px solid #F7BB07;
+    border-radius: 50%;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    animation: bloom2 1.5s linear infinite;
+    opacity: 0;
+    z-index: 1;
+    animation-delay: .4s;
+}
+@keyframes bloom1
+{
+ 0%
+ {
+    transform: scale(.5);
+ }   
+ 20%{
+    opacity: 1;
+ }
+ 60%{
+    transform: scale(1.5);
+ }
+}
+@keyframes bloom2
+{
+ 0%
+ {
+    transform: scale(.5);
+ }   
+ 50%{
+    opacity: 1;
+ }
+ 100%{
+    transform: scale(1.5);
+ }
+}
+.watch-trailer{
+    color: #fff;
+    font-weight: 10px;
+}
+/* btn book ticket */
+.book-btn{
+    border-radius: 5px;
+    border: none;
+    background-color: #E00813;
+    color: #ffff;
+    text-decoration: none;
+    padding: 5px;
+}
+.book-btn:hover{
+    color: #E00813;
+    background-color: #ffff;
+}
+
+
+/* Latest Episodes */
+.background-new{
+    background-color: #06121E;
+}
+.new-item{
+    color: aliceblue;
+}
+/* slider */
+.sell{
+    width: 26%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.sell img{
+    object-fit: cover;
+    display: block;
+    max-width:300px;
+    max-height:300px;
+   
+}
+.icon-play{
+    position: absolute;
+    color: #F7BB07;
+    font-size: 50px;
+    bottom: 36px;
+    left:130px;
+}
+/* Video-trailer */
+.video-player {
+    width: 50%;
+    position: absolute;
+    left: 45%;
+    top: 60%;
+    transform: translate(-50%,-50%);
+    display: none;
+}
+video:focus{
+    outline: none;
+}
+/* close-btn */
+.close-btn{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 30px;
+    cursor: pointer;
+    color:  #E00813;
+    font-size: 50px;
+}
+/* responsive */
+@media only screen and (min-device-width : 320px) and (max-device-width : 540px){
+    .container{
+        text-align: center;
+    }
+    .container .col-sm-3 .hr{
+        position: relative;
+        left: 40px;
+    }
+
+}

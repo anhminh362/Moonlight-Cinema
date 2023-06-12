@@ -1,1 +1,147 @@
 /* file css */
+/* ==========================BookTicket============================== */
+body{
+    margin:0
+}
+.book-ticket {
+    /* padding-top: 80px; */
+    /* padding-bottom: 50px; */
+    /* padding-right: 50px;
+    padding-left: 50px; */
+    background-color: #06121E;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    max-width: 1220px;
+    margin: auto;
+    
+    
+}
+
+.book-ticket-container {
+    background-color:#0B1A2A;
+    border-top: 2px;
+    padding: 20px 40px;
+}
+.date-item{
+    list-style: none;  
+}
+
+.date-list,
+.provinces-list,
+.sub-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* padding: 20px; */
+}
+.provinces-list {
+    border-top: 2px solid rgb(212, 202, 202);
+    display: block;
+    padding: 20px 40px;
+
+}
+
+.sub-list {
+    border-top: 2px solid rgb(212, 202, 202);
+    display: block;
+    padding: 20px 40px;
+}
+
+
+.show-time,.show-date {
+    padding: 20px 40px;
+    border-top: 2px solid rgb(212, 202, 202);
+    border-bottom: 2px solid rgb(212, 202, 202);
+}
+/* .place {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    position: relative;
+} */
+.time {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    
+}
+button{
+    font-size: 20px;
+    font-family: serif;
+    border: none;
+    border-radius: 3px;
+
+}
+.day {
+    border: 2px solid whitesmoke;
+    color: rgb(212, 202, 202);
+    font-family: serif;
+    font-size: 20px;
+    height: 60px;
+    width: 65px;
+    margin-left: 1.5rem;
+    position: relative;
+    left: 13px;
+
+}
+.day:hover{
+    border: 2px solid #d8bd24;
+}
+.selected{
+    background-color: #d8bd24;
+    border: none;
+}
+.day>span {
+    color: #0B1A2A;
+    font-family: serif;
+    font-size: 20px;
+    left: 2px;
+    position: absolute;
+    top: 0px;
+    pointer-events: none;
+}
+.day> em{
+    color:#0B1A2A;
+    font-family: serif;
+    font-size: 20px;
+    left: 2px;
+    position: absolute;
+    bottom: 0px;
+    pointer-events: none;
+}
+
+.day> strong{
+    color: #0B1A2A;
+    font-family: serif;
+    font-size: 30px;
+    right: 0px;
+    position: absolute;
+    top: 10px;
+    pointer-events: none;
+}
+h2{
+    font-family: serif;
+    font-size: 20px;
+    color: rgb(212, 202, 202);
+}
+.place button:hover, .time button:hover {
+    background-color: #d8bd24;
+    border: none;
+}
+
+#my-form{
+    display: flex;
+}
+
+  
+  .btn_time{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    /* margin-right: 1rem; */
+  }
+#submit-btn{
+    margin-top:2rem
+}
