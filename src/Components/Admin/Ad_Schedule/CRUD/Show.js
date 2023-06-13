@@ -212,12 +212,14 @@ const Show = () => {
                                             <div className="modal-body" style={{ background: "#0B1A2A" }}>
                                                 <form onSubmit={onSubmitHandle} style={{ background: "#0B1A2A" }}>
                                                     <div className="mb-3">
-                                                        <label htmlFor="inputMovie" className="form-label text-white">Movie</label>
-                                                        <input type="name" className="form-control" id="inputMovie" required />
+                                                        <input type="hidden" className="form-control" id="inputMovie" required />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label htmlFor="inputRoom" className="form-label  text-white">Room</label>
-                                                        <input type="number" className="form-control" name="inputRoom" id="inputRoom" required />
+                                                        <select className="form-control" name="inputRoom" id="inputRoom" required >
+                                                            <option value={1}>1</option>
+                                                            <option value={2}>2</option>
+                                                        </select>
                                                     </div>
                                                     <div className="mb-3">
                                                         <label htmlFor="inputMovieDate" className="form-label  text-white">Movie Date</label>
@@ -256,11 +258,10 @@ const Show = () => {
                                                     <div className="modal-body" style={{ background: "#0B1A2A" }}>
                                                         <div className="form-group" style={{ background: "#0B1A2A" }}>
                                                             <label htmlFor="editID" className="text-white">ID</label>
-                                                            <input type="text" className="form-control" id="editID" defaultValue={selectedProduct.id} readOnly />
+                                                            <input type="hidden" className="form-control" id="editID" defaultValue={selectedProduct.id} readOnly />
                                                         </div>
                                                         <div className="form-group">
-                                                            <label htmlFor="editMovie" className=" text-white">Movie</label>
-                                                            <input type="name" className="form-control" id="editMovie" defaultValue={selectedProduct.movie_id} />
+                                                            <input type="hidden" className="form-control" id="editMovie" defaultValue={selectedProduct.movie_id} />
                                                         </div>
                                                         <div className="form-group">
                                                             <label htmlFor="editRoom" className=" text-white">Room</label>
