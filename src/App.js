@@ -7,9 +7,11 @@ import VerifyCode from './Components/Auth/VerifyCodePage';
 import "./Styles/global.css";
 import UserInfo from './Components/Auth/UserInfo';
 import ShowUser from './Components/Admin/Ad_User/CRUD/Show';
-import UserBlock from './Components/Admin/Ad_User/CRUD/Block';
 import UserDelete from './Components/Admin/Ad_User/CRUD/Delete';
-import UserUnblock from './Components/Admin/Ad_User/CRUD/UnBlock';
+import BlockUser from './Components/Admin/Ad_User/CRUD/Block';
+import UnblockUser from './Components/Admin/Ad_User/CRUD/UnBlock';
+
+
 function App() {
   return (
     
@@ -21,8 +23,8 @@ function App() {
       <Route path="/UserInfo" element={<UserInfo/>} />
       <Route path="/ShowUser" element={<ShowUser/>} />
       <Route path="/Delete/:id" element={<UserDelete/>} />
-      <Route path="/BlockUser" element={<UserBlock/>} />
-      <Route path="/UnBlockUser" element={<UserUnblock />} />
+      <Route path="/BlockUser/:id" element={<BlockUser/>} />
+      <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
     </Routes>    
   );
 }

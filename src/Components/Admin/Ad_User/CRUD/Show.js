@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Ad_User.css';
 import '../../Admin.css';
+import BlockUser from './Block';
+import UnblockUser from './UnBlock';
 import { Link } from 'react-router-dom';
 const AdminUsersCRUD = () => {
   const [users, setUsers] = useState([]);
@@ -38,7 +40,7 @@ const AdminUsersCRUD = () => {
           <br />
           <br />
           <div className="row">
-            <a href="ad_film.php" className="icon-play">
+            <a href="#" className="icon-play">
               <ion-icon name="play-circle"></ion-icon>
               <b> Films</b>
             </a>
@@ -46,7 +48,7 @@ const AdminUsersCRUD = () => {
           <br />
           <br />
           <div className="row">
-            <a href="ad_schedule.php" className="icon-play">
+            <a href="#" className="icon-play">
               <i className="fa-solid fa-calendar-days"></i>
               <b> Schedule</b>
             </a>
@@ -54,7 +56,7 @@ const AdminUsersCRUD = () => {
         </div>
         <div className="col-lg-10 background-right">
           <div className="row">
-            <div className="col-lg-10">{/* Placeholder */}</div>
+            <div className="col-lg-10"></div>
             <div className="col-lg-2">
               <div className="icon-user">
                 <ion-icon name="person-circle" className="icon-acc"></ion-icon>
@@ -70,7 +72,7 @@ const AdminUsersCRUD = () => {
               <span className="line-line">/</span>
               <span className="bar-film">Films</span>
             </div>
-            <div className="col-sm-6">{/* Placeholder */}</div>
+            <div className="col-sm-6"></div>
             <div className="col-sm-3">
               <span className="mess">Hello!</span>
               <span className="name-acc">Kieu hi</span>
@@ -104,15 +106,20 @@ const AdminUsersCRUD = () => {
                     <td>{user.status ? 'Active' : <p style={{ color: 'gray' }}>Inactive</p>}</td>
                     <td>
                       <Link to={`/Delete/${user.id}`}><button id="btn_act"><ion-icon name="trash-outline" className="del-icon"></ion-icon></button></Link>
-                      <Link to={`handleUser.php?user_id=${user.id}`}>
-                        <button id="btn_act">
-                          <ion-icon
-                            name={user.status ? 'lock-closed-outline' : 'lock-open-outline'}
-                            className={user.status ? 'lock-icon' : 'unlock-icon'}
-                          ></ion-icon>
-                        </button>
-                      </Link>
-                </td>
+                      {user.status ? (
+                            <Link to={`/BlockUser/${user.id}`}>
+                              <button id="btn_act">
+                                <ion-icon name="lock-open-outline" className="unlock-icon"></ion-icon>
+                              </button>
+                            </Link>
+                          ) : (
+                            <Link to={`/UnblockUser/${user.id}`}>
+                              <button id="btn_act">
+                                <ion-icon name="lock-closed-outline" className="del-icon"></ion-icon>
+                              </button>
+                            </Link>
+                          )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
