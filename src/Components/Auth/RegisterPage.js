@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import '../../Styles/global.css';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -8,6 +7,9 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
+  const [emailSent, setEmailSent] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [verificationEmailSent, setVerificationEmailSent] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,7 +56,7 @@ const Register = () => {
     }
 
     try {
-      const checkEmailExists = await axios.get(`https://647783419233e82dd53bc684.mockapi.io/mypham/account?email=${email}`);
+      const checkEmailExists = await axios.get(`http://127.0.0.1:8000/api/account?email=${email}`);
 
       if (checkEmailExists.data.length > 0) {
         validationErrors.push('Email already exists');
@@ -67,11 +69,10 @@ const Register = () => {
         password,
       };
 
-      await axios.post('https://647783419233e82dd53bc684.mockapi.io/mypham/account', newUser);
+      await axios.post('http://127.0.0.1:8000/api/account', newUser);
 
-      await axios.post('https://647783419233e82dd53bc684.mockapi.io/mypham/account', { email });
-
-      alert('Registration successful. Please check your email for verification.');
+      setVerificationEmailSent(true);
+      setIsRegistered(true);
 
       navigate(`/VerifyCode?email=${encodeURIComponent(email)}`);
     } catch (error) {
@@ -88,6 +89,12 @@ const Register = () => {
     return password.length >= 8 && /[!@#$%^&*(),.?":{}|<>]/.test(password);
   };
 
+  useEffect(() => {
+    if (isRegistered) {
+      alert('Registration successful. Please check your email for verification.');
+    }
+  }, [isRegistered]);
+
   return (
     <div className="form-register">
       <form onSubmit={handleFormSubmit}>
@@ -98,59 +105,41 @@ const Register = () => {
             type="email"
             className="form-control"
             id="email"
-            name="email"
-            required
-           
             value={email}
             onChange={handleEmailChange}
+            required
           />
-          {errors.includes('Please enter a valid email address') && (
-            <p className="error-message">Please enter a valid email address</p>
-          )}
         </div>
         <div className="form-group">
-          <label htmlFor="pwd">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             className="form-control"
-            id="pwd"
-            name="pwd"
-            required
-            minLength={8}
+            id="password"
             value={password}
             onChange={handlePasswordChange}
+            required
           />
-          {errors.includes('Password must be at least 8 characters and contain special characters') && (
-            <p className="error-message">Password must be at least 8 characters and contain special characters</p>
-          )}
         </div>
         <div className="form-group">
-          <label htmlFor="confirm-pwd">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
             className="form-control"
-            id="cf_pwd"
-            name="cf_pwd"
-            required
+            id="confirmPassword"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
+            required
           />
-          {errors.includes('The password confirmation does not match') && (
-            <p className="error-message">The password confirmation does not match</p>
-          )}
         </div>
-        {errors.includes('Email already exists') && (
-          <p className="error-message">Email already exists</p>
-        )}
-        <button type="submit" className="btn btn-default btn__register" name="btn">
-          Register
-        </button>
-        <p>
-          <a href="/Login/">LoginForm</a>
-        </p>
+        <button type="submit" className="btn btn-primary">Register</button>
+        {errors.map((error, index) => (
+          <p key={index} className="error-message">{error}</p>
+        ))}
       </form>
     </div>
   );
 };
 
 export default Register;
+
