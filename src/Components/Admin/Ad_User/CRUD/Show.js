@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Ad_User.css';
 import '../../Admin.css';
-import BlockUser from './Block';
-import UnblockUser from './UnBlock';
 import { Link } from 'react-router-dom';
 const AdminUsersCRUD = () => {
   const [users, setUsers] = useState([]);
@@ -105,18 +103,15 @@ const AdminUsersCRUD = () => {
                     <td>{user.role === '1' ? 'user' : 'admin'}</td>
                     <td>{user.status ? 'Active' : <p style={{ color: 'gray' }}>Inactive</p>}</td>
                     <td>
-                      <Link to={`/Delete/${user.id}`}><button id="btn_act"><ion-icon name="trash-outline" className="del-icon"></ion-icon></button></Link>
+                      <Link to={`/Delete/${user.id}`}><ion-icon name="trash-outline" className="del-icon"></ion-icon></Link>
                       {user.status ? (
                             <Link to={`/BlockUser/${user.id}`}>
-                              <button id="btn_act">
+                             
                                 <ion-icon name="lock-open-outline" className="unlock-icon"></ion-icon>
-                              </button>
                             </Link>
                           ) : (
                             <Link to={`/UnblockUser/${user.id}`}>
-                              <button id="btn_act">
                                 <ion-icon name="lock-closed-outline" className="del-icon"></ion-icon>
-                              </button>
                             </Link>
                           )}
                     </td>

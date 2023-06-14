@@ -3,61 +3,67 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../Auth/VerifyCodePage.css';
 import '../../Styles/global.css';
+
 const VerifyCode = () => {
-    const [email, setEmail] = useState('');
-    const [code, setCode] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate();
-    const location = useLocation();
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Lấy email từ query param trong URL
+    const searchParams = new URLSearchParams(location.search);
+    const emailParam = searchParams.get('email');
+    setEmail(emailParam);
+  }, [location.search]);
+
+  const handleCodeChange = (index, value) => {
+    const newCode = [...code];
+    newCode[index] = value;
+    setCode(newCode);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
   
-    useEffect(() => {
-      // Lấy email từ query param trong URL
-      const searchParams = new URLSearchParams(location.search);
-      const emailParam = searchParams.get('email');
-      setEmail(emailParam);
-    }, [location.search]);
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/verify', {
+        email,
+        otp: code.join(''), // Chuyển đổi mảng code thành chuỗi
+      });
   
-    const handleCodeChange = (e) => {
-      setCode(e.target.value);
-    };
-  
-    const handleFormSubmit = async (e) => {
-      e.preventDefault();
-  
-      try {
-        const response = await axios.post('https://647783419233e82dd53bc684.mockapi.io/mypham/verify', {
-          email,
-          code,
-        });
-  
-        if (response.status === 200) {
-          alert('Verification successful');
-          navigate('/UserInfo'); // Chuyển hướng tới trang FormUser
-        } else {
-          setErrorMessage('The verification code you entered is incorrect. Please try again');
-        }
-      } catch (error) {
-        console.error(error);
-        setErrorMessage('An error occurred while verifying the code. Please try again');
+      if (response.status === 200) {
+        alert('Xác minh thành công');
+        navigate('/UserInfo');
+      } else {
+        setErrorMessage('Mã xác minh bạn nhập không đúng. Vui lòng thử lại');
       }
-    };
+    } catch (error) {
+      console.error(error.response);
+      setErrorMessage('Đã xảy ra lỗi khi xác minh mã. Vui lòng thử lại');
+      
+    }
+  };
   
 
   const handleResend = async () => {
     try {
-      const response = await axios.get(`https://647783419233e82dd53bc684.mockapi.io/mypham/account?email=${email}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/account?email=${email}`);
 
       if (response.data.length > 0) {
-        const resendResponse = await axios.post(`https://647783419233e82dd53bc684.mockapi.io/mypham/resend/${response.data[0].id}`);
+        const resendResponse = await axios.post(`http://127.0.0.1:8000/api/resend/${response.data[0].id}`);
         if (resendResponse.status === 200) {
-          alert('The verification code has been resent');
+         
+          alert('Resend successful');
+          // Chèn phần logic bổ sung nếu cần thiết ở đây
         } else {
-          setErrorMessage('An error occurred while resending the verification code. Please try again');
+          setErrorMessage('Mã xác minh bạn nhập không đúng. Vui lòng thử lại');
         }
       }
     } catch (error) {
       console.error(error);
-      setErrorMessage('An error occurred while resending the verification code. Please try again');
+      setErrorMessage('Đã xảy ra lỗi khi gửi lại mã xác minh. Vui lòng thử lại');
     }
   };
 
@@ -69,8 +75,7 @@ const VerifyCode = () => {
           &nbsp;
           <p className="info">An OTP has been sent to {email}</p>
           <div className="code-container">
-           
-            {[...Array(5)].map((_, index) => (
+            {[...Array(6)].map((_, index) => (
               <input
                 key={index}
                 type="number"
@@ -80,11 +85,7 @@ const VerifyCode = () => {
                 max="9"
                 required
                 value={code[index] || ''}
-                onChange={(e) => {
-                  const newCode = [...code];
-                  newCode[index] = e.target.value;
-                  setCode(newCode);
-                }}
+                onChange={(e) => handleCodeChange(index, e.target.value)}
               />
             ))}
           </div>

@@ -2,13 +2,13 @@
 /* ===============================Admin=================================== */
 /* background */
 .background-left {
-    background-color: #06121E;
-    /* height: 100vh; */
+    background-color: hwb(210 2% 88%);
+    height: 100vh;
 }
 
 .background-right {
     background-color: #0B1A2A;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 /* logo */

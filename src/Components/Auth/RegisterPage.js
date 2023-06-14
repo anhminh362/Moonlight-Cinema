@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import '../../Styles/global.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +10,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Lấy email từ query param trong URL
     const searchParams = new URLSearchParams(window.location.search);
     const emailParam = searchParams.get('email');
     setEmail(emailParam);
@@ -18,17 +18,14 @@ const Register = () => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    setErrors(errors.filter((error) => error !== 'Please enter a valid email address'));
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setErrors(errors.filter((error) => error !== 'Password must be at least 8 characters and contain special characters'));
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    setErrors(errors.filter((error) => error !== 'The password confirmation does not match'));
   };
 
   const handleFormSubmit = async (e) => {
@@ -36,16 +33,17 @@ const Register = () => {
 
     const validationErrors = [];
 
+    // Kiểm tra tính hợp lệ của email, mật khẩu và mật khẩu xác nhận
     if (!validateEmail(email)) {
-      validationErrors.push('Please enter a valid email address');
+      validationErrors.push('Vui lòng nhập địa chỉ email hợp lệ');
     }
 
     if (!validatePassword(password)) {
-      validationErrors.push('Password must be at least 8 characters and contain special characters');
+      validationErrors.push('Mật khẩu phải có ít nhất 8 ký tự và chứa các ký tự đặc biệt');
     }
 
     if (password !== confirmPassword) {
-      validationErrors.push('The password confirmation does not match');
+      validationErrors.push('Xác nhận mật khẩu không khớp');
     }
 
     if (validationErrors.length > 0) {
@@ -54,29 +52,28 @@ const Register = () => {
     }
 
     try {
-      const checkEmailExists = await axios.get(`https://647783419233e82dd53bc684.mockapi.io/mypham/account?email=${email}`);
-
-      if (checkEmailExists.data.length > 0) {
-        validationErrors.push('Email already exists');
-        setErrors(validationErrors);
-        return;
-      }
-
+      // Gửi yêu cầu đăng ký tài khoản
       const newUser = {
         email,
         password,
       };
 
-      await axios.post('https://647783419233e82dd53bc684.mockapi.io/mypham/account', newUser);
+      // await axios.post('http://127.0.0.1:8000/api/account', newUser);
+      console.log(1,email);
+      console.log(1,password);
+      console.log(1,email);
 
-      await axios.post('https://647783419233e82dd53bc684.mockapi.io/mypham/account', { email });
 
-      alert('Registration successful. Please check your email for verification.');
+      // Gửi email xác thực
+      await axios.post('http://127.0.0.1:8000/api/register', { email,password,confirmPassword });
 
+      alert('Đăng ký thành công. Vui lòng kiểm tra email của bạn để xác minh.');
+
+      // Chuyển hướng đến trang VerifyCode
       navigate(`/VerifyCode?email=${encodeURIComponent(email)}`);
     } catch (error) {
       console.error(error);
-      alert('An error occurred while registering. Please try again.');
+      // alert('Đã xảy ra lỗi khi đăng ký. Vui lòng thử lại.');
     }
   };
 
@@ -85,28 +82,26 @@ const Register = () => {
   };
 
   const validatePassword = (password) => {
+    // Ví dụ: mật khẩu phải có ít nhất 8 ký tự và chứa ký tự đặc biệt
     return password.length >= 8 && /[!@#$%^&*(),.?":{}|<>]/.test(password);
   };
 
   return (
     <div className="form-register">
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} action="/verifycode">
         <h1>Register</h1>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+         
+        <label htmlFor="email">Email</label>
           <input
             type="email"
             className="form-control"
             id="email"
             name="email"
             required
-           
             value={email}
             onChange={handleEmailChange}
           />
-          {errors.includes('Please enter a valid email address') && (
-            <p className="error-message">Please enter a valid email address</p>
-          )}
         </div>
         <div className="form-group">
           <label htmlFor="pwd">Password</label>
@@ -114,39 +109,36 @@ const Register = () => {
             type="password"
             className="form-control"
             id="pwd"
-            name="pwd"
+            name="password"
             required
-            minLength={8}
             value={password}
             onChange={handlePasswordChange}
           />
-          {errors.includes('Password must be at least 8 characters and contain special characters') && (
-            <p className="error-message">Password must be at least 8 characters and contain special characters</p>
-          )}
         </div>
         <div className="form-group">
           <label htmlFor="confirm-pwd">Confirm Password</label>
           <input
             type="password"
             className="form-control"
-            id="cf_pwd"
-            name="cf_pwd"
+            id="confirm-pwd"
+            name="confirm-pwd"
             required
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
-          {errors.includes('The password confirmation does not match') && (
-            <p className="error-message">The password confirmation does not match</p>
-          )}
         </div>
-        {errors.includes('Email already exists') && (
-          <p className="error-message">Email already exists</p>
+        {errors.length > 0 && (
+          <div className="error-message">
+            {errors.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
         )}
         <button type="submit" className="btn btn-default btn__register" name="btn">
           Register
         </button>
         <p>
-          <a href="/Login/">LoginForm</a>
+          <Link to="/login">LoginForm</Link>
         </p>
       </form>
     </div>
