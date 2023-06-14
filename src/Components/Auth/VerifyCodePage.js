@@ -10,7 +10,6 @@ const VerifyCode = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const [verificationEmailSent, setVerificationEmailSent] = useState(false);
 
   useEffect(() => {
     // Lấy email từ query param trong URL
@@ -19,47 +18,52 @@ const VerifyCode = () => {
     setEmail(emailParam);
   }, [location.search]);
 
-  const handleCodeChange = (e) => {
-    setCode(e.target.value);
+  const handleCodeChange = (index, value) => {
+    const newCode = [...code];
+    newCode[index] = value;
+    setCode(newCode);
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/account', {
+      const response = await axios.post('http://127.0.0.1:8000/api/verify', {
         email,
-        code,
+        otp: code.join(''), // Chuyển đổi mảng code thành chuỗi
       });
-
+  
       if (response.status === 200) {
-        alert('Verification successful');
-        navigate('/UserInfo'); // Chuyển hướng tới trang FormUser
+        alert('Xác minh thành công');
+        navigate('/UserInfo');
       } else {
-        setErrorMessage('The verification code you entered is incorrect. Please try again');
+        setErrorMessage('Mã xác minh bạn nhập không đúng. Vui lòng thử lại');
       }
     } catch (error) {
-      console.error(error);
-      setErrorMessage('An error occurred while verifying the code. Please try again');
+      console.error(error.response);
+      setErrorMessage('Đã xảy ra lỗi khi xác minh mã. Vui lòng thử lại');
+      
     }
   };
+  
 
   const handleResend = async () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/account?email=${email}`);
 
       if (response.data.length > 0) {
-        const resendResponse = await axios.post(`http://127.0.0.1:8000/api/account${response.data[0].id}`);
+        const resendResponse = await axios.post(`http://127.0.0.1:8000/api/resend/${response.data[0].id}`);
         if (resendResponse.status === 200) {
-          setVerificationEmailSent(true); // Đã gửi lại email xác nhận
-          alert('The verification code has been resent');
+         
+          alert('Resend successful');
+          // Chèn phần logic bổ sung nếu cần thiết ở đây
         } else {
-          setErrorMessage('An error occurred while resending the verification code. Please try again');
+          setErrorMessage('Mã xác minh bạn nhập không đúng. Vui lòng thử lại');
         }
       }
     } catch (error) {
       console.error(error);
-      setErrorMessage('An error occurred while resending the verification code. Please try again');
+      setErrorMessage('Đã xảy ra lỗi khi gửi lại mã xác minh. Vui lòng thử lại');
     }
   };
 
@@ -71,7 +75,7 @@ const VerifyCode = () => {
           &nbsp;
           <p className="info">An OTP has been sent to {email}</p>
           <div className="code-container">
-            {[...Array(5)].map((_, index) => (
+            {[...Array(6)].map((_, index) => (
               <input
                 key={index}
                 type="number"
@@ -81,11 +85,7 @@ const VerifyCode = () => {
                 max="9"
                 required
                 value={code[index] || ''}
-                onChange={(e) => {
-                  const newCode = [...code];
-                  newCode[index] = e.target.value;
-                  setCode(newCode);
-                }}
+                onChange={(e) => handleCodeChange(index, e.target.value)}
               />
             ))}
           </div>
@@ -93,13 +93,9 @@ const VerifyCode = () => {
           <button type="submit" className="btn btn-default btn__verify" name="btn">
             Verify
           </button>
-          {verificationEmailSent ? (
-            <p className="verification-sent">Verification email has been resent</p>
-          ) : (
-            <button type="button" className="btn btn-link btn__resend" onClick={handleResend}>
-              Resend Code
-            </button>
-          )}
+          <button type="button" className="btn btn-link btn__resend" onClick={handleResend}>
+            Resend Code
+          </button>
         </div>
       </form>
     </div>
