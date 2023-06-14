@@ -4,25 +4,26 @@ import axios from "axios";
 
 const UserInfo = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [full_name, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [nameError, setNameError] = useState("");
+  const [full_nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!/^[a-zA-Z\s]*$/.test(name)) {
+    if (!/^[a-zA-Z\s]*$/.test(full_name)) {
       setNameError("Chỉ cho phép chữ cái và khoảng trắng");
     } else if (!/^[0-9]{10}$/.test(phone)) {
       setPhoneError("Số điện thoại không hợp lệ");
     } else {
       // Gửi yêu cầu lưu thông tin đến API
       axios
-        .post("http://127.0.0.1:8000/api/users", { name, phone })
+        .post("http://127.0.0.1:8000/api/users", { full_name, phone })
         .then((response) => {
           if (response.status === 200) {
+            alert('Xác thực thành công, Vui lòng đăng nhập!');
             navigate("/Login");
           } else {
             console.log(response.data.error);
@@ -50,8 +51,8 @@ const UserInfo = () => {
               className="form-control"
               id="name"
               name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={full_name}
+              onChange={(e) => setFullName(e.target.value)}
               required
             />
           </div>
@@ -61,7 +62,7 @@ const UserInfo = () => {
           <br />
           <div className="form-input">
             <input
-              type="phone"
+              type="tel"
               className="form-control"
               id="phone"
               name="phone"
@@ -76,7 +77,7 @@ const UserInfo = () => {
           Save
         </button>
         <div>
-          {nameError && <span className="error">{nameError}</span>}
+          {full_nameError && <span className="error">{full_nameError}</span>}
           {phoneError && <span className="error">{phoneError}</span>}
           {errorMessage && <span className="error">{errorMessage}</span>}
           <br />
