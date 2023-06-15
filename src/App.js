@@ -5,11 +5,11 @@ import "./Styles/global.css";
 import Show from './Components/Admin/Ad_Movie/CRUD/Show';
 function App() {
   return (
-    <Show/>
+    // <Show/>
     
-    // <Routes>
-    //   <Route path="/" element={<Home />} />
-    // </Routes>    
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>    
   );
 }
 

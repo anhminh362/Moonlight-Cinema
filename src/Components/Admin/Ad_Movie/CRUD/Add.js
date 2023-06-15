@@ -4,6 +4,7 @@ import axios from 'axios';
 import DataTable from "react-data-table-component";
 import $ from "jquery";
 import '../Ad_Movie.css'
+
 const Add = () => {
     const onSubmitHandle = async (e) => {
         e.preventDefault();

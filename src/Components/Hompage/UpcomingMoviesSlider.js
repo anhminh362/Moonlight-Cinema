@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const Upcoming = () => {
     // document.getElementById('next2').onclick = function () {
@@ -10,16 +10,25 @@ const Upcoming = () => {
     //     const widthItem = document.querySelector('.item2').offsetWidth;
     //     document.getElementById('formlist2').scrollLeft -= widthItem;
     // }
-    const [formlist1ScrollLeft, setFormlist1ScrollLeft] = useState(0);
-    const handleNext1Click = () => {
-        const widthItem = document.querySelector('.item2').offsetWidth;
-        setFormlist1ScrollLeft(formlist1ScrollLeft + widthItem);
-    };
+    // const [formlist1ScrollLeft, setFormlist1ScrollLeft] = useState(0);
+    // const handleNext1Click = () => {
+    //     const widthItem = document.querySelector('.item2').offsetWidth;
+    //     setFormlist1ScrollLeft(formlist1ScrollLeft + widthItem);
+    // };
 
-    const handlePrev1Click = () => {
-        const widthItem = document.querySelector('.item2').offsetWidth;
-        setFormlist1ScrollLeft(formlist1ScrollLeft - widthItem);
-    };
+    // const handlePrev1Click = () => {
+    //     const widthItem = document.querySelector('.item2').offsetWidth;
+    //     setFormlist1ScrollLeft(formlist1ScrollLeft - widthItem);
+    // };
+    const [movies, setMovies] = useState([]);
+  
+    useEffect(() => {
+      // fetch("http://localhost:3000/products")
+      fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
+        .then(response => response.json())
+        .then(movie => setMovies(movie));
+    }, []);
+
     return (
         <>
             <h5 className="text-title">Upcoming Movies</h5>
@@ -29,12 +38,14 @@ const Upcoming = () => {
                 <button id="next2"><b>{ ">"}</b></button>
             </div>
                 <div id="list2">
+                {movies.map((movie, index) => index < 5 && (
+                <>
                     <div className="item2">
-                        <img src="picture/18.jpg" alt="" className="movies2"></img>
+                        <img src={movie.avatar} alt={movie.avatar} className="movies2"></img>
                         <div className="overlay2">
-                            <h5>Động Quỷ</h5>
+                            <h5>{movie.name}</h5>
                             <p>
-                                Action/Adventure              </p>
+                                {movie.category} </p>
                             <a href="detailmovie.php?id=18"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
@@ -44,7 +55,9 @@ const Upcoming = () => {
                     <div className="item2"></div>
                     <div className="item2"></div>
                     <div className="item2"></div>
-                    <div className="item2">
+                    </>
+            ))}
+                    {/* <div className="item2">
                         <img src="picture/19.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
                             <h5>Xứ Sở Các Nguyên Tố</h5>
@@ -133,7 +146,7 @@ const Upcoming = () => {
                     <div className="item2"></div>
                     <div className="item2"></div>
                     <div className="item2"></div>
-                    <div className="item2"></div>
+                    <div className="item2"></div> */}
                 </div>
             </div></>
     )
