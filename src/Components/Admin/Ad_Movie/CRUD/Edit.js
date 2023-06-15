@@ -5,37 +5,37 @@ import axios from 'axios';
 const Edit = () => {
     return (
         
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
             <form
               method="post"
-              class="form-form"
+              className="form-form"
               action="edit.php"
               encType="multipart/form-data"
             >
-              <div class="modal-header">
-                <h5 class="modal-title">EDIT</h5>
+              <div className="modal-header">
+                <h5 className="modal-title">EDIT</h5>
                 <button
                   type="button"
                   name="close"
-                  class="btn-close"
+                  className="btn-close"
                   data-dismiss="modal"
                   aria-label="Đóng"
                 >
                   {/* <span aria-hidden="true">&times;</span> */}
                 </button>
               </div>
-              <div class="modal-body" id="modal-body">
+              <div className="modal-body" id="modal-body">
                 
                 {/* <input type="hidden" name="action" value="add"> Trường ẩn để xác định hành động */}
                 <input type="hidden" id="id" name="id" />
-                <label htmlFor="name" class="title-title">
+                <label htmlFor="name" className="title-title">
                   Name:
                 </label>
-                <input type="text" id="name" class="input-btn" name="name" />
+                <input type="text" id="name" className="input-btn" name="name" />
                 <br />
                 <br />
-                <label htmlFor="avatar" class="title-title">
+                <label htmlFor="avatar" className="title-title">
                   Avatar:
                 </label>
                 <input
@@ -46,7 +46,7 @@ const Edit = () => {
                     backgroundColor: "#0B1A2A"
                   }}
                   id="avatar"
-                  class="input-btn"
+                  className="input-btn"
                   type="text"
                   name="avatar"
                 />
@@ -58,24 +58,24 @@ const Edit = () => {
                 />
                 <br />
                 <br />
-                <label htmlFor="date" class="title-title">
+                <label htmlFor="date" className="title-title">
                   Premiere date:
                 </label>
                 <input
                   type="date"
                   id="premiere_date"
-                  class="input-btn"
+                  className="input-btn"
                   name="premiere_date"
                 />
                 <br />
                 <br />
-                <label htmlFor="country" class="title-title">
+                <label htmlFor="country" className="title-title">
                   Country:
                 </label>
-                <input name="country" id="country" class="input-btn" />
+                <input name="country" id="country" className="input-btn" />
                 <br />
                 <br />
-                <label htmlFor="describe" class="title-title">
+                <label htmlFor="describe" className="title-title">
                   Describe:
                 </label>
                 <textarea
@@ -84,12 +84,12 @@ const Edit = () => {
                   name="description"
                   id="description"
                   type="text"
-                  class="input-btn"
+                  className="input-btn"
                   defaultValue={""}
                 />
                 <br />
                 <br />
-                <label htmlFor="trailer" class="title-title">
+                <label htmlFor="trailer" className="title-title">
                   Trailer:
                 </label>
                 <input
@@ -99,32 +99,32 @@ const Edit = () => {
                     color: "white",
                     backgroundColor: "#0B1A2A"
                   }}
-                  class="input-btn"
+                  className="input-btn"
                   name="trailer"
                   id="trailer"
                   type="text"
                 />
                 <input type="file" style={{ color: "white" }} name="up_trailer" />
                 <br /> <br />
-                <div class="category">
-                  <label htmlFor="name" class="title-title">
+                <div className="category">
+                  <label htmlFor="name" className="title-title">
                     Category
                   </label>
                   <input type="hidden" name="cat" id="cat" defaultValue="" />
                   <label>
                     <input
                       type="checkbox"
-                      class="input-btn"
+                      className="input-btn"
                       name="cat[]"
                       defaultValue=""
                     />
                   </label>
                 </div>
-                <div class="modal-footer">
+                <div className="modal-footer">
                   <input
                     type="submit"
                     name="submit"
-                    class="btn bg-danger text-white"
+                    className="btn bg-danger text-white"
                     defaultValue="Update"
                   />
                 </div>

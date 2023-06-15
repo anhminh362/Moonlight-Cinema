@@ -5,24 +5,24 @@ import axios from 'axios';
 const Add = () => {
     return (
         
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title">FOMR ADD</h5>
+            <div className="modal-dialog" role="document">
+            <div className="modal-content">
+                <div className="modal-header">
+                <h5 className="modal-title">FOMR ADD</h5>
                 <button
                     type="button"
                     name="close"
-                    class="btn-close"
+                    className="btn-close"
                     data-dismiss="modal"
                     aria-label="Đóng"
                 >
                     {/* <span aria-hidden="true">&times;</span> */}
                 </button>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                 <form
                     method="post"
-                    class="form-form"
+                    className="form-form"
                     action="add.php"
                     encType="multipart/form-data"
                 >
@@ -35,56 +35,56 @@ const Add = () => {
                     name="id"
                     defaultValue="<?php echo $row['id']; ?>"
                     />
-                    <label htmlFor="name" class="title-title">
+                    <label htmlFor="name" className="title-title">
                     Name:
                     </label>
-                    <input type="text" class="input-btn" name="name" />
+                    <input type="text" className="input-btn" name="name" />
                     <br />
                     <br />
-                    <label htmlFor="avatar" class="title-title">
+                    <label htmlFor="avatar" className="title-title">
                     Avatar:
                     </label>
                     <input
                     type="file"
                     style={{ color: "white" }}
-                    class="input-btn"
+                    className="input-btn"
                     name="avatar"
                     />
                     <br />
                     <br />
-                    <label htmlFor="date" class="title-title">
+                    <label htmlFor="date" className="title-title">
                     Premiere date:
                     </label>
-                    <input type="date" class="input-btn" name="premiere_date" />
+                    <input type="date" className="input-btn" name="premiere_date" />
                     <br />
                     <br />
-                    <label htmlFor="country" class="title-title">
+                    <label htmlFor="country" className="title-title">
                     Country:
                     </label>
-                    <input name="country" class="input-btn" />
+                    <input name="country" className="input-btn" />
                     <br />
                     <br />
-                    <label htmlFor="describe" class="title-title">
+                    <label htmlFor="describe" className="title-title">
                     Describe:
                     </label>
-                    <input name="description" type="text" class="input-btn" />
+                    <input name="description" type="text" className="input-btn" />
                     <br />
                     <br />
-                    <label htmlFor="trailer" class="title-title">
+                    <label htmlFor="trailer" className="title-title">
                     Trailer:
                     </label>
                     <input
                     name="trailer"
                     style={{ color: "white" }}
                     type="file"
-                    class="input-btn"
+                    className="input-btn"
                     />
                     <br />
                     <br />
-                    <label htmlFor="name" class="title-title">
+                    <label htmlFor="name" className="title-title">
                     Category:
                     </label>
-                    <div class="category">
+                    <div className="category">
                     <label>
                         <input
                         type="checkbox"
@@ -93,11 +93,11 @@ const Add = () => {
                         />
                     </label>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                     <input
                         type="submit"
                         name="submit"
-                        class="btn bg-danger text-white"
+                        className="btn bg-danger text-white"
                         defaultValue="Add"
                     />
                     </div>
