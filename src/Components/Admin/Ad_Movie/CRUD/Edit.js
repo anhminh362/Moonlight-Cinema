@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import $ from "jquery";
 
-const Edit = () => {
+function Edit(props){
   const submitEditProduct = async (e) => {
     e.preventDefault();
     const id = $("#editID").val();
@@ -51,62 +51,18 @@ const editProduct = (id) => {
     $("trailer").val(movies.trailer);
     $("category").val(movies.category);
 };
-const columns = [
-  {
-      name: "ID",
-      selector: "id",
-      sortable: true,
-  },
-  {
-      name: "name",
-      selector: "name",
-      sortable: true,
-  },
-  {
-      name: "Avatar",
-      sortable: true,
-      cell: (row) => (
-          <img data-tag="allowRowEvents" 
-          src={`https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie/${row.avatar}`}
-           alt="preview" style={{ width: "100px" }} />
-      ),
-  },
-
-  {
-      name: "Premiere_date",
-      selector: "premiere_date",
-      sortable: true,
-  },
-  {
-      name: "Country",
-      selector: "country",
-      sortable: true,
-  },
-  {
-      name: "Description",
-      selector: "description",
-      sortable: true,
-  },
-  {
-      name: "Trailer",
-      selector: "trailer",
-      sortable: true,
-  },
-  {
-      name: "Category",
-      selector: "category",
-      sortable: true,
-  },
-  {
-      name: "action",
-      cell: (row) => (
-          <div>
-              <button className="btn btn-warning btn-sm mr-2" data-toggle="modal" data-target="#editModal" onClick={() => editProduct(row.id)}>Edit</button>
-          </div>
-      ),
-  },
-];
-
+   const editMovies = (id) => {
+  const movie = movie.find((movie) => movie.id === id);
+  $("#editID").val(movie.id);
+  $("#name").val(movie.name);
+  $("#avatar").val("");
+  $("#preview-image-before-edit").attr("src", `https://63aa9cf0fdc006ba6046fb1c.mockapi.io/image/${movie.avatar}`);
+  $("#premiere_date").val(movie.premiere_date);
+  $("#country").val(movie.country);
+  $("#description").val(movie.description);
+  $("#trailer").val(movie.trailer);
+  $("#category").val(movie.category);
+};
     return (
         
         <div class="modal-dialog" role="document">
@@ -185,27 +141,19 @@ const columns = [
                 />
                 <input type="file" style={{ color: "white" }} name="up_trailer" />
                 <br /> <br />
+
                 <div class="category">
-                  
                   <label htmlFor="name" class="title-title">Category</label>
                   <input type="hidden" name="cat" id="cat" defaultValue="" />
                   <label>
-                    <input
-                      type="checkbox"
-                      class="input-btn"
-                      name="cat[]"
-                      defaultValue=""
-                    />
+                    <input type="checkbox" class="input-btn" name="cat[]" defaultValue=""/>
                   </label>
                 </div>
+
                 <div class="modal-footer">
-                  <input
-                    type="submit"
-                    name="submit"
-                    class="btn bg-danger text-white"
-                    defaultValue="Update"
-                  />
+                  <input type="submit" name="submit" class="btn bg-danger text-white" defaultValue="Update"/>
                 </div>
+
               </div>
             </form>
           </div>
