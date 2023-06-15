@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [c_password, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const Register = () => {
       validationErrors.push('Mật khẩu phải có ít nhất 8 ký tự và chứa các ký tự đặc biệt');
     }
 
-    if (password !== confirmPassword) {
+    if (password !== c_password) {
       validationErrors.push('Xác nhận mật khẩu không khớp');
     }
 
@@ -65,7 +65,7 @@ const Register = () => {
 
 
       // Gửi email xác thực
-      await axios.post('http://127.0.0.1:8000/api/register', { email,password,confirmPassword });
+      await axios.post('http://127.0.0.1:8000/api/register', { email,password,c_password });
 
       alert('Đăng ký thành công. Vui lòng kiểm tra email của bạn để xác minh.');
 
@@ -91,14 +91,8 @@ const Register = () => {
       <form onSubmit={handleFormSubmit} action="/verifycode">
         <h1>Register</h1>
         <div className="form-group">
-         
-        <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            required
+         <label htmlFor="email">Email</label>
+          <input type="email" className="form-control" id="email" name="email"required
             value={email}
             onChange={handleEmailChange}
           />
@@ -123,7 +117,7 @@ const Register = () => {
             id="confirm-pwd"
             name="confirm-pwd"
             required
-            value={confirmPassword}
+            value={c_password}
             onChange={handleConfirmPasswordChange}
           />
         </div>
