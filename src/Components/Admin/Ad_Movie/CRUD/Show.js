@@ -5,21 +5,20 @@ import '../Ad_Movie.css';
 import '../../Admin.css';
 import '../../../../Styles/global.css';
 import Edit from './Edit';
-import AddSchedule from '../../Ad_Schedule/CRUD/Add';
 import Delete from './Delete';
-import axios from 'axios';
+import AddSchedule from '../../Ad_Schedule/CRUD/Add'
 
 const Show = () => {
-
   const [movies, setMovies] = useState([]);
-  
+
   useEffect(() => {
     // fetch("http://localhost:3000/products")
     fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
       .then(response => response.json())
       .then(movie => setMovies(movie));
   }, []);
-
+  
+  
   return (
     // <div>
   <div class="row">
@@ -141,7 +140,7 @@ const Show = () => {
                 <th>Name</th>
                 <th>Premiere date</th>
                 <th>Country</th>
-                <th>Description</th>
+                <th>Describe</th>
                 <th>Trailer</th>
                 <th>Category</th>
                 <th>Action</th>
@@ -162,16 +161,13 @@ const Show = () => {
                 <td>
 
                   <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
-                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country}
-                   data-describe={movie.description} data-trailer={movie.trailer} data-category={movie.category}>
+                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country} data-describe={movie.describe} data-trailer={movie.trailer}>
                     <ion-icon name="pencil-outline" class="icon-ac-edit" />
                   </button>
-                  
                   <Delete delete={movie.id}></Delete>
-
-                  <button type='button' class='btn-schedule'  data-bs-toggle='modal' 
-                  data-bs-target='#scheduleModal'  data-id={movie.id}> <ion-icon class=
-                  'icon-ac-add' name='add-circle-outline'></ion-icon></button>
+               
+                 
+                  <button type='button' class='btn-schedule'  data-bs-toggle='modal' data-bs-target='#scheduleModal'  data-id={movie.id}> <ion-icon class='icon-ac-add' name='add-circle-outline'></ion-icon></button>
                 </td>
               </tr>
             ))}
@@ -182,6 +178,11 @@ const Show = () => {
       </div>
     </div>
   </div>
+
+
+    // </div>
   )
+
 };
+
 export default Show;

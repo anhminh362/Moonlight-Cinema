@@ -19,12 +19,12 @@ function Delete(props) {
     };
 
     return (
-        <div>
+        <b>
           {/* <button className="btn btn-danger btn-sm" onClick={()=>deleteMovies(props.delete)}>Delete</button> */}
           <button data-tag="allowRowEvents" type="button" onClick={() => { deleteMovies(props.delete); }} 
           style={{ textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>
         <ion-icon name='trash-outline' class='icon-ac-del' /></button>
-        </div>
+        </b>
     )
 }
 export default Delete;

@@ -4,10 +4,10 @@ import axios from 'axios';
 import $ from "jquery";
 
 function Edit(props){
-  const submitEditProduct = async (e) => {
+  const submitEditMovies = async (e) => {
     e.preventDefault();
     const id = $("#editID").val();
-    const image =
+    const image = 
         $("#avatar").val().split("\\")[2] !== "" &&
             $("#avatar").val().split("\\")[2] !== undefined
             ? $("#avatar").val().split("\\")[2]
@@ -21,7 +21,7 @@ function Edit(props){
     }
 
     try {
-        await axios.put(`https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie/${id}`, {
+        await axios.edit(`https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie/${id}`,{} ,{
             name: $("#name").val(),
             avatar: image,
             premiere_date: $("#premiere_date").val(),
@@ -38,18 +38,6 @@ function Edit(props){
         console.log(error);
         alert("Sửa không thành công");
     }
-};
-const editProduct = (id) => {
-    const movies = movies.find((movie) => movie.id === id);
-    $("#editID").val(movies.id);
-    $("#name").val(movies.name);
-    $("#avatar").val("");
-    $("#preview-image-before-edit").attr("src", `https://63aa9cf0fdc006ba6046fb1c.mockapi.io/image/${movies.avatar}`);
-    $("#premiere_date").val(movies.premiere_date);
-    $("#country").val(movies.country);
-    $("#description").val(movies.description);
-    $("trailer").val(movies.trailer);
-    $("category").val(movies.category);
 };
    const editMovies = (id) => {
   const movie = movie.find((movie) => movie.id === id);
@@ -149,11 +137,21 @@ const editProduct = (id) => {
                     <input type="checkbox" class="input-btn" name="cat[]" defaultValue=""/>
                   </label>
                 </div>
+                {/* <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
+                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country} data-describe={movie.describe} data-trailer={movie.trailer}>
+                    <ion-icon name="pencil-outline" class="icon-ac-edit" />
+                  </button> */}
 
-                <div class="modal-footer">
+                {/* <div class="modal-footer">
                   <input type="submit" name="submit" class="btn bg-danger text-white" defaultValue="Update"/>
-                </div>
-
+                  
+                </div> */}
+                      <b>
+          {/* <button className="btn btn-danger btn-sm" onClick={()=>deleteMovies(props.delete)}>Delete</button> */}
+          <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit'onClick={() => { submitEditMovies(props.delete); }} 
+          style={{ textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <ion-icon name="pencil-outline" class="icon-ac-edit"  /></button>
+        </b>
               </div>
             </form>
           </div>
