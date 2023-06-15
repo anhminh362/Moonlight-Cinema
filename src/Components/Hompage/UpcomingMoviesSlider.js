@@ -1,7 +1,17 @@
 import React from 'react';
-import { useRef, useState } from 'react';
-// import Slider from "react-slick";
+
+import { useState,useEffect,useRef} from 'react';
+
 const Upcoming = () => {
+   
+    const [movies, setMovies] = useState([]);
+  
+    useEffect(() => {
+      fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
+        .then(response => response.json())
+        .then(movie => setMovies(movie));
+    }, []);
+
     const scrollRef = useRef();
     const [scrollLeft, setScrollLeft] = useState(0);
 
@@ -22,6 +32,7 @@ const Upcoming = () => {
         autoplay: true,
         autoplaySpeed: 2000,
     }
+
     return (
         <>
             <h5 className="text-title">Upcoming Movies</h5>
@@ -29,71 +40,22 @@ const Upcoming = () => {
                 <button id="prev2" onClick={handlePrev}><b>{"<"}</b></button>
                 <button id="next2" onClick={handleNext}><b>{">"}</b></button>
             </div>
-            <div id="formlist2" ref={scrollRef}>
+
+              <div id="formlist2" ref={scrollRef}>
                 <div id="list2" {...setting}>
+                {movies.map((movie, index) => index < 5 && (
+                <>
                     <div className="item2">
-                        <img src="picture/18.jpg" alt="" className="movies2"></img>
+                        <img src={movie.avatar} alt={movie.avatar} className="movies2"></img>
                         <div className="overlay2">
-                            <h5>Động Quỷ</h5>
+                            <h5>{movie.name}</h5>
                             <p>
-                                Action/Adventure              </p>
+                                {movie.category} </p>
                             <a href="detailmovie.php?id=18"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2">
-                        <img src="picture/19.jpg" alt="" className="movies2"></img>
-                        <div className="overlay2">
-                            <h5>Xứ Sở Các Nguyên Tố</h5>
-                            <p>
-                                Horror              </p>
-                            <a href="detailmovie.php?id=19"><button type="button" className="btn btn-success">More Details</button></a>
-                        </div>
-                    </div>
-                    <div className="item2">
-                        <img src="picture/20.jpg" alt="" className="movies2"></img>
-                        <div className="overlay2">
-                            <h5>Quỳnh Hoa Nhất Dạ</h5>
-                            <p>
-                                Animation/Comedy              </p>
-                            <a href="detailmovie.php?id=20"><button type="button" className="btn btn-success">More Details</button></a>
-                        </div>
-                    </div>
-                    <div className="item2">
-                        <img src="picture/21.jpg" alt="" className="movies2"></img>
-                        <div className="overlay2">
-                            <h5>Quái Thú Nổi Dậy</h5>
-                            <p>
-                                Action/Adventure              </p>
-                            <a href="detailmovie.php?id=21"><button type="button" className="btn btn-success">More Details</button></a>
-                        </div>
-                    </div>
-                    <div className="item2">
-                        <img src="picture/22.jpg" alt="" className="movies2"></img>
-                        <div className="overlay2">
-                            <h5>Khắc Tinh Của Quỷ</h5>
-                            <p>
-                            </p>
-                            <a href="detailmovie.php?id=22"><button type="button" className="btn btn-success">More Details</button></a>
-                        </div>
-                    </div>
-                    <div className="item2">
-                        <img src="picture/23.jpg" alt="" className="movies2"></img>
-                        <div className="overlay2">
-                            <h5>Troll 3</h5>
-                            <p>
-                            </p>
-                            <a href="detailmovie.php?id=23"><button type="button" className="btn btn-success">More Details</button></a>
-                        </div>
-                    </div>
-                    <div className="item2">
-                        <img src="picture/24.jpg" alt="" className="movies2"></img>
-                        <div className="overlay2">
-                            <h5>Fast and Furiou</h5>
-                            <p>
-                            </p>
-                            <a href="detailmovie.php?id=24"><button type="button" className="btn btn-success">More Details</button></a>
-                        </div>
-                    </div>
+                    </>
+            ))}
                 </div>
             </div>
         </>

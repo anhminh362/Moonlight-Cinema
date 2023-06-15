@@ -1,6 +1,16 @@
 import React from "react";
+import { useState,useEffect } from 'react';
 const Banner = () => {
-
+    const [movies, setMovies] = useState([]);
+  
+    useEffect(() => {
+      // fetch("http://localhost:3000/products")
+      fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
+        .then(response => response.json())
+        .then(movie => setMovies(movie));
+    }, []);
+  
+    const [cats, setCats] = useState([]);
     return (
         <div>
             <div id="slider" className="carousel carousel-light slide" data-bs-ride="carousel">
