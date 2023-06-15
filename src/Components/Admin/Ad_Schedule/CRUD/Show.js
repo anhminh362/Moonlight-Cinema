@@ -257,7 +257,6 @@ const Show = () => {
                                                 <form onSubmit={submitEditProduct}>
                                                     <div className="modal-body" style={{ background: "#0B1A2A" }}>
                                                         <div className="form-group" style={{ background: "#0B1A2A" }}>
-                                                            <label htmlFor="editID" className="text-white">ID</label>
                                                             <input type="hidden" className="form-control" id="editID" defaultValue={selectedProduct.id} readOnly />
                                                         </div>
                                                         <div className="form-group">
@@ -291,8 +290,6 @@ const Show = () => {
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
