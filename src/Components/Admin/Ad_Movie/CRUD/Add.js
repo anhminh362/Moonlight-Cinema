@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import DataTable from "react-data-table-component";
+// import DataTable from "react-data-table-component";
 import $ from "jquery";
 import '../Ad_Movie.css'
 

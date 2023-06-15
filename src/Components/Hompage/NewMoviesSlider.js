@@ -38,7 +38,7 @@ const New = () => {
                 <button id="next2" onClick={handleNext}><b>{">"}</b></button>
             </div>
 
-            div id="formlist" ref={scrollRef}>
+            <div id="formlist" ref={scrollRef}>
             <div id="list">
             {movies.map((movie, index) => index < 5 && (
                 <>
