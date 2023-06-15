@@ -22,71 +22,71 @@ const Show = () => {
 
   return (
     // <div>
-  <div class="row">
-    <div class="col-lg-2 background-left ">
+  <div className="row">
+    <div className="col-lg-2 background-left ">
       <div>
         <img
-          class="logo"
+          className="logo"
           src="/asset/picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
           alt=""
         />
-        <b class="logo_text">MoonLight</b>
+        <b className="logo_text">MoonLight</b>
       </div>
-      <div class="row">
-        <a href="" class="icon-item">
+      <div className="row">
+        <a href="" className="icon-item">
           <ion-icon name="person" />
           <b> User</b>
         </a>
       </div>
       <br />
       <br />
-      <div class="row">
-        <p class="icon-play">
+      <div className="row">
+        <p className="icon-play">
           <ion-icon name="play-circle" />
           <b> Films</b>
         </p>
       </div>
       <br/>
       <br/>
-      <div class="row">
-        <a href="" class="icon-item">
-          <i class="fa-solid fa-calendar-days"></i>
+      <div className="row">
+        <a href="" className="icon-item">
+          <i className="fa-solid fa-calendar-days"></i>
           <b> Schedule</b>
         </a>
       </div>
     </div>
-    <div class="col-lg-10 background-right">
-      <div class="row">
-        <div class="col-lg-10">{/*  */}</div>
-        <div class="col-lg-2">
-          <div class="icon-user">
-            <ion-icon name="person-circle" class="icon-acc" />
-            <a class="text-signout" href="#">
+    <div className="col-lg-10 background-right">
+      <div className="row">
+        <div className="col-lg-10">{/*  */}</div>
+        <div className="col-lg-2">
+          <div className="icon-user">
+            <ion-icon name="person-circle" className="icon-acc" />
+            <a className="text-signout" href="#">
               Kieu
             </a>
           </div>
         </div>
       </div>
-      <div class="row backgroud-bar">
-        <div class="col-sm-3">
-          <a href="" class="bar-user">
+      <div className="row backgroud-bar">
+        <div className="col-sm-3">
+          <a href="" className="bar-user">
             <span>User </span>
           </a>
-          <span class="line-line">/</span>
-          <span class="bar-film">Films</span>
+          <span className="line-line">/</span>
+          <span className="bar-film">Films</span>
         </div>
-        <div class="col-sm-6">{/*  */}</div>
-        <div class="col-sm-3">
-          <span class="mess">Hello!</span>
-          <span class="name-acc">Kieu hi</span>
+        <div className="col-sm-6">{/*  */}</div>
+        <div className="col-sm-3">
+          <span className="mess">Hello!</span>
+          <span className="name-acc">Kieu hi</span>
         </div>
       </div>
-      <div class="container">
+      <div className="container">
         <br />
         <br />
         {/* Nút mở modal Add Film */}
         
-        <button type="button" class="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#addModal">
+        <button type="button" className="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#addModal">
           Add +
         </button>
         {/* <Add/> */}
@@ -94,7 +94,7 @@ const Show = () => {
           id="addModal"
           tabIndex={-1}
           role="dialog"
-          class="modal fade"
+          className="modal fade"
           data-backdrop="static"
           aria-labelledby="addModalLabel"
           aria-hidden="true"
@@ -106,7 +106,7 @@ const Show = () => {
         {/* Modal Edit */} 
         <div
         data-backdrop="static"
-        class="modal fade"
+        className="modal fade"
         id="editModal"
         tabIndex="{-1}"
         role="dialog"
@@ -121,15 +121,15 @@ const Show = () => {
         id="scheduleModal"
         tabIndex={-1}
         role="dialog"
-        class="modal fade"
+        className="modal fade"
         data-backdrop="static"
       >
         <AddSchedule/>
         </div>
 
-        <div class="table-responsive">
+        <div className="table-responsive">
           <table
-            class="table table-responsive"
+            className="table table-responsive"
             id="dataTable"
             width="100%"
             cellSpacing={0}
@@ -150,7 +150,6 @@ const Show = () => {
             <tbody id="tab">
             {movies.map((movie, index) => (
               <tr key={index}>
-
                 <td>{movie.id}</td>
                 <td>{movie.avatar}</td>
                 <td>{movie.name}</td>
@@ -160,7 +159,6 @@ const Show = () => {
                 <td>{movie.trailer}</td>
                 <td>{movie.category}</td>
                 <td>
-
                   <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
                   data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country}
                    data-describe={movie.description} data-trailer={movie.trailer} data-category={movie.category}>

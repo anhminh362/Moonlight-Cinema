@@ -1,34 +1,36 @@
 import React from 'react';
-import { useState } from 'react';
-
+import { useRef, useState } from 'react';
+// import Slider from "react-slick";
 const Upcoming = () => {
-    // document.getElementById('next2').onclick = function () {
-    //     const widthItem = document.querySelector('.item2').offsetWidth;
-    //     document.getElementById('formlist2').scrollLeft += widthItem;
-    // }
-    // document.getElementById('prev2').onclick = function () {
-    //     const widthItem = document.querySelector('.item2').offsetWidth;
-    //     document.getElementById('formlist2').scrollLeft -= widthItem;
-    // }
-    const [formlist1ScrollLeft, setFormlist1ScrollLeft] = useState(0);
-    const handleNext1Click = () => {
-        const widthItem = document.querySelector('.item2').offsetWidth;
-        setFormlist1ScrollLeft(formlist1ScrollLeft + widthItem);
+    const scrollRef = useRef();
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleNext = () => {
+        const widthItem = document.querySelector(".item2").offsetWidth;
+        setScrollLeft(scrollLeft + widthItem);
+        scrollRef.current.scrollLeft = scrollLeft + widthItem;
     };
 
-    const handlePrev1Click = () => {
-        const widthItem = document.querySelector('.item2').offsetWidth;
-        setFormlist1ScrollLeft(formlist1ScrollLeft - widthItem);
+    const handlePrev = () => {
+        const widthItem = document.querySelector(".item2").offsetWidth;
+        setScrollLeft(scrollLeft - widthItem);
+        scrollRef.current.scrollLeft = scrollLeft - widthItem;
     };
+    const setting = {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    }
     return (
         <>
             <h5 className="text-title">Upcoming Movies</h5>
-            <div id="formlist2">
-                <div className="direction2">
-                <button id="prev2"><b>{ "<"}</b></button>
-                <button id="next2"><b>{ ">"}</b></button>
+            <div className="direction">
+                <button id="prev2" onClick={handlePrev}><b>{"<"}</b></button>
+                <button id="next2" onClick={handleNext}><b>{">"}</b></button>
             </div>
-                <div id="list2">
+            <div id="formlist2" ref={scrollRef}>
+                <div id="list2" {...setting}>
                     <div className="item2">
                         <img src="picture/18.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -38,12 +40,6 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=18"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                     <div className="item2">
                         <img src="picture/19.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -53,12 +49,6 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=19"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                     <div className="item2">
                         <img src="picture/20.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -68,12 +58,6 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=20"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                     <div className="item2">
                         <img src="picture/21.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -83,12 +67,6 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=21"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                     <div className="item2">
                         <img src="picture/22.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -98,12 +76,6 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=22"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                     <div className="item2">
                         <img src="picture/23.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -113,12 +85,6 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=23"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                     <div className="item2">
                         <img src="picture/24.jpg" alt="" className="movies2"></img>
                         <div className="overlay2">
@@ -128,14 +94,9 @@ const Upcoming = () => {
                             <a href="detailmovie.php?id=24"><button type="button" className="btn btn-success">More Details</button></a>
                         </div>
                     </div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
-                    <div className="item2"></div>
                 </div>
-            </div></>
+            </div>
+        </>
     )
 }
 export default Upcoming;
