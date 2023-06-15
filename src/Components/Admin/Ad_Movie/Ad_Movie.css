@@ -107,7 +107,7 @@
 #name {
     width: 400px;
 }
-.desc p, .trailer_ p, .name p{
+.table td {
     white-space: nowrap; 
     width: 150px; 
     overflow: hidden;
