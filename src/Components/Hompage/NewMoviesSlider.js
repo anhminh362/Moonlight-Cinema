@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+
+import { useState,useEffect,useRef } from 'react';
 
 const New = () => {
     const [movies, setMovies] = useState([]);
@@ -10,13 +11,34 @@ const New = () => {
         .then(response => response.json())
         .then(movie => setMovies(movie));
     }, []);
+
+// import { , useState } from 'react';
+
+// const New = () => {
+    const scrollRef = useRef();
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleNext = () => {
+        const widthItem = document.querySelector(".item").offsetWidth;
+        setScrollLeft(scrollLeft + widthItem);
+        scrollRef.current.scrollLeft = scrollLeft + widthItem;
+    };
+
+    const handlePrev = () => {
+        const widthItem = document.querySelector(".item").offsetWidth;
+        setScrollLeft(scrollLeft - widthItem);
+        scrollRef.current.scrollLeft = scrollLeft - widthItem;
+    };
+
     return (
-        <div id="formlist">
+        <>
             <h5 className="text-title">New</h5>
-            <div className="direction2">
-                <button id="prev2"><b>{"<"}</b></button>
-                <button id="next2"><b>{">"}</b></button>
+            <div className="direction">
+                <button id="prev2" onClick={handlePrev}><b>{"<"}</b></button>
+                <button id="next2" onClick={handleNext}><b>{">"}</b></button>
             </div>
+
+            div id="formlist" ref={scrollRef}>
             <div id="list">
             {movies.map((movie, index) => index < 5 && (
                 <>
@@ -29,17 +51,14 @@ const New = () => {
                         <a href="detailmovie.php?id=4"><button type="button" className="btn btn-success">More Details</button></a>
                     </div>
                 </div>
-                <div className="item"></div>
-                <div className="item"></div>
-                <div className="item"></div>
-                <div className="item"></div>
-                <div className="item"></div>
-                <div className="item"></div>
+               
                 </>
             ))}
+             </div>
                 
+
             </div>
-        </div>
+        </>
     )
 }
 export default New;

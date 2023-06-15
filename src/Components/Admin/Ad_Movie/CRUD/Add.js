@@ -32,7 +32,6 @@ const Add = () => {
     };
     
     return (
-        
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -44,11 +43,8 @@ const Add = () => {
                 <div class="modal-body">
                 <form class="form-form" onSubmit={onSubmitHandle} encType="multipart/form-data">
                     <br />
-                    
                     {/* <input type="hidden" name="action" value="add"> Trường ẩn để xác định hành động */}
-                
                     <input type="hidden" name="id" defaultValue=""/>
-                    
                     <label htmlFor="name" class="title-title">Name:</label>
                     <input type="text" class="input-btn" name="name" id='name'/>
                     <br />
@@ -79,11 +75,11 @@ const Add = () => {
                         <input type="checkbox" name="category" defaultValue="" />
                     </label>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                     <input
                         type="submit"
                         name="category"
-                        class="btn bg-danger text-white"
+                        className="btn bg-danger text-white"
                         defaultValue="Add"
                     />
                     </div>

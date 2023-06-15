@@ -5,25 +5,25 @@ import axios from 'axios';
 const Add = () => {
     return (
         
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">FORM ADD SCHEDULE</h5>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">FORM ADD SCHEDULE</h5>
               <button
                 type="button"
                 name="close"
-                class="btn-close"
+                className="btn-close"
                 data-dismiss="modal"
                 aria-label="Đóng"
               >
                 {/* <span aria-hidden="true">×</span> */}
               </button>
             </div>
-            <div class="modal-body" id="modal-body">
-              <form method="post" class="form-form" action="addschedule.php">
+            <div className="modal-body" id="modal-body">
+              <form method="post" className="form-form" action="addschedule.php">
                 <br />
                 <input type="hidden" id="schedule-id" name="id" />
-                <label htmlFor="room" class="title-title">
+                <label htmlFor="room" className="title-title">
                   Room:
                 </label>
                 <select id="room" name="room">
@@ -31,32 +31,32 @@ const Add = () => {
                 </select>
                 <br />
                 <br />
-                <label htmlFor="date" class="title-title">
+                <label htmlFor="date" className="title-title">
                   Movie date:
                 </label>
-                <input type="date" class="input-btn" name="movie_date" />
+                <input type="date" className="input-btn" name="movie_date" />
                 <br />
                 <br />
-                <label htmlFor="begin" class="title-title">
+                <label htmlFor="begin" className="title-title">
                   Time begin:
                 </label>
-                <input name="begin" type="time" class="input-btn" />
+                <input name="begin" type="time" className="input-btn" />
                 <br /> <br />
-                <label htmlFor="end" class="title-title">
+                <label htmlFor="end" className="title-title">
                   Time end:
                 </label>
-                <input name="end" type="time" class="input-btn" />
+                <input name="end" type="time" className="input-btn" />
                 <br /> <br />
-                <label htmlFor="price" class="title-title">
+                <label htmlFor="price" className="title-title">
                   Price:
                 </label>
-                <input name="price" type="number" class="input-btn" />
+                <input name="price" type="number" className="input-btn" />
                 <br /> <br />
-                <div class="modal-footer">
+                <div className="modal-footer">
                   <input
                     type="submit"
                     name="submit"
-                    class="btn bg-danger text-white"
+                    className="btn bg-danger text-white"
                   />
                 </div>
               </form>
