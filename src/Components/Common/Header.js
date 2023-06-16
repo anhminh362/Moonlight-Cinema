@@ -18,7 +18,7 @@ const Header = () => {
                     <li>
                         <input id="search" type="text"></input>
                             <a href=""><i class="fas fa-magnifying-glass"></i></a></li>
-                    <li><a href="login.php">Login <i class="fas fa-user icon_user"></i></a></li>
+                    <li><a href="/Login">Login <i class="fas fa-user icon_user"></i></a></li>
 
                     {/* <li>
                         <a id="log_out" href="">
