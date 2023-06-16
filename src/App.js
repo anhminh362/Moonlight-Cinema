@@ -5,6 +5,7 @@ import LoginForm from './Components/Auth/LoginPage';
 import Register from './Components/Auth/RegisterPage';
 import VerifyCode from './Components/Auth/VerifyCodePage';
 import "./Styles/global.css";
+
 import UserInfo from './Components/Auth/UserInfo';
 import ShowUser from './Components/Admin/Ad_User/CRUD/Show';
 import UserDelete from './Components/Admin/Ad_User/CRUD/Delete';
@@ -12,8 +13,10 @@ import BlockUser from './Components/Admin/Ad_User/CRUD/Block';
 import UnblockUser from './Components/Admin/Ad_User/CRUD/UnBlock';
 
 
+
 function App() {
   return (
+    // <Show/>
     
     <Routes>
       <Route path="/" element={<Home/>} />

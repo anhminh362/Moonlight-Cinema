@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Add from './Add'
 import '../Ad_Movie.css'; 
+import '../../Admin.css';
+import '../../../../Styles/global.css';
+import Edit from './Edit';
+import AddSchedule from '../../Ad_Schedule/CRUD/Add';
+import Delete from './Delete';
+import axios from 'axios';
+
 const Show = () => {
+
   const [movies, setMovies] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("https://63aaf0fdc006ba6046fb1c.mockapi.io/movie")
-  //     .then(response => response.json())
-  //     .then(movie => setMovies(movie));
-  // }, []);
-  // const [products, setProducts] = useState([]);
-
+  
   useEffect(() => {
     // fetch("http://localhost:3000/products")
     fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
       .then(response => response.json())
       .then(movie => setMovies(movie));
   }, []);
-  
 
   return (
     // <div>
-      <div className="">
   <div className="row">
     <div className="col-lg-2 background-left ">
       <div>
@@ -45,6 +45,14 @@ const Show = () => {
           <ion-icon name="play-circle" />
           <b> Films</b>
         </p>
+      </div>
+      <br/>
+      <br/>
+      <div className="row">
+        <a href="" className="icon-item">
+          <i className="fa-solid fa-calendar-days"></i>
+          <b> Schedule</b>
+        </a>
       </div>
     </div>
     <div className="col-lg-10 background-right">
@@ -74,15 +82,51 @@ const Show = () => {
         </div>
       </div>
       <div className="container">
-        {" "}
         <br />
         <br />
-        {/* table */}
-        <a className="add-btn" href="#">
+        {/* Nút mở modal Add Film */}
+        
+        <button type="button" className="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#addModal">
           Add +
-        </a>{" "}
+        </button>
+        {/* <Add/> */}
+        <div
+          id="addModal"
+          tabIndex={-1}
+          role="dialog"
+          className="modal fade"
+          data-backdrop="static"
+          aria-labelledby="addModalLabel"
+          aria-hidden="true"
+        >
+          <Add/>
+        </div>
         <br />
         <br />
+        {/* Modal Edit */} 
+        <div
+        data-backdrop="static"
+        className="modal fade"
+        id="editModal"
+        tabIndex="{-1}"
+        role="dialog"
+        aria-labelledby="editModalLabel"
+        aria-hidden="true"
+      >
+          <Edit/>
+        </div>
+
+        {/* Modal Add Schedule*/} 
+        <div
+        id="scheduleModal"
+        tabIndex={-1}
+        role="dialog"
+        className="modal fade"
+        data-backdrop="static"
+      >
+        <AddSchedule/>
+        </div>
+
         <div className="table-responsive">
           <table
             className="table table-responsive"
@@ -97,30 +141,35 @@ const Show = () => {
                 <th>Name</th>
                 <th>Premiere date</th>
                 <th>Country</th>
-                <th>Describe</th>
+                <th>Description</th>
                 <th>Trailer</th>
+                <th>Category</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody id="tab">
             {movies.map((movie, index) => (
               <tr key={index}>
-
                 <td>{movie.id}</td>
                 <td>{movie.avatar}</td>
                 <td>{movie.name}</td>
                 <td>{movie.premiere_date}</td>
                 <td>{movie.country}</td>
-                <td>{movie.describe}</td>
+                <td>{movie.description}</td>
                 <td>{movie.trailer}</td>
+                <td>{movie.category}</td>
                 <td>
+                  <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
+                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country}
+                   data-describe={movie.description} data-trailer={movie.trailer} data-category={movie.category}>
+                    <ion-icon name="pencil-outline" class="icon-ac-edit" />
+                  </button>
+                  
+                  <Delete delete={movie.id}></Delete>
 
-                  <span>
-                    <ion-icon name="pencil-outline" className="icon-ac-edit" />
-                  </span>
-                  <span>
-                    <ion-icon name="trash-outline" className="icon-ac-del" />
-                  </span>
+                  <button type='button' class='btn-schedule'  data-bs-toggle='modal' 
+                  data-bs-target='#scheduleModal'  data-id={movie.id}> <ion-icon class=
+                  'icon-ac-add' name='add-circle-outline'></ion-icon></button>
                 </td>
               </tr>
             ))}
@@ -131,11 +180,6 @@ const Show = () => {
       </div>
     </div>
   </div>
-</div>
-
-    // </div>
   )
-
 };
-
 export default Show;
