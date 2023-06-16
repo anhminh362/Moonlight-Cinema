@@ -92,7 +92,15 @@
     margin: 5px auto;
     scroll-behavior: smooth;
 }
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
 
+    100% {
+        transform: translateX(calc(-250px * 7));
+    }
+}
 .item,
 .item1,
 .item2 {

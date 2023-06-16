@@ -10,22 +10,50 @@
     background-color: #0B1A2A;
     height: 100vh;
 }
-
-/* logo */
-.logo {
+/* bar  */
+.line-line {
+    color: #fff;
     position: relative;
-    left: 2rem;
-    height: 8rem;
-    width: 8rem;
+    top: 0.7rem;
 }
 
-.logo_text {
+.bar-user {
+    color: #fff;
     position: relative;
-    left: 1rem;
-    top: 0rem;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: var(--title--color);
+    top: 0.7rem;
+    text-decoration: none;
+}
+
+.bar-film {
+    color: #FFC107;
+    position: relative;
+    top: 0.7rem;
+
+}
+
+.bar-user:hover {
+    color: #FFF;
+}
+
+.bar-film:hover {
+    color: #FFC107;
+}
+
+.mess {
+    color: #06111D;
+    position: relative;
+    top: 0.7rem;
+}
+
+.name-acc {
+    color: aliceblue;
+    position: relative;
+    top: 0.7rem;
+}
+
+.backgroud-bar {
+    background-color: #858C94;
+    height: 3rem;
 }
 
 /* icon-item */
@@ -72,4 +100,73 @@
 
 .text-signout:hover {
     color: #FFC107;
+}
+/* add */
+.add-btn{
+    border: none;
+    text-decoration: none;
+    background-color: #E00813;
+    color: #ffff;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+}
+.add-btn:hover{
+    color: #E00813;
+    background-color: #ffff;
+}
+
+/* Modal */
+.input-btn {
+    border-radius: 4px;
+    border: none;
+}
+
+.input-btn:hover {
+    border-radius: 4px;
+}
+.btn-edit, .btn-schedule{
+    border: none;
+    background-color: #0B1A2A;
+}
+.modal-header {
+    background: #E00813;
+}
+
+.modal-title {
+    color: #FFF;
+}
+
+.close {
+    color: white;
+    background: #E00813;
+    border: none;
+    font-size: 20px;
+}
+
+.modal-body {
+    background: #0B1A2A;
+}
+
+.title-title {
+    color: #FFF;
+    display: flex;
+    align-items: start;
+}
+
+#name {
+    width: 400px;
+}
+.desc p, .trailer_ p, .name p{
+    white-space: nowrap; 
+    width: 150px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* .cat{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+} */
+.form-form label{
+    color:#fff
 }
