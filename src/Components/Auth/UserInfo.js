@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,86 +11,110 @@ const UserInfo = () => {
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
-  const handleSubmit = (e) => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [account_id, setAccountId] = useState("");
+
+  useEffect(() => {
+    // Fetch the account details from the API to get the account_id
+    axios
+      .get("http://127.0.0.1:8000/api/account/")
+      .then((response) => {
+        if (response.status === 200) {
+          setAccountId(response.data.account_id);
+        } else {
+          setErrorMessage("Không tìm thấy được tài khoản. Vui lòng thử lại.");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setErrorMessage("Không tìm thấy tài khoản. Vui lòng thử lại.");
+      });
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Reset error messages
+    setNameError("");
+    setPhoneError("");
+    setErrorMessage("");
+
     if (!/^[a-zA-Z\s]*$/.test(name)) {
-      setNameError("Only letters and white space allowed");
+      setNameError("Chỉ cho phép chữ cái và khoảng trắng");
     } else if (!/^[0-9]{10}$/.test(phone)) {
-      setPhoneError("Invalid phone number");
+      setPhoneError("Số điện thoại không hợp lệ");
     } else {
-      // Gửi yêu cầu lưu thông tin đến API
-      axios
-        .post("https://647783419233e82dd53bc684.mockapi.io/mypham/users", { name, phone })
-        .then((response) => {
-          // Xử lý phản hồi thành công từ API
-          if (response.data.success) {
-            // Chuyển hướng đến trang đăng nhập hoặc trang khác tùy thuộc vào yêu cầu
-            navigate("/login"); // Chuyển hướng đến đường dẫn "/login"
-          } else {
-            // Xử lý phản hồi lỗi từ API
-            // Ví dụ: hiển thị thông báo lỗi
-            console.log(response.data.error);
-          }
-        })
-        .catch((error) => {
-          // Xử lý lỗi khi gửi yêu cầu đến API
-          // Ví dụ: hiển thị thông báo lỗi
-          console.log(error.message);
+      try {
+        // Send request to save user information to the API
+        await axios.post("http://127.0.0.1:8000/api/users/", {
+          name: name,
+          phone: phone,
+          account_id: account_id,
         });
+
+        alert("Lưu thông tin thành công!");
+
+        // Chuyển hướng đến trang thành công
+        navigate("/success");
+      } catch (error) {
+        console.log(error.message);
+        setErrorMessage(
+          "Đã xảy ra lỗi khi lưu thông tin người dùng. Vui lòng thử lại."
+        );
+      }
+
     }
   };
 
   return (
-    <div className="form-login">
-      <form onSubmit={handleSubmit}>
-        <h1>
-          <strong>Your Information</strong>
-        </h1>
-        <div className="form-group">
-          <label htmlFor="name">Full name</label> <br />
-          <div className="form-input">
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number</label>
-          <br />
-          <div className="form-input">
-            <input
-              type="phone"
-              className="form-control"
-              id="phone"
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
-        </div>
 
-        <button type="submit" className="btn btn-default" name="btn">Save</button>
-<div>
-{nameError && <span className="error">{nameError}</span>}
-{phoneError && <span className="error">{phoneError}</span>}
-<br />
-<br />
-</div>
-</form>
-</div>
-);
+    <div className="body">
+      <div className="form-login">
+        <form onSubmit={handleSubmit}>
+          <h1>
+            <strong>Your Information</strong>
+          </h1>
+          <div className="form-group">
+            <label htmlFor="name">Full name</label>
+            <br />
+            <div className="form-input">
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            {nameError && <span className="error">{nameError}</span>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number</label>
+            <br />
+            <div className="form-input">
+              <input
+                type="
+                tel"
+                className="form-control"
+                id="phone"
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+            </div>
+            {phoneError && <span className="error">{phoneError}</span>}
+          </div>
+          <button type="submit" className="btn btn-default" name="btn">
+            Save
+          </button>
+        </form>
+        {errorMessage && <span className="error">{errorMessage}</span>}
+      </div>
+    </div>
+  );
 };
 
 export default UserInfo;
-
-
-
-

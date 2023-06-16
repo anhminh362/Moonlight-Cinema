@@ -1,0 +1,113 @@
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.body{
+    width: 100vw;
+    height: 100vh;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #06121E;
+    align-items: center;
+    height: 100vh;
+    font-family: Poppins-Regular,sans-serif;
+    padding-top: 100px;
+    
+}
+
+.form-register{
+   
+    display: block;
+    width: 40%;
+    max-height: fit-content;
+    background: #fff;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    line-height: 1em;
+    margin-left: 450px;
+    font-size: 1.0em;
+    padding-bottom: 30px;
+    
+}
+.form-group{
+  
+    margin:2rem;
+    text-align: start;
+    padding: 0px 20px;
+    
+}
+.form-input{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+    transition: all .3s;
+    outline: none;
+}
+.form-group input{
+    border: none;
+    color: #ccc;
+    line-height: 1.2;
+    outline: none;
+    
+}
+.form-input:hover{
+    border-bottom: 2px solid black;
+    color: #950101;
+}
+.form-group label{
+    font-size: 0.7rem;
+    
+}
+
+#email, #pwd, #confirm-pwd{
+    font-size: 0.7rem;
+    font-family: Poppins-Regular,sans-serif;
+    /* padding-bottom: 0.1rem; */
+    width: 100%;
+}
+
+span{
+    margin-right: 0.5em;
+}
+
+.register{
+    display: flex;
+    justify-content: space-between;
+   
+}
+a{ text-decoration: none;}
+a:hover{
+    text-decoration: underline;
+}
+.btn-default{
+    border: none;
+    padding: 0.5rem 3rem;
+    margin: 3em;
+    border-radius: 20px;
+    line-height: 1.2;
+    background: linear-gradient(to left, var(--br2),var(--br1));
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1em;
+    box-shadow:   0px 0px 15px #fff;
+    
+}
+
+:root{
+    --br1: #404258;
+    --br2: #E00813;
+}
+.btn-default:hover{
+    background: linear-gradient(to  right, var(--br2),var(--br1));
+    box-shadow:  0px 0px 15px #fff;
+}
+
+h1{
+    font-size: 1.8rem;
+    padding-top: 2rem;
+}
