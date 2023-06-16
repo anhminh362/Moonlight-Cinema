@@ -113,4 +113,6 @@ a:hover{
     border-color: none;
     border: none ;
 }
-
+#verify{
+    background-color: #06121E;
+}
