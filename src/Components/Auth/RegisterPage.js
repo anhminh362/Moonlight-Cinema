@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import { useNavigate, Link } from 'react-router-dom';
 import'../Auth/register.css';
 const Register = () => {
@@ -18,20 +19,24 @@ const Register = () => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = [];
+
 
     // Kiểm tra tính hợp lệ của email, mật khẩu và mật khẩu xác nhận
     if (!validateEmail(email)) {
@@ -44,6 +49,7 @@ const Register = () => {
 
     if (password !== c_password) {
       validationErrors.push('Xác nhận mật khẩu không khớp');
+
     }
 
     if (validationErrors.length > 0) {
@@ -52,11 +58,15 @@ const Register = () => {
     }
 
     try {
+
       // Gửi yêu cầu đăng ký tài khoản
+
+
       const newUser = {
         email,
         password,
       };
+
 
       // await axios.post('http://127.0.0.1:8000/api/account', newUser);
       console.log(1,email);
@@ -74,6 +84,7 @@ const Register = () => {
     } catch (error) {
       console.error(error);
       // alert('Đã xảy ra lỗi khi đăng ký. Vui lòng thử lại.');
+
     }
   };
 
@@ -82,11 +93,14 @@ const Register = () => {
   };
 
   const validatePassword = (password) => {
+
     // Ví dụ: mật khẩu phải có ít nhất 8 ký tự và chứa ký tự đặc biệt
+
     return password.length >= 8 && /[!@#$%^&*(),.?":{}|<>]/.test(password);
   };
 
   return (
+
     <div className='body'>
     <div className="form-register">
       <form onSubmit={handleFormSubmit} action="/verifycode">
@@ -145,6 +159,8 @@ const Register = () => {
       </form>
     </div>
     </div>
+
+
   );
 };
 

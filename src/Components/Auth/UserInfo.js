@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,6 +10,7 @@ const UserInfo = () => {
   const [phone, setPhone] = useState("");
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
   const [account_id, setAccountId] = useState("");
 
@@ -59,10 +62,12 @@ const UserInfo = () => {
           "Đã xảy ra lỗi khi lưu thông tin người dùng. Vui lòng thử lại."
         );
       }
+
     }
   };
 
   return (
+
     <div className="body">
       <div className="form-login">
         <form onSubmit={handleSubmit}>

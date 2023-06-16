@@ -109,11 +109,11 @@ const columns = [
 
     return (
         
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
             <form
               method="post"
-              class="form-form"
+              className="form-form"
               action="edit.php"
               encType="multipart/form-data">
               <div class="modal-header">
@@ -121,18 +121,17 @@ const columns = [
                 <button
                   type="button"
                   name="close"
-                  class="btn-close"
+                  className="btn-close"
                   data-dismiss="modal"
                   aria-label="Đóng"
                 >
                   {/* <span aria-hidden="true">&times;</span> */}
                 </button>
               </div>
-              <div class="modal-body" id="modal-body">
+              <div className="modal-body" id="modal-body">
                 
                 {/* <input type="hidden" name="action" value="add"> Trường ẩn để xác định hành động */}
                 <input type="hidden" id="id" name="id" />
-
                 <label htmlFor="name" class="title-title">Name:</label>
                 <input type="text" class="input-btn" name="name" id="name" required />
                 <br />
@@ -140,7 +139,6 @@ const columns = [
                 <label htmlFor="avatar" class="title-title">Avatar:</label>
                 <input disabled="" style={{border: "none",color: "white",backgroundColor: "#0B1A2A"}}
                   id="avatar" class="input-btn" type="text"name="avatar" />
-
                 <input type="hidden" id="old_img" name="old_img" />
                 <input
                   type="file"
@@ -165,7 +163,7 @@ const columns = [
                   name="description"
                   id="description"
                   type="text"
-                  class="input-btn"
+                  className="input-btn"
                   defaultValue={""}
                 />
                 <br />
@@ -178,31 +176,30 @@ const columns = [
                     color: "white",
                     backgroundColor: "#0B1A2A"
                   }}
-                  class="input-btn"
+                  className="input-btn"
                   name="trailer"
                   id="trailer"
                   type="text"
                 />
                 <input type="file" style={{ color: "white" }} name="up_trailer" />
                 <br /> <br />
-                <div class="category">
-                  
+                <div class="category">   
                   <label htmlFor="name" class="title-title">Category</label>
                   <input type="hidden" name="cat" id="cat" defaultValue="" />
                   <label>
                     <input
                       type="checkbox"
-                      class="input-btn"
+                      className="input-btn"
                       name="cat[]"
                       defaultValue=""
                     />
                   </label>
                 </div>
-                <div class="modal-footer">
+                <div className="modal-footer">
                   <input
                     type="submit"
                     name="submit"
-                    class="btn bg-danger text-white"
+                    className="btn bg-danger text-white"
                     defaultValue="Update"
                   />
                 </div>
