@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../Auth/Auth.css';
+
+import '../Auth/login.css';
+
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,6 +24,9 @@ const LoginForm = () => {
   };
 
   return (
+
+    <div className='body'>
+
     <div className="form-login">
       <form onSubmit={handleSubmit}>
         <h1>
@@ -79,6 +84,9 @@ const LoginForm = () => {
         </div>
       </form>
     </div>
+
+    </div>
+
   );
 };
 
