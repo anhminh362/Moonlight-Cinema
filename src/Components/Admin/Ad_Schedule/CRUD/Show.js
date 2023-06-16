@@ -16,37 +16,16 @@ const Show = () => {
 
     const componentDidMount = async () => {
         try {
-            const response = await axios.get("https://63a572122a73744b008e28d5.mockapi.io/api/schedules");
+            const response = await axios.get('http://127.0.0.1:8000/api/schedule');
             setProducts(response.data);
         } catch (error) {
             console.log(error);
         }
     };
-
-    const onSubmitHandle = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post("https://63a572122a73744b008e28d5.mockapi.io/api/schedules", {
-                movie_id: $("#inputMovie").val(),
-                room_id: $("#inputRoom").val(),
-                movie_date: $("#inputMovieDate").val(),
-                time_begin: $("#inputTimeBegin").val(),
-                time_end: $("#inputTimeEnd").val(),
-                price: $("#inputPrice").val(),
-            });
-            alert("Thêm thành công");
-            $("#closeModalAddBtn").click();
-            componentDidMount();
-        } catch (error) {
-            console.log(error);
-            alert("Thêm không thành công");
-        }
-    };
-
     const deleteProduct = async (id) => {
         if (window.confirm(`Bạn muốn xóa sản phẩm có id là ${id}`)) {
             try {
-                await axios.delete(`https://63a572122a73744b008e28d5.mockapi.io/api/schedules/${id}`);
+                await axios.delete(`http://127.0.0.1:8000/api/schedule/${id}`);
                 alert("Xóa thành công");
                 componentDidMount();
             } catch (error) {
@@ -62,7 +41,7 @@ const Show = () => {
         e.preventDefault();
         const id = $("#editID").val();
         try {
-            await axios.put(`https://63a572122a73744b008e28d5.mockapi.io/api/schedules/${id}`, {
+            await axios.put(`http://127.0.0.1:8000/api/schedule/${id}`, {
                 movie_id: $("#editMovie").val(),
                 room_id: $("#editRoom").val(),
                 movie_date: $("#editMovieDate").val(),
@@ -183,9 +162,6 @@ const Show = () => {
                     <div class="container"> <br /><br />
                         {/* Modals Mở */}
                         <div className="container">
-                            <button type="button" className="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#addModal">
-                                Add +
-                            </button> <br /> <br />
                             <div>
                                 <div className="container" >
                                     <DataTable columns={columns} data={products} fixedHeader={true} responsive={true} highlightOnHover={true}
@@ -202,93 +178,8 @@ const Show = () => {
                                     />
                                 </div>
                                 {/* Modal Add */}
-                                <div className="modal fade" id="addModal" tabIndex={-1} role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog">
-                                        <div className="modal-content">
-                                            <div className="modal-header btn bg-danger text-white">
-                                                <h5 className="modal-title" id="addModalLabel"> Add Schedule</h5>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalAddBtn"></button>
-                                            </div>
-                                            <div className="modal-body" style={{ background: "#0B1A2A" }}>
-                                                <form onSubmit={onSubmitHandle} style={{ background: "#0B1A2A" }}>
-                                                    <div className="mb-3">
-                                                        <input type="hidden" className="form-control" id="inputMovie" required />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="inputRoom" className="form-label  text-white">Room</label>
-                                                        <select className="form-control" name="inputRoom" id="inputRoom" required >
-                                                            <option value={1}>1</option>
-                                                            <option value={2}>2</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="inputMovieDate" className="form-label  text-white">Movie Date</label>
-                                                        <input type="date" className="form-control" name="inputMovieDate" id="inputMovieDate" required />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="inputTimeBegin" className="form-label  text-white">Time Begin</label>
-                                                        <input type="time" className="form-control" name="inputTimeBegin" id="inputTimeBegin" required />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="inputTimeEnd" className="form-label  text-white">Time End</label>
-                                                        <input type="time" className="form-control" name="inputTimeEnd" id="inputTimeEnd" required />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="inputPrice" className="form-label  text-white">Price</label>
-                                                        <input type="number" min={1000} className="form-control" name="inputPrice" id="inputPrice" required />
-                                                    </div>
-                                                    <button type="submit" className="btn bg-danger text-white">Add</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 {/* Modal Edit */}
-                                <div className="modal fade" id="editModal" tabIndex={-1} role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog" role="document">
-                                        <div className="modal-content">
-                                            <div className="modal-header btn bg-danger text-white">
-                                                <h5 className="modal-title" id="editModalLabel">Edit Schedule</h5>
-                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" id="closeModalEditBtn">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            {selectedProduct && (
-                                                <form onSubmit={submitEditProduct}>
-                                                    <div className="modal-body" style={{ background: "#0B1A2A" }}>
-                                                        <div className="form-group" style={{ background: "#0B1A2A" }}>
-                                                            <input type="hidden" className="form-control" id="editID" defaultValue={selectedProduct.id} readOnly />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <input type="hidden" className="form-control" id="editMovie" defaultValue={selectedProduct.movie_id} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label htmlFor="editRoom" className=" text-white">Room</label>
-                                                            <input type="number" className="form-control" id="editRoom" defaultValue={selectedProduct.room_id} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label htmlFor="editMovieDate" className=" text-white">Movie Date</label>
-                                                            <input type="date" className="form-control" id="editMovieDate" defaultValue={selectedProduct.movie_date} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label htmlFor="editTimeBegin" className=" text-white">Time Begin</label>
-                                                            <input type="time" className="form-control" id="editTimeBegin" defaultValue={selectedProduct.time_begin} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label htmlFor="editTimeEnd" className=" text-white">Time End</label>
-                                                            <input type="time" className="form-control" id="editTimeEnd" defaultValue={selectedProduct.time_end} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label htmlFor="editPrice" className=" text-white">Price</label>
-                                                            <input type="number" min={1000} className="form-control" id="editPrice" defaultValue={selectedProduct.price} />
-                                                        </div>
-                                                        <button type="submit" className="btn bg-danger text-white">Update</button>
-                                                    </div>
-                                                </form>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

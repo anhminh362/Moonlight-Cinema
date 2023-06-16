@@ -1,92 +1,91 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import $ from "jquery";
-import DataTable from "react-data-table-component";
 
- const Add = () =>{
-    const onSubmitHandle = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post("https://63a572122a73744b008e28d5.mockapi.io/api/schedules", {
-                movie_id: $("#schedule-id").val(),
-                room_id: $("#room").val(),
-                movie_date: $("date").val(),
-                time_begin: $("#begin").val(),
-                time_end: $("#end").val(),
-                price: $("#price").val(),
-            });
-            alert("Thêm thành công");
-            $("#closeModalAddBtn").click();
-            // componentDidMount();
-        } catch (error) {
-            console.log(error);
-            alert("Thêm không thành công");
-        }
-    };
-    return (
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">FORM ADD SCHEDULE</h5>
-            <button
-              type="button"
-              name="close"
-              class="btn-close"
-              data-dismiss="modal"
-              aria-label="Đóng"
-            >
-              {/* <span aria-hidden="true">×</span> */}
-            </button>
-          </div>
-          <div class="modal-body" id="modal-body">
-            <form onSubmit={onSubmitHandle} class="form-form" >
-              <br />
-              <input type="hidden" id="schedule-id" name="id" />
-              <label htmlFor="room" class="title-title">
-                Room:
-              </label>
-              <select id="room" name="room">
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option />
-              </select>
-              <br />
-              <br />
-              <label htmlFor="date" class="title-title">
-                Movie date:
-              </label>
-              <input type="date" id="date" class="input-btn" name="movie_date" />
-              <br />
-              <br />
-              <label htmlFor="begin" class="title-title">
-                Time begin:
-              </label>
-              <input name="begin" id="begin" type="time" class="input-btn" />
-              <br /> <br />
-              <label htmlFor="end" class="title-title">
-                Time end:
-              </label>
-              <input name="end" id="end" type="time" class="input-btn" />
-              <br /> <br />
-              <label htmlFor="price" class="title-title">
-                Price:
-              </label>
-              <input name="price" id="price" type="number" class="input-btn" />
-              <br /> <br />
-              <div class="modal-footer">
-                <input
-                  type="submit"
-                  name="submit"
-                  class="btn bg-danger text-white"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    )
- }
-        
-    
+const Add = () => {
+	const [roomOptions, setRoomOptions] = useState([]);
+	const [formData, setFormData] = useState({
+		movie_id: "",
+		room_id: "",
+		time_begin: "",
+		time_end: "",
+		movie_date: "",
+		price: ""
+	});
+
+	useEffect(() => {
+		fetchRoomOptions();
+	}, []);
+
+	const fetchRoomOptions = async () => {
+		try {
+			const response = await axios.get("http://127.0.0.1:8000/api/room");
+			setRoomOptions(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const onSubmitHandle = async (e) => {
+		e.preventDefault();
+		try {
+			await axios.post("http://127.0.0.1:8000/api/schedule", {
+				...formData
+			});
+			alert("Thêm thành công");
+			document.getElementById("closeModalAddBtn").click();
+		} catch (error) {
+			console.log(error);
+			alert("Thêm không thành công");
+		}
+	};
+
+	return (
+		<div className="modal-dialog" role="document">
+			<div className="modal-content">
+				<div className="modal-header">
+					<h5 className="modal-title">FORM ADD SCHEDULE</h5>
+					<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalAddBtn"></button>
+				</div>
+				<div className="modal-body" id="modal-body">
+					<form onSubmit={onSubmitHandle} className="form-form">
+						<br />
+						<input type="hidden" id="schedule-id" name="id" />
+						<input type="hidden" id="movie_id" name="movie_id" />
+						{/* <label htmlFor="movie_id" className="title-title"> Movie: </label>
+						<input name="movie_id" id="movie_id" type="number" className="input-btn" value={formData.movie_id} onChange={handleChange} /> */}
+						<label htmlFor="room_id" className="title-title"> Room:</label>
+						<select id="room_id" name="room_id" value={formData.room_id} onChange={handleChange} >
+							{roomOptions.map((room) => (
+								<option key={room.id} value={room.id}>{room.name}</option>
+							))}
+						</select>
+						<br />
+						<br />
+						<label htmlFor="time_begin" className="title-title"> Time begin: </label>
+						<input name="time_begin" id="time_begin" type="time" className="input-btn" value={formData.time_begin} onChange={handleChange} />
+						<br /> <br />
+						<label htmlFor="time_end" className="title-title"> Time end: </label>
+						<input name="time_end" id="time_end" type="time" className="input-btn" value={formData.time_end} onChange={handleChange} />
+						<br /> <br />
+						<label htmlFor="movie_date" className="title-title"> Movie date: </label>
+						<input type="date" id="movie_date" className="input-btn" name="movie_date" value={formData.movie_date} onChange={handleChange} />
+						<br />
+						<br />
+						<label htmlFor="price" className="title-title"> Price:</label>
+						<input name="price" id="price" type="number" className="input-btn" value={formData.price} onChange={handleChange} />
+						<br /> <br />
+						<div className="modal-footer">
+							<button type="submit" className="btn bg-danger text-white">  Add </button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	);
+};
+
 export default Add;
-

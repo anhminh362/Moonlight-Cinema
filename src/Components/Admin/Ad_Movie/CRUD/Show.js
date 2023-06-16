@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import $ from "jquery";
-import axios from "axios";
 import Add from './Add'
 import '../Ad_Movie.css'; 
 import '../../Admin.css';
 import '../../../../Styles/global.css';
 import Edit from './Edit';
-import AddSchedule from '../../Ad_Schedule/CRUD/Add'
+import AddSchedule from '../../Ad_Schedule/CRUD/Add';
+import Delete from './Delete';
+import axios from 'axios';
+
 const Show = () => {
 
-  
   const [movies, setMovies] = useState([]);
-
+  
   useEffect(() => {
     // fetch("http://localhost:3000/products")
     fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
       .then(response => response.json())
       .then(movie => setMovies(movie));
   }, []);
-  
-  
+
   return (
     // <div>
   <div class="row">
@@ -142,7 +142,7 @@ const Show = () => {
                 <th>Name</th>
                 <th>Premiere date</th>
                 <th>Country</th>
-                <th>Describe</th>
+                <th>Description</th>
                 <th>Trailer</th>
                 <th>Category</th>
                 <th>Action</th>
@@ -157,19 +157,22 @@ const Show = () => {
                 <td>{movie.name}</td>
                 <td>{movie.premiere_date}</td>
                 <td>{movie.country}</td>
-                <td>{movie.describe}</td>
+                <td>{movie.description}</td>
                 <td>{movie.trailer}</td>
-                <td></td>
+                <td>{movie.category}</td>
                 <td>
 
                   <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
-                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country} data-describe={movie.describe} data-trailer={movie.trailer}>
+                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country}
+                   data-describe={movie.description} data-trailer={movie.trailer} data-category={movie.category}>
                     <ion-icon name="pencil-outline" class="icon-ac-edit" />
                   </button>
-                  <button type='button' class='btn'>
-                    <ion-icon name="trash-outline" class="icon-ac-del" />
-                  </button>
-                  <button type='button' class='btn-schedule'  data-bs-toggle='modal' data-bs-target='#scheduleModal'  data-id={movie.id}> <ion-icon class='icon-ac-add' name='add-circle-outline'></ion-icon></button>
+                  
+                  <Delete delete={movie.id}></Delete>
+
+                  <button type='button' class='btn-schedule'  data-bs-toggle='modal' 
+                  data-bs-target='#scheduleModal'  data-id={movie.id}> <ion-icon class=
+                  'icon-ac-add' name='add-circle-outline'></ion-icon></button>
                 </td>
               </tr>
             ))}
@@ -180,11 +183,6 @@ const Show = () => {
       </div>
     </div>
   </div>
-
-
-    // </div>
   )
-
 };
-
 export default Show;
