@@ -7,7 +7,7 @@ const New = () => {
   
     useEffect(() => {
       // fetch("http://localhost:3000/products")
-      fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
+      fetch("http://127.0.0.1:8000/api/movie")
         .then(response => response.json())
         .then(movie => setMovies(movie));
     }, []);
