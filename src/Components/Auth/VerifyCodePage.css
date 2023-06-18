@@ -1,5 +1,28 @@
-/* file css */
-/* ================VerifyCodePage======================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --maincolor: #06111D;
+    --title--color: #E00813;
+    --text--color: beige;
+    --h1-font-size: 3.5rem;
+    --h2-font-size: 3.25rem;
+    --h3-font-size: 3rem;
+    --logo-font-size: 2rem;
+    --font-types-product:3.5rem;
+    --font-medium:700;
+    --font-text-footer:100;
+    /* #### body font */
+    --body-font: 'Georgia', sans-serif;
+}
+body{
+    background-color: var(--maincolor);
+}
 body{
     display: flex;
     background-color: #0B1A2A;
@@ -90,4 +113,6 @@ a:hover{
     border-color: none;
     border: none ;
 }
-
+#verify{
+    background-color: #06121E;
+}
