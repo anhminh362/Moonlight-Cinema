@@ -1,40 +1,41 @@
-
 import React, { useState, useEffect } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const UserInfo = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-
+  const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [account_id, setAccountId] = useState("");
 
   useEffect(() => {
-    // Fetch the account details from the API to get the account_id
+    const searchParams = new URLSearchParams(location.search);
+    const emailParam = searchParams.get("email");
+    setEmail(emailParam);
+    console.log(email);
+  }, [location.search]);
+  console.log(email);
+  useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/account/")
-      .then((response) => {
-        if (response.status === 200) {
-          setAccountId(response.data.account_id);
-        } else {
-          setErrorMessage("Không tìm thấy được tài khoản. Vui lòng thử lại.");
-        }
-      })
+      .get(`http://127.0.0.1:8000/api/account/${email}`)
+      // .then((response) => response.json())
+      .then(data=>setAccountId(data.data))
       .catch((error) => {
         console.log(error.message);
         setErrorMessage("Không tìm thấy tài khoản. Vui lòng thử lại.");
       });
   }, []);
-
+  console.log(account_id);
+  console.log(name);
+  console.log(phone);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset error messages
     setNameError("");
     setPhoneError("");
     setErrorMessage("");
@@ -45,8 +46,7 @@ const UserInfo = () => {
       setPhoneError("Số điện thoại không hợp lệ");
     } else {
       try {
-        // Send request to save user information to the API
-        await axios.post("http://127.0.0.1:8000/api/users/", {
+        await axios.post("http://127.0.0.1:8000/api/users", {
           name: name,
           phone: phone,
           account_id: account_id,
@@ -54,20 +54,17 @@ const UserInfo = () => {
 
         alert("Lưu thông tin thành công!");
 
-        // Chuyển hướng đến trang thành công
-        navigate("/success");
+        navigate("/Login");
       } catch (error) {
         console.log(error.message);
         setErrorMessage(
           "Đã xảy ra lỗi khi lưu thông tin người dùng. Vui lòng thử lại."
         );
       }
-
     }
   };
 
   return (
-
     <div className="body">
       <div className="form-login">
         <form onSubmit={handleSubmit}>
@@ -95,26 +92,27 @@ const UserInfo = () => {
             <br />
             <div className="form-input">
               <input
-                type="
-                tel"
+                type="tel"
                 className="form-control"
                 id="phone"
                 name="phone"
+               
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </div>
             {phoneError && <span className="error">{phoneError}</span>}
-          </div>
-          <button type="submit" className="btn btn-default" name="btn">
-            Save
-          </button>
-        </form>
-        {errorMessage && <span className="error">{errorMessage}</span>}
-      </div>
-    </div>
-  );
-};
-
-export default UserInfo;
+            </div>
+            <button type="submit" className="btn btn-default" name="btn">
+                Save
+                </button>
+                </form>
+                {errorMessage && <span className="error">{errorMessage}</span>}
+                </div>
+                </div>
+                );
+                };
+                
+                export default UserInfo;
+                
