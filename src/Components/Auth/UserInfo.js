@@ -17,52 +17,56 @@ const UserInfo = () => {
     const searchParams = new URLSearchParams(location.search);
     const emailParam = searchParams.get("email");
     setEmail(emailParam);
-    console.log(email);
   }, [location.search]);
-  console.log(email);
+  
   useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/api/account/${email}`)
-      // .then((response) => response.json())
-      .then(data=>setAccountId(data.data))
-      .catch((error) => {
-        console.log(error.message);
-        setErrorMessage("Không tìm thấy tài khoản. Vui lòng thử lại.");
-      });
-  }, []);
-  console.log(account_id);
-  console.log(name);
-  console.log(phone);
+    if (email) {
+      axios
+        .get(`http://127.0.0.1:8000/api/account/${email}`)
+        .then((response) => {
+          const data = response.data;
+          setAccountId(data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+          setErrorMessage("Không tìm thấy tài khoản. Vui lòng thử lại.");
+        });
+    }
+  }, [email]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     setNameError("");
     setPhoneError("");
     setErrorMessage("");
-
+  
     if (!/^[a-zA-Z\s]*$/.test(name)) {
       setNameError("Chỉ cho phép chữ cái và khoảng trắng");
     } else if (!/^[0-9]{10}$/.test(phone)) {
       setPhoneError("Số điện thoại không hợp lệ");
     } else {
-      try {
-        await axios.post("http://127.0.0.1:8000/api/users", {
-          name: name,
-          phone: phone,
-          account_id: account_id,
-        });
-
-        alert("Lưu thông tin thành công!");
-
-        navigate("/Login");
-      } catch (error) {
-        console.log(error.message);
-        setErrorMessage(
-          "Đã xảy ra lỗi khi lưu thông tin người dùng. Vui lòng thử lại."
-        );
+      if (email && account_id) {
+        try {
+          await axios.post("http://127.0.0.1:8000/api/users", {
+            name: name,
+            phone: phone,
+            account_id: account_id,
+          });
+  
+          alert("Lưu thông tin thành công!");
+  
+          navigate("/Login");
+        } catch (error) {
+          console.log(error.message);
+          setErrorMessage(
+            "Đã xảy ra lỗi khi lưu thông tin người dùng. Vui lòng thử lại."
+          );
+        }
       }
     }
   };
+  
 
   return (
     <div className="body">
@@ -101,18 +105,18 @@ const UserInfo = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
-            </div>
+           
+           </div>
             {phoneError && <span className="error">{phoneError}</span>}
-            </div>
-            <button type="submit" className="btn btn-default" name="btn">
-                Save
-                </button>
-                </form>
-                {errorMessage && <span className="error">{errorMessage}</span>}
-                </div>
-                </div>
-                );
-                };
-                
-                export default UserInfo;
-                
+          </div>
+          <button type="submit" className="btn btn-default" name="btn">
+            Save
+          </button>
+        </form>
+        {errorMessage && <span className="error">{errorMessage}</span>}
+      </div>
+    </div>
+  );
+};
+
+export default UserInfo;
