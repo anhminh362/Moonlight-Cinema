@@ -6,7 +6,7 @@ function Delete(props) {
     const deleteMovies = async (id) => {
         if (window.confirm(`Bạn muốn xóa sản phẩm có id là ${id}`)) {
             try {
-                await axios.delete(`https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie/${id}`, {});
+                await axios.delete(`http://127.0.0.1:8000/api/movie/${id}`, {});
                 alert("Xóa thành công");
 
             } catch (error) {
@@ -20,7 +20,6 @@ function Delete(props) {
 
     return (
         <b>
-          {/* <button className="btn btn-danger btn-sm" onClick={()=>deleteMovies(props.delete)}>Delete</button> */}
           <button data-tag="allowRowEvents" type="button" onClick={() => { deleteMovies(props.delete); }} 
           style={{ textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>
         <ion-icon name='trash-outline' class='icon-ac-del' /></button>

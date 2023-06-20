@@ -1,56 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import $ from "jquery";
 
-function Edit(props){
-  const submitEditMovies = async (e) => {
-    e.preventDefault();
-    const id = $("#editID").val();
-    const image = 
-        $("#avatar").val().split("\\")[2] !== "" &&
-            $("#avatar").val().split("\\")[2] !== undefined
-            ? $("#avatar").val().split("\\")[2]
-            : $("#preview-image-before-edit").attr("src").split("/")[6];
+function Edit({movie}){
 
-    const fd = new FormData();
-    // fd.append("uploadImage", fileUpload);
-
-    if ($("#avatar").val().split("\\")[2]) {
-        await axios.post(`https://63aa9cf0fdc006ba6046fb1c.mockapi.io/image`, fd);
-    }
-
+  const [movies, setMovies] = useState([]);
+ 
+useEffect(() => {
+  const fetchData = async () => {
     try {
-        await axios.edit(`https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie/${id}`,{} ,{
-            name: $("#name").val(),
-            avatar: image,
-            premiere_date: $("#premiere_date").val(),
-            description: $("#description").val(),
-            country: $("#country").val(),
-            trailer: $("#trailer").val(),
-            category: $("#category").val(),
-            
-        });
-        alert("Sửa thành công");
-        $("#closeModalEditBtn").click();
-        // fetchProducts();
+      var idInput = document.getElementById("edit-id");
+      var id = idInput.value;
+      
+      if (id) {
+        const response = await fetch(`http://127.0.0.1:8000/api/movie/${id}`);
+        const movie = await response.json();
+        setMovies(movie);
+      }
     } catch (error) {
-        console.log(error);
-        alert("Sửa không thành công");
+      console.log('Error fetching data:', error);
     }
+  };
+
+  fetchData();
+}, []);
+const imageRef = useRef(null);
+console.log('111',movies);
+const handleInputChange = (event) => {
+    var target = event.target;
+    var name = target.name;
+    var type = target.type;
+    var value = target.value;
+    if (type === 'file') {
+        value = imageRef.current.value.replace(/C:\\fakepath\\/i, "/images/");
+    }
+    setMovies({ ...movies, [name]: value });
 };
-   const editMovies = (id) => {
-  const movie = movie.find((movie) => movie.id === id);
-  $("#editID").val(movie.id);
-  $("#name").val(movie.name);
-  $("#avatar").val("");
-  $("#preview-image-before-edit").attr("src", `https://63aa9cf0fdc006ba6046fb1c.mockapi.io/image/${movie.avatar}`);
-  $("#premiere_date").val(movie.premiere_date);
-  $("#country").val(movie.country);
-  $("#description").val(movie.description);
-  $("#trailer").val(movie.trailer);
-  $("#category").val(movie.category);
-};
+$("#closeModalEditBtn").click();
+
+const handleSubmit = async (event) => {
+  console.log(1222,movies);
+  var idInput = document.getElementById("edit-id");
+  var id = idInput.value;
+    event.preventDefault();
+    if(id &&  movies){
+    try {
+        await axios.put(`http://127.0.0.1:8000/api/movie/${id}`, movies);
+        setMovies({
+          name:'',
+          avatar:'',
+          premiere_date: '',
+          description: '',
+          country: '',
+          trailer: '',
+          category: '',
+          id:0
+        });
+
+        alert('Product edited successfully!');
+
+        // setTimeout(() => {
+        //     window.location = 'http://localhost:3000';
+        // }, 100);
+    } catch (error) {
+        console.log('Error adding product: ', error);
+    }
+};}
+  
+// if (movies.length === 0) {
+//   return <div>Loading...</div>; // Hiển thị một thông báo tải dữ liệu trong khi chờ fetch thành công
+// }
     return (
         
         <div class="modal-dialog" role="document">
@@ -58,7 +78,8 @@ function Edit(props){
             <form
               method="post"
               class="form-form"
-              action="edit.php"
+              onSubmit={handleSubmit}
+              onChange={handleInputChange}
               encType="multipart/form-data">
               <div class="modal-header">
                 <h5 class="modal-title">Modal Edit Movies</h5>
@@ -68,6 +89,7 @@ function Edit(props){
                   class="btn-close"
                   data-dismiss="modal"
                   aria-label="Đóng"
+                  id='closeModalEditBtn'
                 >
                   {/* <span aria-hidden="true">&times;</span> */}
                 </button>
@@ -75,34 +97,33 @@ function Edit(props){
               <div class="modal-body" id="modal-body">
                 
                 {/* <input type="hidden" name="action" value="add"> Trường ẩn để xác định hành động */}
-                <input type="hidden" id="id" name="id" />
-
+                <input type="hidden" id="edit-id" name="id"  />
                 <label htmlFor="name" class="title-title">Name:</label>
-                <input type="text" class="input-btn" name="name" id="name" required />
+                <input type="text" class="input-btn" name="name" id="name" required  value={movies.name} onChange={handleInputChange}/>
                 <br />
                 <br />
                 <label htmlFor="avatar" class="title-title">Avatar:</label>
                 <input disabled="" style={{border: "none",color: "white",backgroundColor: "#0B1A2A"}}
                   id="avatar" class="input-btn" type="text"name="avatar" />
-
                 <input type="hidden" id="old_img" name="old_img" />
                 <input
                   type="file"
                   style={{ color: "white" }}
                   name="up_avatar"
+                  onChange={handleInputChange}
                 />
                 <br />
                 <br />
                 <label htmlFor="date" class="title-title">Premiere date:</label>
-                <input type="date"  class="input-btn" name="premiere_date" id="premiere_date"/>
+                <input type="date"  class="input-btn" name="premiere_date" id="premiere_date"  value={movies.premiere_date} onChange={handleInputChange}/>
                 <br />
                 <br />
                 
                 <label htmlFor="country" class="title-title">Country:</label>
-                <input type='text' class="input-btn"  name="country" id="country" />
+                <input type='text' class="input-btn"  name="country" id="country"  value={movies.country} onChange={handleInputChange}/>
                 <br />
                 <br />
-                <label htmlFor="describe" class="title-title">Describe:</label>
+                <label htmlFor="describe" class="title-title">Description:</label>
                 <textarea
                   rows={6}
                   cols={50}
@@ -110,7 +131,8 @@ function Edit(props){
                   id="description"
                   type="text"
                   class="input-btn"
-                  defaultValue={""}
+                  value={movies.description}
+                  onChange={handleInputChange}
                 />
                 <br />
                 <br />
@@ -126,6 +148,8 @@ function Edit(props){
                   name="trailer"
                   id="trailer"
                   type="text"
+                  value={movies.trailer} 
+                  onChange={handleInputChange}
                 />
                 <input type="file" style={{ color: "white" }} name="up_trailer" />
                 <br /> <br />
@@ -137,26 +161,15 @@ function Edit(props){
                     <input type="checkbox" class="input-btn" name="cat[]" defaultValue=""/>
                   </label>
                 </div>
-                {/* <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
-                  data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country} data-describe={movie.describe} data-trailer={movie.trailer}>
-                    <ion-icon name="pencil-outline" class="icon-ac-edit" />
-                  </button> */}
-
-                {/* <div class="modal-footer">
+                <div class="modal-footer">
                   <input type="submit" name="submit" class="btn bg-danger text-white" defaultValue="Update"/>
                   
-                </div> */}
-                      <b>
-          {/* <button className="btn btn-danger btn-sm" onClick={()=>deleteMovies(props.delete)}>Delete</button> */}
-          <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit'onClick={() => { submitEditMovies(props.delete); }} 
-          style={{ textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>
-          <ion-icon name="pencil-outline" class="icon-ac-edit"  /></button>
-        </b>
+                </div>
               </div>
             </form>
           </div>
         </div>
-    //   </div>
+   
     )
 }
 export default Edit;

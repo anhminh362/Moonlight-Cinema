@@ -6,18 +6,25 @@ import '../../Admin.css';
 import '../../../../Styles/global.css';
 import Edit from './Edit';
 import Delete from './Delete';
-import AddSchedule from '../../Ad_Schedule/CRUD/Add'
+import AddSchedule from '../../Ad_Schedule/CRUD/Add';
+import $ from "jquery";
+
 
 const Show = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    // fetch("http://localhost:3000/products")
-    fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
+    fetch("http://127.0.0.1:8000/api/movie")
       .then(response => response.json())
       .then(movie => setMovies(movie));
+      console.log(movies);
   }, []);
-  
+  $(".btn-edit").click(function() {
+    var id = $(this).data("id");
+    console.log('id',id);
+    $("#edit-id").val(id);
+  });
+
   
   return (
     // <div>
@@ -112,7 +119,7 @@ const Show = () => {
         aria-labelledby="editModalLabel"
         aria-hidden="true"
       >
-          <Edit/>
+          <Edit />
         </div>
 
         {/* Modal Add Schedule*/} 
@@ -149,7 +156,6 @@ const Show = () => {
             <tbody id="tab">
             {movies.map((movie, index) => (
               <tr key={index}>
-
                 <td>{movie.id}</td>
                 <td>{movie.avatar}</td>
                 <td>{movie.name}</td>
@@ -159,11 +165,17 @@ const Show = () => {
                 <td>{movie.trailer}</td>
                 <td>{movie.category}</td>
                 <td>
-
-                  <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
+                  {/* <button type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit' 
                   data-id={movie.id} data-name={movie.name} data-premiere_date={movie.premiere_date} data-country={movie.country} data-describe={movie.describe} data-trailer={movie.trailer}>
                     <ion-icon name="pencil-outline" class="icon-ac-edit" />
-                  </button>
+                  </button> */}
+                  <button  type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit'  data-id={movie.id} >
+                  
+                  <ion-icon name="pencil-outline" class="icon-ac-edit"/>
+                
+                
+                </button>
+                  {/* <Edit/> */}
                   <Delete delete={movie.id}></Delete>
                
                  
