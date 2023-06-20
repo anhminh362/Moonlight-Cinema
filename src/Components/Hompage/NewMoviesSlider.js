@@ -43,7 +43,7 @@ const New = () => {
             {movies.map((movie, index) => index < 5 && (
                 <>
                 <div className="item">
-                    <img src={movie.avatar} alt={movie.avatar} className="movies"></img>
+                    <img src='../picture/${movie.avatar} alt=../picture/${movie.avatar}' className="movies"></img>
                     <div className="overlay">
                         <h5>{movie.name}</h5>
                         <p>

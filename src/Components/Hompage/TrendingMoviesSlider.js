@@ -39,7 +39,7 @@ const Trend = () => {
             {movies.map((movie, index) => index < 5 && (
                 <>
                 <div className="item1">
-                    <img src={movie.avatar} alt={movie.avatar} className="movies1"></img>
+                    <img src='../picture/${movie.avatar} alt=../picture/${movie.avatar}' className="movies1"></img>
                     <div className="overlay1">
                         <h5>{movie.name}</h5>
                         <p>
