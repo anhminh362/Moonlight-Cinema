@@ -150,7 +150,7 @@
 .title-title {
     color: #FFF;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
 }
 
 #name {
