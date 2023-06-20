@@ -7,11 +7,10 @@ import UnblockUser from './UnBlock';
 import { Link } from 'react-router-dom';
 const AdminUsersCRUD = () => {
   const [users, setUsers] = useState([]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('https://647783419233e82dd53bc684.mockapi.io/mypham/users');
+        const response = await axios.get('http://127.0.0.1:8000/api/users?include=account');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -20,6 +19,7 @@ const AdminUsersCRUD = () => {
 
     fetchUsers();
   }, []);
+
 
 
   return (
@@ -98,10 +98,10 @@ const AdminUsersCRUD = () => {
                 {users.map((user) => (
                   <tr key={user.id}>
                     <td>{user.id}</td>
-                    <td>{user.full_name}</td>
-                    <td>{user.create_at}</td>
+                    <td>{user.name}</td>
+                    <td>{user.created_at}</td>
                     <td>{user.phone}</td>
-                    <td>{user.gmail}</td>
+                    <td>{user.account?.email || ''}</td>
                     <td>{user.role === '1' ? 'user' : 'admin'}</td>
                     <td>{user.status ? 'Active' : <p style={{ color: 'gray' }}>Inactive</p>}</td>
                     <td>

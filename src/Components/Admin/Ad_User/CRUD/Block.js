@@ -7,18 +7,27 @@ const BlockUser = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     setSelectedUserId(id);
+    fetchUser();
   }, [id]);
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/users/${id}`);
+      setUser(response.data);
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
 
   const handleBlock = async () => {
     try {
-      await axios.patch(`https://647783419233e82dd53bc684.mockapi.io/mypham/users/${selectedUserId}`, {
-        status: false,
-      });
+      await axios.put(`http://127.0.0.1:8000/api/block/${selectedUserId}`);
       Swal.fire('User blocked successfully', 'Success');
-      navigate('/ShowUser', { replace: false }); // Redirect to the user list page
+      navigate('/ShowUser', { replace: true }); // Redirect to the user list page
     } catch (error) {
       console.error('Error blocking user:', error);
     }
@@ -39,7 +48,7 @@ const BlockUser = () => {
             </button>
           </div>
           <div className="modal-body">
-            <p>Are you sure you want to block this user?</p>
+            <p>Are you sure you want to block {user && user.name}?</p>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={handleCancelBlock}>
