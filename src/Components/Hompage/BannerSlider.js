@@ -13,9 +13,9 @@ const Banner = () => {
         <div>
             <div id="slider" className="carousel carousel-light slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
-                    {movies.map((movie, index) => (
+                    {movies.map((movie, index)  => index < 3 && (
                         <div key={movie.id} className={`carousel-item ${index === 0 ? 'active' : ''}`} data-bs-interval="3000">
-                            <div className="img" style={{ backgroundImage: `url(../picture/slide/${movie.avatar})` }}></div>
+                            <div className="img" style={{ backgroundImage: `url(../picture/${movie.avatar})` }}></div>
                             <div className="carousel-caption d-none d-md-block">
                                 <h3 className="text-movie">{movie.name}</h3>
                                 <p className="text-movies">{movie.description}<br />

@@ -21,7 +21,7 @@ function App() {
       <Route path="/Login" element={<LoginForm/>} />
       <Route path="/verifycode" element={<VerifyCode/>} />
       <Route path="/UserInfo" element={<UserInfo/>} />
-          <Route path="/ShowUser" element={<ShowUser/>} />
+      <Route path="/ShowUser" element={<ShowUser/>} />
       <Route path="/Delete/:id" element={<UserDelete/>} />
       <Route path="/BlockUser/:id" element={<BlockUser/>} />
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
