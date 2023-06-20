@@ -14,8 +14,8 @@ const AdminUsersDelete = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://647783419233e82dd53bc684.mockapi.io/mypham/users/${selectedUserId}`);
-      Swal.fire('Đã xóa thành công',"Successful");
+      await axios.delete(`http://127.0.0.1:8000/api/users/${selectedUserId}`);
+      Swal.fire('User deleted successfully', 'Success');
       navigate('/ShowUser', { replace: true }); // Redirect to the user list page
     } catch (error) {
       console.error('Error deleting user:', error);
