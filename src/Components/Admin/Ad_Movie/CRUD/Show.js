@@ -42,10 +42,12 @@ const Show = () => {
       <br />
       <br />
       <div class="row">
-        <p class="icon-play">
+        <a href="/Show" class="icon-film-play">
+        {/* <p class="icon-play"> */}
           <ion-icon name="play-circle" />
           <b> Films</b>
-        </p>
+        {/* </p> */}
+        </a>
       </div>
       <br/>
       <br/>
@@ -104,20 +106,7 @@ const Show = () => {
         </div>
         <br />
         <br />
-        {/* Modal Edit */} 
-        {/* <div
-        data-backdrop="static"
-        class="modal fade"
-        id="editModal"
-        tabIndex="{-1}"
-        role="dialog"
-        aria-labelledby="editModalLabel"
-        aria-hidden="true"
-      > */}
-          {/* <Edit /> */}
-        {/* </div> */}
-
-        {/* Modal Add Schedule*/} 
+        
         <div
         id="scheduleModal"
         tabIndex={-1}

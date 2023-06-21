@@ -1,11 +1,40 @@
 import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 import axios from 'axios';
-// import DataTable from "react-data-table-component";
 import $ from "jquery";
 import '../Ad_Movie.css'
 
 const Add = () => {
+    const [cats,setCats]=useState([]);
+    const [newMovie, setNewMovie] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+useEffect(() => {
+  fetch("http://127.0.0.1:8000/api/movie")
+    .then(response => response.json())
+    .then(movieData => setNewMovie(movieData))
+    .catch(error => console.error(error));
+}, []);
+useEffect(() => {
+  fetch("http://127.0.0.1:8000/api/cat")
+    .then(response => response.json())
+    .then(cat => setCats(cat))
+    .catch(error => console.error(error));
+}, []);
+
+let nextMovieId = 0;
+if (newMovie.length > 0) {
+  const sortedMovies = newMovie.sort((a, b) => b.id - a.id);
+  nextMovieId = sortedMovies[0].id + 1;
+}
+
+console.log("Next Movie ID:", nextMovieId);
+const handleCheckboxChange = (e, categoryId) => {
+    if (e.target.checked) {
+      setSelectedCategories(prevSelected => [...prevSelected, categoryId]);
+    } else {
+      setSelectedCategories(prevSelected => prevSelected.filter(id => id !== categoryId));
+    }
+  };
     const onSubmitHandle = async (e) => {
         e.preventDefault();
 
@@ -17,20 +46,25 @@ const Add = () => {
                 description: $("#description").val(),
                 country: $("#country").val(),
                 trailer: $("#trailer").val(),
-                category: $("#category").val(),
+                // category: $("#category").val(),
             });
-
+            for (const categoryId of selectedCategories) {
+                await axios.post('http://127.0.0.1:8000/api/movieCat', {
+                  movie_id: nextMovieId,
+                  cat_id: categoryId
+                });
+              }
             $("#avatar").val("");
             alert("Thêm thành công");
             $("#closeModalAddBtn").click();
-            // fetchProducts();
 
         } catch (error) {
             console.log(error);
             alert("Thêm không thành công");
         }
     };
-    
+   
+
     return (
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -43,8 +77,7 @@ const Add = () => {
                 <div class="modal-body">
                 <form class="form-form" onSubmit={onSubmitHandle} encType="multipart/form-data">
                     <br />
-                    {/* <input type="hidden" name="action" value="add"> Trường ẩn để xác định hành động */}
-                    <input type="hidden" name="id" defaultValue=""/>
+                    {/* <input type="hidden" name="id" defaultValue=""/> */}
                     <label htmlFor="name" class="title-title">Name:</label>
                     <input type="text" class="input-btn" name="name" id='name'/>
                     <br />
@@ -71,14 +104,20 @@ const Add = () => {
                     <br />
                     <label htmlFor="name" class="title-title">Category:</label>
                     <div class="category">
-                    <label>
-                        <input type="checkbox" name="category" defaultValue="" />
-                    </label>
+                        {cats && cats.map((cat)=> (
+                        <label key={cat.id}>
+                            <input type="checkbox" name={cat.name} id={cat.id} value={cat.name}  
+                            onChange={(e) => handleCheckboxChange(e, cat.id)}
+                            checked={selectedCategories.includes(cat.id)}
+                            />
+                            <span>{cat.name}</span>
+                        </label>
+                        ))}
                     </div>
                     <div className="modal-footer">
                     <input
                         type="submit"
-                        name="category"
+                        name="submit"
                         className="btn bg-danger text-white"
                         defaultValue="Add"
                     />
@@ -87,7 +126,6 @@ const Add = () => {
                 </div>
             </div>
         </div>
-    // </div>
     )
 }
 export default Add;

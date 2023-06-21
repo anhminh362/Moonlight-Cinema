@@ -37,7 +37,7 @@ const handleInputChange = (event) => {
     var type = target.type;
     var value = target.value;
     if (type === 'file') {
-        value = imageRef.current.value.replace(/C:\\fakepath\\/i, "/images/");
+        value = imageRef.current.value.replace(/C:\\fakepath\\/i, "/picture/");
     }
     setMovies({ ...movies, [name]: value });
 };
