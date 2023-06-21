@@ -27,6 +27,7 @@ function App() {
       <Route path="/Delete/:id" element={<UserDelete/>} />
       <Route path="/BlockUser/:id" element={<BlockUser/>} />
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
+      <Route path="/Show" element={<Show />} />
     </Routes>    
     
 

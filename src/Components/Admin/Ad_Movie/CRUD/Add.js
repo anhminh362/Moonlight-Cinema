@@ -10,7 +10,7 @@ const Add = () => {
         e.preventDefault();
 
         try {
-            await axios.post("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie", {
+            await axios.post("http://127.0.0.1:8000/api/movie", {
                 name: $("#name").val(),
                 avatar: $("#avatar").val().split("\\")[2],
                 premiere_date: $("#premiere_date").val(),
