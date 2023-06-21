@@ -3,30 +3,34 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import $ from "jquery";
 
-function Edit({movie}){
-
+function Edit({ id }){
   const [movies, setMovies] = useState([]);
- 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      var idInput = document.getElementById("edit-id");
-      var id = idInput.value;
-      
-      if (id) {
-        const response = await fetch(`http://127.0.0.1:8000/api/movie/${id}`);
-        const movie = await response.json();
-        setMovies(movie);
-      }
-    } catch (error) {
-      console.log('Error fetching data:', error);
-    }
-  };
+    useEffect(() => {
+    
+      const fetchData = async (id) => {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/api/movie/${id}`);
+          const movie = await response.json();
+          setMovies(movie);
+        } catch (error) {
+          console.log('Error fetching data:', error);
+        }
+      };
+    
+      const handleEditClick = (id) => {
+        fetchData(id);
+      };
+    
+      $(".btn-edit").click(function() {
+        var id = $(this).data("id");
+        console.log('id',id);
+        $("#edit-id").val(id);
+        handleEditClick(id);
+      });
+    }, [id,movies]);
+    
 
-  fetchData();
-}, []);
 const imageRef = useRef(null);
-console.log('111',movies);
 const handleInputChange = (event) => {
     var target = event.target;
     var name = target.name;
@@ -40,7 +44,7 @@ const handleInputChange = (event) => {
 $("#closeModalEditBtn").click();
 
 const handleSubmit = async (event) => {
-  console.log(1222,movies);
+  console.log(12121,movies);
   var idInput = document.getElementById("edit-id");
   var id = idInput.value;
     event.preventDefault();
@@ -60,19 +64,25 @@ const handleSubmit = async (event) => {
 
         alert('Product edited successfully!');
 
-        // setTimeout(() => {
-        //     window.location = 'http://localhost:3000';
-        // }, 100);
+        setTimeout(() => {
+            window.location = 'http://localhost:3000/Show';
+        }, 100);
     } catch (error) {
         console.log('Error adding product: ', error);
     }
 };}
   
-// if (movies.length === 0) {
-//   return <div>Loading...</div>; // Hiển thị một thông báo tải dữ liệu trong khi chờ fetch thành công
-// }
+
     return (
-        
+      <div
+      data-backdrop="static"
+      class="modal fade"
+      id="editModal"
+      tabIndex="{-1}"
+      role="dialog"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <form
@@ -169,7 +179,7 @@ const handleSubmit = async (event) => {
             </form>
           </div>
         </div>
-   
+   </div>
     )
 }
 export default Edit;
