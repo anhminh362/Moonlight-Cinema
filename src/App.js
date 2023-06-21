@@ -11,17 +11,19 @@ import Register from './Components/Auth/RegisterPage';
 import LoginForm from './Components/Auth/LoginPage';
 import VerifyCode from './Components/Auth/VerifyCodePage';
 import UserInfo from './Components/Auth/UserInfo';
+import Detail from './Components/MovieDetail/MovieDetail';
 function App() {
   return (
     // <Home/>
     
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/Detail" element={<Detail />} />
       <Route path="/Register" element={<Register/>} />
       <Route path="/Login" element={<LoginForm/>} />
       <Route path="/verifycode" element={<VerifyCode/>} />
       <Route path="/UserInfo" element={<UserInfo/>} />
-          <Route path="/ShowUser" element={<ShowUser/>} />
+      <Route path="/ShowUser" element={<ShowUser/>} />
       <Route path="/Delete/:id" element={<UserDelete/>} />
       <Route path="/BlockUser/:id" element={<BlockUser/>} />
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />

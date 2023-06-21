@@ -62,12 +62,6 @@ const Register = () => {
       // Gửi yêu cầu đăng ký tài khoản
 
 
-      const newUser = {
-        email,
-        password,
-      };
-
-
       // await axios.post('http://127.0.0.1:8000/api/account', newUser);
       console.log(1,email);
       console.log(1,password);
@@ -76,6 +70,7 @@ const Register = () => {
 
       // Gửi email xác thực
       await axios.post('http://127.0.0.1:8000/api/register', { email,password,c_password });
+      
 
       alert('Đăng ký thành công. Vui lòng kiểm tra email của bạn để xác minh.');
 

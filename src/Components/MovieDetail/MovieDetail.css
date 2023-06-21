@@ -209,10 +209,65 @@ video:focus{
     color:  #E00813;
     font-size: 50px;
 }
+.container .row .col-sm-3 ul li {
+    list-style-type: none;
+    position: relative;
+    right: 35px;
+}
+
+.container .row .col-sm-3 ul li a {
+    text-decoration: none;
+    color: var(--text--color);
+}
+
+.container .row .col-sm-3 ul li a:hover {
+    color: var(--title--color);
+}
+
+.container .row .col-sm-3 .text {
+    color: var(--text--color);
+
+}
+
+.container .row .col-sm-3 .Send {
+    height: 40px;
+    border-radius: 5px;
+    border-color: var(--title--color);
+
+}
+
+.container .row .col-sm-3 button {
+    position: relative;
+    bottom: 3px;
+    background-color: var(--title--color);
+    color: var(--text--color);
+}
+
+.container .row .col-sm-3 button:hover {
+    background-color: var(--text--color);
+    color: var(--maincolor);
+}
+
+.container .row .col-sm-3 .contact_icon {
+    position: relative;
+    bottom: 20px;
+    color: white;
+}
+
+.container .row .col-sm-3 .fa-brands {
+    size: 100px;
+}
+
+.container .row .col-sm-3 .btn {
+    position: relative;
+    left: 13rem;
+    bottom: 2.5rem;
+}
 /* responsive */
 @media only screen and (min-device-width : 320px) and (max-device-width : 540px){
     .container{
         text-align: center;
+        --title--color: #E00813;
     }
     .container .col-sm-3 .hr{
         position: relative;

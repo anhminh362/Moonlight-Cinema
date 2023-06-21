@@ -100,7 +100,7 @@ const VerifyCode = () => {
 
       if (response.status === 200) {
         alert('Xác minh thành công');
-        navigate('/UserInfo');
+        navigate(`/UserInfo?email=${encodeURIComponent(email)}`);
       } else {
         setErrorMessage('Mã xác minh bạn nhập không đúng. Vui lòng thử lại');
       }
