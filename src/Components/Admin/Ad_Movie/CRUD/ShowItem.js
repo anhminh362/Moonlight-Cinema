@@ -68,7 +68,7 @@ const ShowItem = ({ movie }) => {
                 </td>
                 <td>
                   
-                  <button  type="button" data-bs-toggle="modal" data-bs-target='#editModal'  data-id={movie.id} >
+                  <button  type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit'  data-id={movie.id} >
                   
                   <ion-icon name="pencil-outline" class="icon-ac-edit"/>
                 
@@ -78,7 +78,7 @@ const ShowItem = ({ movie }) => {
                   <Delete delete={movie.id}></Delete>
                
                  
-                  <button type='button'  data-bs-toggle='modal' data-bs-target='#scheduleModal'  data-id={movie.id}> <ion-icon class='icon-ac-add' name='add-circle-outline'></ion-icon></button>
+                  <button type='button'  data-bs-toggle='modal' data-bs-target='#scheduleModal' class='btn-schedule'   data-id={movie.id}> <ion-icon class='icon-ac-add' name='add-circle-outline'></ion-icon></button>
                 </td>
               </tr>
       </>
