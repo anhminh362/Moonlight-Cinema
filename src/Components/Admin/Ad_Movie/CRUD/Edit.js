@@ -58,7 +58,7 @@ const handleSubmit = async (event) => {
           description: '',
           country: '',
           trailer: '',
-          category: '',
+          // category: '',
           id:0
         });
 

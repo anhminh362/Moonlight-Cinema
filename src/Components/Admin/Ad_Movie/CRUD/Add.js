@@ -7,7 +7,7 @@ const Add = () => {
     const [cats,setCats]=useState([]);
     const [newMovie, setNewMovie] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
-    const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+    // const [selectedCategoryId, setSelectedCategoryId] = useState(0);
 useEffect(() => {
   fetch("http://127.0.0.1:8000/api/movie")
     .then(response => response.json())
