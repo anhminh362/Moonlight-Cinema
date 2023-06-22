@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import $ from "jquery";
 
-function Edit({ id }){
+function Edit({ id, handleCloseEdit}){
   const [movies, setMovies] = useState([]);
     useEffect(() => {
+      // console.log('useEffect');
     
       const fetchData = async (id) => {
         try {
@@ -16,17 +17,18 @@ function Edit({ id }){
           console.log('Error fetching data:', error);
         }
       };
-    
+      fetchData(id);
       const handleEditClick = (id) => {
         fetchData(id);
       };
     
-      $(".btn-edit").click(function() {
-        var id = $(this).data("id");
-        console.log('id',id);
-        $("#edit-id").val(id);
-        handleEditClick(id);
-      });
+      // $("#btn-edit").click(function() {
+      //   var id = $(this).data("id");
+      //   console.log('id',id);
+      //   $("#edit-id").val(id);
+      //   // handleEditClick(id);
+      // });
+     
     }, [id,movies]);
     
 
@@ -58,7 +60,7 @@ const handleSubmit = async (event) => {
           description: '',
           country: '',
           trailer: '',
-          // category: '',
+          category: '',
           id:0
         });
 
@@ -76,7 +78,7 @@ const handleSubmit = async (event) => {
     return (
       <div
       data-backdrop="static"
-      class="modal fade"
+      // class="modal"
       id="editModal"
       tabIndex="{-1}"
       role="dialog"
@@ -94,20 +96,17 @@ const handleSubmit = async (event) => {
               <div class="modal-header">
                 <h5 class="modal-title">Modal Edit Movies</h5>
                 <button
-                  type="button"
-                  name="close"
-                  class="btn-close"
-                  data-dismiss="modal"
-                  aria-label="Đóng"
-                  id='closeModalEditBtn'
+                onClick={() => handleCloseEdit()}
+                class="btn-close"
+                type='button'
                 >
-                  {/* <span aria-hidden="true">&times;</span> */}
+                  {/* New */}
                 </button>
               </div>
               <div class="modal-body" id="modal-body">
                 
                 {/* <input type="hidden" name="action" value="add"> Trường ẩn để xác định hành động */}
-                <input type="hidden" id="edit-id" name="id"  />
+                {/* <input type="hidden" id="edit-id" name="id"  /> */}
                 <label htmlFor="name" class="title-title">Name:</label>
                 <input type="text" class="input-btn" name="name" id="name" required  value={movies.name} onChange={handleInputChange}/>
                 <br />

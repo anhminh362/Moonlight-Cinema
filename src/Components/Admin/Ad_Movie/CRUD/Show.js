@@ -6,12 +6,31 @@ import '../../Admin.css';
 import '../../../../Styles/global.css';
 import ShowItem from './ShowItem';
 import AddSchedule from '../../Ad_Schedule/CRUD/Add';
+import Edit from './Edit';
 
 
 
 const Show = () => {
   const [movies, setMovies] = useState([]);
+  const [showEdit,setShowEdit]=useState(false);
+  const [id, setId] = useState(0);
 
+  const handleEditCloseClick = () =>{
+    setShowEdit(false);
+    console.log(111);
+  }
+  const handleAddCloseClick=()=>{
+
+  }
+  const handleItemEditClick = num => {
+    // 👇️ take the parameter passed from the Child component
+    // setCount(current => current + num);
+    
+    console.log('argument from Child: ', num);
+    setShowEdit(true);
+    setId(num);
+    console.log(showEdit);
+  };
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movie")
       .then(response => response.json())
@@ -106,7 +125,8 @@ const Show = () => {
         </div>
         <br />
         <br />
-        
+        {showEdit && (
+          <Edit id={id} handleCloseEdit={handleEditCloseClick}/>)}
         <div
         id="scheduleModal"
         tabIndex={-1}
@@ -139,7 +159,7 @@ const Show = () => {
             </thead>
             <tbody id="tab">
             {movies.map((movie, index) => (
-             <ShowItem key={index} movie={movie} />
+             <ShowItem key={index} movie={movie} handleClickEvent={handleItemEditClick} />
             ))}
               
             </tbody>

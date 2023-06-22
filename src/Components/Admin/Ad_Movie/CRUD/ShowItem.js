@@ -3,20 +3,12 @@ import Delete from './Delete';
 import React from 'react';
 // import $ from "jquery";
 import { useState,useEffect } from 'react';
-const ShowItem = ({ movie }) => {
-  //   const [cats,setCats]=useState();
+const ShowItem = ({ movie,handleClickEvent }) => {
 
-  // const Cats=({id})=>{
-  //   useEffect(() => {
-  //     fetch(`http://127.0.0.1:8000/api/cat/${id}`)
-  //       .then(response => response.json())
-  //       .then(cat => setCats(cat));
-  //     //   console.log(cats);
-  //   }, [id,cats]);
-  // }
-  // Cats(movie.id)
   const [cats, setCats] = useState([]);
   const [catNames,setCatNames]=useState([]);
+  const [showEdit,setShowEdit]=useState(false);
+  
   const fetchCats = (id) => {
     fetch(`http://127.0.0.1:8000/api/movieCat/${id}`)
       .then(response => response.json())
@@ -47,6 +39,11 @@ const ShowItem = ({ movie }) => {
       fetchCatName(cat.cat_id);
     });
   }, [cats]);
+  // const handleEditClickEvent=(event)=>{
+  //   console.log(1,event.target.id);
+  //   setShowEdit(true);
+    
+  // }
    
     return (
       <>
@@ -68,19 +65,20 @@ const ShowItem = ({ movie }) => {
                 </td>
                 <td>
                   
-                  <button  type="button" data-bs-toggle="modal" data-bs-target='#editModal' class='btn-edit'  data-id={movie.id} >
+                  <button  type="button"  id='btn-edit' onClick={event => handleClickEvent(movie.id)}   >
                   
-                  <ion-icon name="pencil-outline" class="icon-ac-edit"/>
+                  <ion-icon name="pencil-outline" class="icon-ac-edit" id={movie.id}/>
                 
                 
                 </button>
-                  <Edit id={movie.id}/>
+                  
                   <Delete delete={movie.id}></Delete>
                
                  
                   <button type='button'  data-bs-toggle='modal' data-bs-target='#scheduleModal' class='btn-schedule'   data-id={movie.id}> <ion-icon class='icon-ac-add' name='add-circle-outline'></ion-icon></button>
                 </td>
               </tr>
+            
       </>
     );
   };
