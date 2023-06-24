@@ -6,21 +6,43 @@ import '../../Admin.css';
 import '../../../../Styles/global.css';
 import ShowItem from './ShowItem';
 import AddSchedule from '../../Ad_Schedule/CRUD/Add';
+import Edit from './Edit';
 
 
 
 const Show = () => {
   const [movies, setMovies] = useState([]);
+  const [showEdit,setShowEdit]=useState(false);
+  const [showAdd,setShowAdd]=useState(false);
+  const [id, setId] = useState(0);
 
+  const handleEditCloseClick = () =>{
+    setShowEdit(false);
+    console.log(222);
+  }
+  const handleAddCloseClick=()=>{
+    setShowAdd(false);
+  }
+  const handleAddClick=()=>{
+    setShowAdd(true);
+    console.log(111);
+  }
+  const handleItemEditClick = num => {
+    // 👇️ take the parameter passed from the Child component
+    // setCount(current => current + num);
+    
+    console.log('argument from Child: ', num);
+    setShowEdit(true);
+    setId(num);
+    console.log(showEdit);
+    console.log('id',num);
+  };
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movie")
       .then(response => response.json())
       .then(movie => setMovies(movie));
       console.log(movies);
   }, []);
-
-
-  
   return (
     // <div>
   <div class="row">
@@ -42,10 +64,12 @@ const Show = () => {
       <br />
       <br />
       <div class="row">
-        <p class="icon-play">
+        <a href="/Show" class="icon-film-play">
+        {/* <p class="icon-play"> */}
           <ion-icon name="play-circle" />
           <b> Films</b>
-        </p>
+        {/* </p> */}
+        </a>
       </div>
       <br/>
       <br/>
@@ -87,7 +111,7 @@ const Show = () => {
         <br />
         {/* Nút mở modal Add Film */}
         
-        <button type="button" class="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#addModal">
+        <button type="button" class="btn bg-danger text-white" onClick={event => handleAddClick()}>
           Add +
         </button>
         {/* <Add/> */}
@@ -95,29 +119,18 @@ const Show = () => {
           id="addModal"
           tabIndex={-1}
           role="dialog"
-          class="modal fade"
+          // class="modal fade"
           data-backdrop="static"
           aria-labelledby="addModalLabel"
           aria-hidden="true"
         >
-          <Add/>
+         {showAdd && (
+          <Add  handleCloseAdd={handleAddCloseClick}/>)}
         </div>
         <br />
         <br />
-        {/* Modal Edit */} 
-        {/* <div
-        data-backdrop="static"
-        class="modal fade"
-        id="editModal"
-        tabIndex="{-1}"
-        role="dialog"
-        aria-labelledby="editModalLabel"
-        aria-hidden="true"
-      > */}
-          {/* <Edit /> */}
-        {/* </div> */}
-
-        {/* Modal Add Schedule*/} 
+        {showEdit && (
+          <Edit id={id} handleCloseEdit={handleEditCloseClick}/>)}
         <div
         id="scheduleModal"
         tabIndex={-1}
@@ -150,7 +163,7 @@ const Show = () => {
             </thead>
             <tbody id="tab">
             {movies.map((movie, index) => (
-             <ShowItem key={index} movie={movie} />
+             <ShowItem key={index} movie={movie} handleClickEvent={handleItemEditClick} />
             ))}
               
             </tbody>
