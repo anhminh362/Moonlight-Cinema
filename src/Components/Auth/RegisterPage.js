@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { useNavigate, Link } from 'react-router-dom';
-import'../Auth/register.css';
+import '../Auth/register.css';
+
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,27 +17,25 @@ const Register = () => {
     const emailParam = searchParams.get('email');
     setEmail(emailParam);
   }, []);
-
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-
+    setErrors([]);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-
+    setErrors([]);
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-
+    setErrors([]);
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = [];
-
 
     // Kiểm tra tính hợp lệ của email, mật khẩu và mật khẩu xác nhận
     if (!validateEmail(email)) {
@@ -49,7 +48,6 @@ const Register = () => {
 
     if (password !== c_password) {
       validationErrors.push('Xác nhận mật khẩu không khớp');
-
     }
 
     if (validationErrors.length > 0) {
@@ -66,7 +64,13 @@ const Register = () => {
       console.log(1,email);
       console.log(1,password);
       console.log(1,email);
+ // Kiểm tra email đã tồn tại hay chưa
+      const checkEmailResponse = await axios.get(`http://127.0.0.1:8000/api/check-email?email=${encodeURIComponent(email)}`);
 
+      if (checkEmailResponse.data.exists) {
+        setErrors(['Email đã tồn tại']);
+        return;
+      }
 
       // Gửi email xác thực
       await axios.post('http://127.0.0.1:8000/api/register', { email,password,c_password });
@@ -95,68 +99,72 @@ const Register = () => {
   };
 
   return (
-
-    <div className='body'>
-    <div className="form-register">
-      <form onSubmit={handleFormSubmit} action="/verifycode">
-        <h1>Register</h1>
-        <div className="form-group">
-         <label htmlFor="email">Email</label>
-         <div className='form-input'>
-            <input type="email" className="form-control" id="email" name="email"required
+    <div className="body">
+      <div className="form-register">
+        <form onSubmit={handleFormSubmit} action="/verifycode">
+          <h1>Register</h1>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <div className="form-input">
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                required
                 value={email}
-                onChange={handleEmailChange}
-              />
-         </div>
-          
-        </div>
-        <div className="form-group">
-          <label htmlFor="pwd">Password</label>
-          <div className='form-input'>
-            <input
-              type="password"
-              className="form-control"
-              id="pwd"
-              name="password"
-              required
-              value={password}
-              onChange={handlePasswordChange}
-            />
+                  onChange={handleEmailChange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="pwd">Password</label>
+                <div className="form-input">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="pwd"
+                    name="password"
+                    required
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="label" htmlFor="confirm-pwd">
+                  Confirm Password
+                </label>
+                <div className="form-input">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="confirm-pwd"
+                    name="confirm-pwd"
+                    required
+                    value={c_password}
+                    onChange={handleConfirmPasswordChange}
+                  />
+                </div>
+              </div>
+              {errors.length > 0 && (
+                <div className="error-message">
+                  {errors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                  ))}
+                </div>
+              )}
+              <button type="submit" className="btn btn-default" name="btn">
+                Register
+              </button>
+              <p>
+                <Link to="/login">LoginForm</Link>
+              </p>
+            </form>
           </div>
         </div>
-        <div className="form-group">
-          <label className='label' htmlFor="confirm-pwd">Confirm Password</label>
-          <div className='form-input'>
-            <input
-              type="password"
-              className="form-control"
-              id="confirm-pwd"
-              name="confirm-pwd"
-              required
-              value={c_password}
-              onChange={handleConfirmPasswordChange}
-            />
-            </div>
-        </div>
-        {errors.length > 0 && (
-          <div className="error-message">
-            {errors.map((error, index) => (
-              <p key={index}>{error}</p>
-            ))}
-          </div>
-        )}
-        <button type="submit" className="btn btn-default" name="btn">
-          Register
-        </button>
-        <p>
-          <Link to="/login">LoginForm</Link>
-        </p>
-      </form>
-    </div>
-    </div>
-
-
-  );
-};
-
-export default Register;
+      );
+    };
+    
+    export default Register;
+    
