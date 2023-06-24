@@ -5,6 +5,8 @@ import $ from "jquery";
 
 function Edit({ id, handleCloseEdit}){
   const [movies, setMovies] = useState([]);
+  const [cats,setCats]=useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
     useEffect(() => {
       // console.log('useEffect');
     
@@ -18,20 +20,31 @@ function Edit({ id, handleCloseEdit}){
         }
       };
       fetchData(id);
-      const handleEditClick = (id) => {
-        fetchData(id);
-      };
-    
-      // $("#btn-edit").click(function() {
-      //   var id = $(this).data("id");
-      //   console.log('id',id);
-      //   $("#edit-id").val(id);
-      //   // handleEditClick(id);
-      // });
-     
+      fetchCats(id);
     }, [id,movies]);
     
-
+    useEffect(() => {
+      fetch("http://127.0.0.1:8000/api/cat")
+        .then(response => response.json())
+        .then(cat => setCats(cat))
+        .catch(error => console.error(error));
+    }, []);
+    const fetchCats = (id) => {
+      fetch(`http://127.0.0.1:8000/api/movieCat/${id}`)
+        .then(response => response.json())
+        .then(catMovie => setSelectedCategories(catMovie))
+        .catch(error => console.error(error));
+        // console.log('movCat',selectedCategories);
+    };
+    // console.log("Next Movie ID:", nextMovieId);
+    const handleCheckboxChange = (e, categoryId) => {
+        if (e.target.checked) {
+          setSelectedCategories(prevSelected => [...prevSelected, categoryId]);
+        } else {
+          setSelectedCategories(prevSelected => prevSelected.filter(id => id !== categoryId));
+        }
+        console.log(categoryId);
+      };
 const imageRef = useRef(null);
 const handleInputChange = (event) => {
     var target = event.target;
@@ -41,16 +54,18 @@ const handleInputChange = (event) => {
     if (type === 'file') {
         value = imageRef.current.value.replace(/C:\\fakepath\\/i, "/picture/");
     }
-    setMovies({ ...movies, [name]: value });
+    if(name!='category'){setMovies({ ...movies, [name]: value })};
 };
-$("#closeModalEditBtn").click();
+// $("#closeModalEditBtn").click();
 
 const handleSubmit = async (event) => {
   console.log(12121,movies);
-  var idInput = document.getElementById("edit-id");
-  var id = idInput.value;
+  // var idInput = document.getElementById("edit-id");
+  // var id = idInput.value;
     event.preventDefault();
     if(id &&  movies){
+      // console.log('abc',id,selectedCategoriesj);
+
     try {
         await axios.put(`http://127.0.0.1:8000/api/movie/${id}`, movies);
         setMovies({
@@ -60,10 +75,16 @@ const handleSubmit = async (event) => {
           description: '',
           country: '',
           trailer: '',
-          category: '',
+          // category: '',
           id:0
         });
-
+        for (const categoryId of selectedCategories) {
+          await axios.post('http://127.0.0.1:8000/api/movieCat', {
+            movie_id: id,
+            cat_id: categoryId
+          });
+        }
+        setSelectedCategories([])
         alert('Product edited successfully!');
 
         setTimeout(() => {
@@ -164,12 +185,16 @@ const handleSubmit = async (event) => {
                 <br /> <br />
 
                 <div class="category">
-                  <label htmlFor="name" class="title-title">Category</label>
-                  <input type="hidden" name="cat" id="cat" defaultValue="" />
-                  <label>
-                    <input type="checkbox" class="input-btn" name="cat[]" defaultValue=""/>
-                  </label>
-                </div>
+                        {cats && cats.map((cat)=> (
+                        <label key={cat.id}>
+                            <input type="checkbox" name='category' id={cat.id} value={cat.name}  
+                            onChange={(e) => handleCheckboxChange(e, cat.id)}
+                            checked={selectedCategories.includes(cat.id)}
+                            />
+                            <span>{cat.name}</span>
+                        </label>
+                        ))}
+                    </div>
                 <div class="modal-footer">
                   <input type="submit" name="submit" class="btn bg-danger text-white" defaultValue="Update"/>
                   

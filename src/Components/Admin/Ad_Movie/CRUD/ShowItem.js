@@ -7,7 +7,7 @@ const ShowItem = ({ movie,handleClickEvent }) => {
 
   const [cats, setCats] = useState([]);
   const [catNames,setCatNames]=useState([]);
-  const [showEdit,setShowEdit]=useState(false);
+  // const [showEdit,setShowEdit]=useState(false);
   
   const fetchCats = (id) => {
     fetch(`http://127.0.0.1:8000/api/movieCat/${id}`)
@@ -22,12 +22,14 @@ const ShowItem = ({ movie,handleClickEvent }) => {
   }, [movie.id]);
 
   const fetchCatName=(id)=>{
+   
     fetch(`http://127.0.0.1:8000/api/cat/${id}`)
     .then(res=>res.json())
     // .then(catName=>setCatName(catName))
     .then(catNameData => {
       setCatNames(prevCatNames => {
         if (!prevCatNames.includes(catNameData.name)) {
+          // console.log(2);
           return [...prevCatNames, catNameData.name];
         }
         return prevCatNames;
@@ -35,10 +37,13 @@ const ShowItem = ({ movie,handleClickEvent }) => {
     })
     .catch(error => console.error(error));  }
   useEffect(() => {
+    // console.log(1)
     cats.forEach(cat => {
-      fetchCatName(cat.cat_id);
+      fetchCatName(cat);
+      // console.log('cat',cat);
     });
   }, [cats]);
+  // console.log(cats);
   // const handleEditClickEvent=(event)=>{
   //   console.log(1,event.target.id);
   //   setShowEdit(true);
@@ -59,6 +64,7 @@ const ShowItem = ({ movie,handleClickEvent }) => {
                 {/* {cats.map((cat, index) => (
                   <p key={index}>{catName.name}</p>
                 ))} */}
+                
                  {catNames.map((catName, index) => (
             <p key={index}>{catName}</p>
           ))}

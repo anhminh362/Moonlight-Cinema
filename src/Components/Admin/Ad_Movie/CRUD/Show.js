@@ -13,14 +13,19 @@ import Edit from './Edit';
 const Show = () => {
   const [movies, setMovies] = useState([]);
   const [showEdit,setShowEdit]=useState(false);
+  const [showAdd,setShowAdd]=useState(false);
   const [id, setId] = useState(0);
 
   const handleEditCloseClick = () =>{
     setShowEdit(false);
-    console.log(111);
+    console.log(222);
   }
   const handleAddCloseClick=()=>{
-
+    setShowAdd(false);
+  }
+  const handleAddClick=()=>{
+    setShowAdd(true);
+    console.log(111);
   }
   const handleItemEditClick = num => {
     // 👇️ take the parameter passed from the Child component
@@ -30,6 +35,7 @@ const Show = () => {
     setShowEdit(true);
     setId(num);
     console.log(showEdit);
+    console.log('id',num);
   };
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movie")
@@ -37,9 +43,6 @@ const Show = () => {
       .then(movie => setMovies(movie));
       console.log(movies);
   }, []);
-
-
-  
   return (
     // <div>
   <div class="row">
@@ -108,7 +111,7 @@ const Show = () => {
         <br />
         {/* Nút mở modal Add Film */}
         
-        <button type="button" class="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#addModal">
+        <button type="button" class="btn bg-danger text-white" onClick={event => handleAddClick()}>
           Add +
         </button>
         {/* <Add/> */}
@@ -116,12 +119,13 @@ const Show = () => {
           id="addModal"
           tabIndex={-1}
           role="dialog"
-          class="modal fade"
+          // class="modal fade"
           data-backdrop="static"
           aria-labelledby="addModalLabel"
           aria-hidden="true"
         >
-          <Add/>
+         {showAdd && (
+          <Add  handleCloseAdd={handleAddCloseClick}/>)}
         </div>
         <br />
         <br />

@@ -3,10 +3,10 @@ import axios from 'axios';
 import $ from "jquery";
 import '../Ad_Movie.css'
 
-const Add = () => {
-    const [cats,setCats]=useState([]);
-    const [newMovie, setNewMovie] = useState([]);
-    const [selectedCategories, setSelectedCategories] = useState([]);
+const Add = ({handleCloseAdd}) => {
+  const [newMovie, setNewMovie] = useState([]);
+  const [cats,setCats]=useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
     // const [selectedCategoryId, setSelectedCategoryId] = useState(0);
 useEffect(() => {
   fetch("http://127.0.0.1:8000/api/movie")
@@ -23,11 +23,11 @@ useEffect(() => {
 
 let nextMovieId = 0;
 if (newMovie.length > 0) {
-  const sortedMovies = newMovie.sort((a, b) => b.id - a.id);
+  let sortedMovies = newMovie.sort((a, b) => b.id - a.id);
   nextMovieId = sortedMovies[0].id + 1;
 }
 
-console.log("Next Movie ID:", nextMovieId);
+// console.log("Next Movie ID:", nextMovieId);
 const handleCheckboxChange = (e, categoryId) => {
     if (e.target.checked) {
       setSelectedCategories(prevSelected => [...prevSelected, categoryId]);
@@ -70,7 +70,14 @@ const handleCheckboxChange = (e, categoryId) => {
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title">FOMR ADD</h5>
-                <button type="button" name="close" class="btn-close" data-dismiss="modal" aria-label="Đóng"  >
+                <button 
+                type="button" 
+                class="btn-close" 
+                // class="btn-close"
+                // data-dismiss="modal"
+                // aria-label="Đóng"  
+                onClick={() => handleCloseAdd()}
+                >
                     {/* <span aria-hidden="true">&times;</span> */}
                 </button>
                 </div>

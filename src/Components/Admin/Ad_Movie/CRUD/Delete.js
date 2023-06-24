@@ -13,6 +13,14 @@ function Delete(props) {
                 console.log(error);
                 alert("Xóa không thành công");
             }
+            try {
+                await axios.delete(`http://127.0.0.1:8000/api/movieCat/${id}`, {});
+                alert("Xóa thành công");
+
+            } catch (error) {
+                console.log(error);
+                alert("Xóa không thành công");
+            }
         } else {
             alert("Xóa không thành công");
         }
