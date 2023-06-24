@@ -40,7 +40,7 @@ const AdminUsersCRUD = () => {
           <br />
           <br />
           <div className="row">
-            <a href="#" className="icon-play">
+            <a href="#" className="icon-item">
               <ion-icon name="play-circle"></ion-icon>
               <b> Films</b>
             </a>
@@ -48,7 +48,7 @@ const AdminUsersCRUD = () => {
           <br />
           <br />
           <div className="row">
-            <a href="#" className="icon-play">
+            <a href="#" className="icon-item">
               <i className="fa-solid fa-calendar-days"></i>
               <b> Schedule</b>
             </a>
