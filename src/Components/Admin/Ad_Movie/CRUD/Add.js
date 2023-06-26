@@ -56,7 +56,7 @@ const handleCheckboxChange = (e, categoryId) => {
               }
             $("#avatar").val("");
             alert("Thêm thành công");
-            $("#closeModalAddBtn").click();
+            // $("#closeModalAddBtn").click();
 
         } catch (error) {
             console.log(error);
@@ -72,10 +72,7 @@ const handleCheckboxChange = (e, categoryId) => {
                 <h5 class="modal-title">FOMR ADD</h5>
                 <button 
                 type="button" 
-                class="btn-close" 
-                // class="btn-close"
-                // data-dismiss="modal"
-                // aria-label="Đóng"  
+                class="btn-close"  
                 onClick={() => handleCloseAdd()}
                 >
                     {/* <span aria-hidden="true">&times;</span> */}

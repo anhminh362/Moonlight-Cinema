@@ -32,7 +32,7 @@ const AdminUsersCRUD = () => {
             <b className="logo_text">MoonLight</b>
           </div>
           <div className="row">
-            <a href="ad_user.php" className="icon-item">
+            <a href="#" className="icon-user-play">
               <ion-icon name="person"></ion-icon>
               <b> User</b>
             </a>
@@ -40,7 +40,7 @@ const AdminUsersCRUD = () => {
           <br />
           <br />
           <div className="row">
-            <a href="#" className="icon-play">
+            <a href="/Show" className="icon-item">
               <ion-icon name="play-circle"></ion-icon>
               <b> Films</b>
             </a>
@@ -48,7 +48,7 @@ const AdminUsersCRUD = () => {
           <br />
           <br />
           <div className="row">
-            <a href="#" className="icon-play">
+            <a href="/ShowSchedule" className="icon-item">
               <i className="fa-solid fa-calendar-days"></i>
               <b> Schedule</b>
             </a>
