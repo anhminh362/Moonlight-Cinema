@@ -71,7 +71,7 @@
 }
 
 /* icon-play */
-.icon-film-play {
+.icon-film-play, .icon-user-play, .icon-schedule-play {
     position: relative;
     color: #FFC107;
     font-size: 1.6rem;
@@ -80,7 +80,7 @@
     text-decoration: none;
 }
 
-.icon-film-play:hover {
+.icon-film-play:hover, .icon-user-play :hover, a:hover {
     color: #FFC107;
 }
 
