@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Ad_User.css';
 import '../../Admin.css';
-import BlockUser from './Block';
-import UnblockUser from './UnBlock';
 import { Link } from 'react-router-dom';
 const AdminUsersCRUD = () => {
   const [users, setUsers] = useState([]);
