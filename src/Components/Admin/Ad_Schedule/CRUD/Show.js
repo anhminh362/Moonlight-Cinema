@@ -8,7 +8,7 @@ const Show = () => {
     const [schedules, setschedules] = useState([]);
 
     useEffect(() => {
-      fetch("http://127.0.0.1:8000/api/get-schedule")
+      fetch("http://127.0.0.1:8000/api/schedule")
         .then(response => response.json())
         .then(schedule => setschedules(schedule));
         console.log(schedules);
@@ -80,7 +80,7 @@ const Show = () => {
                                         <th>Time End</th>
                                         <th>Movie Date</th>
                                         <th>Price</th>
-                                        <th>Action</th>
+                                        {/* <th>Action</th> */}
                                     </tr>
                                 </thead>
                                 <tbody id="tab">
@@ -89,7 +89,7 @@ const Show = () => {
                                         <tr key={index}>
                                             <td>{schedule.id}</td>
                                             <td>{schedule.movie_id}</td>
-                                            <td>{schedule.room_id}</td>
+                                            {/* <td>{schedule.room_id}</td> */}
                                             <td>{schedule.time_begin}</td>
                                             <td>{schedule.time_end}</td>
                                             <td>{schedule.movie_date}</td>

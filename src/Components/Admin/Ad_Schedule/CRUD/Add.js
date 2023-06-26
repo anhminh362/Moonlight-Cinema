@@ -22,6 +22,7 @@ const Add = ({  id,handleCloseAddSchedule}) => {
     var name = target.name;
     var value = target.value;
    setSchedule({ ...schedule, [name]: value });
+   console.log(schedule);
 };
 // $("#closeModalEditBtn").click();
 
@@ -32,11 +33,15 @@ const handleSubmit = async (event) => {
       // console.log('abc',id,selectedCategoriesj);
 
     try {
-        await axios.post(`http://127.0.0.1:8000/api/schedule`, schedule);
+      // console.log(schedule);
+        await axios.post(`http://127.0.0.1:8000/api/schedule`, {
+          movie_id:id,
+          ...schedule
+        });
         setSchedule([]);
-        alert('Product edited successfully!');
+        alert('Schedule added successfully!');
         setTimeout(() => {
-            window.location = 'http://localhost:3000/Show';
+            window.location = 'http://localhost:3000/ShowSchedule';
         }, 100);
     } catch (error) {
         console.log('Error adding product: ', error);
@@ -60,20 +65,14 @@ const handleSubmit = async (event) => {
             <div className="modal-body" id="modal-body">
               <form onSubmit={handleSubmit} className="form-form">
                 <br />
-                {/* <input type="hidden" id="schedule-id" name="id" /> */}
+                <input type="hidden"  name="movie_id" value={id} onChange={handleInputChange}/>
                 <label htmlFor="room" className="title-title">
                   Room:
                 </label>
-                {/* <select id="room" name="room">
-                {rooms && rooms.map((room)=>{
-                  console.log(room.name);
-                      <option key={room.id} value={room.name}>{room.name}</option>
-                  })}
-                </select> */}
-                     <select name="room" id="room" onChange={handleInputChange} >
+                     <select name="room_id" id="room" onChange={handleInputChange} >
                    {rooms && rooms.map((room)=>{
                     //  console.log('name',room.name);
-                     return <option value={room.name} key={room.id}>{room.name}</option>;                  
+                     return <option  value={room.id} key={room.id}>{room.name}</option>;                  
                      })}
                 </select>
                 <br />
@@ -87,12 +86,12 @@ const handleSubmit = async (event) => {
                 <label htmlFor="begin" className="title-title">
                   Time begin:
                 </label>
-                <input name="begin" type="time" className="input-btn" onChange={handleInputChange}/>
+                <input name="time_begin" type="time" className="input-btn" onChange={handleInputChange}/>
                 <br /> <br />
                 <label htmlFor="end" className="title-title">
                   Time end:
                 </label>
-                <input name="end" type="time" className="input-btn" onChange={handleInputChange}/>
+                <input name="time_end" type="time" className="input-btn" onChange={handleInputChange}/>
                 <br /> <br />
                 <label htmlFor="price" className="title-title">
                   Price:
