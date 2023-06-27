@@ -70,7 +70,7 @@ const Trend = () => {
                                 <div className="overlay1">
                                     <h5>{movie.name}</h5>
                                     <p>{getMovieCats(movie.id).join('/')}</p>  
-                                    <a href="detailmovie.php?id=11"><button type="button" className="btn btn-success">More Details</button></a>
+                                    <a href={`/Detail/${movie.id}`}><button type="button" className="btn btn-success">More Details</button></a>
                                 </div>
                             </div>
 
