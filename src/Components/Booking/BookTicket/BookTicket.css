@@ -12,6 +12,9 @@ body{
     display: flex;
     height: 100vh;
 }
+span{
+    
+}
 
 .container {
     max-width: 1220px;
@@ -65,16 +68,18 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-
     
 }
 button{
     font-size: 20px;
     font-family: serif;
+    
     border: none;
     border-radius: 3px;
+    
 
 }
+
 .day {
     border: 2px solid whitesmoke;
     color: rgb(212, 202, 202);
@@ -93,9 +98,10 @@ button{
 .selected{
     background-color: #d8bd24;
     border: none;
+   
 }
 .day>span {
-    color: #0B1A2A;
+    color: #fff;
     font-family: serif;
     font-size: 20px;
     left: 2px;
@@ -111,8 +117,8 @@ button{
     position: absolute;
     bottom: 0px;
     pointer-events: none;
+    
 }
-
 .day> strong{
     color: #0B1A2A;
     font-family: serif;
@@ -121,6 +127,7 @@ button{
     position: absolute;
     top: 10px;
     pointer-events: none;
+    
 }
 h2{
     font-family: serif;
@@ -140,7 +147,17 @@ h2{
   .btn_time{
     padding-left: 2rem;
     padding-right: 2rem;
-    /* margin-right: 1rem; */
+    margin-right: 1rem;
+  }
+  .btn_begin{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-right: 1rem;
+  }
+  .btn_end{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-right: 1rem;
   }
 #submit-btn{
     margin-top:2rem

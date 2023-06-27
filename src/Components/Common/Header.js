@@ -28,14 +28,12 @@ const Header = () => {
 		alert('Logged out successfully');
 		navigate('/');
 	};
-
 	const handleOutsideClick = (event) => {
 		const searchSite = document.querySelector('.search_site');
 		if (!searchSite.contains(event.target)) {
 			searchSite.classList.add('display_none');
 		}
 	};
-
 	return (
 		<div>
 			<nav className="header">
@@ -90,10 +88,6 @@ const Header = () => {
 				</ul>
 				<label htmlFor="check" className="checkbtn"></label>
 			</nav>
-
-			{/* <div className="search_site" onClick={handleOutsideClick}>
-				<div className="search_result"><Search/></div>
-			</div> */}
 		</div>
 	);
 };

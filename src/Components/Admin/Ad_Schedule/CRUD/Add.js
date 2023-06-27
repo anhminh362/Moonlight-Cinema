@@ -5,7 +5,18 @@ const Add = ({  id,handleCloseAddSchedule}) => {
   console.log('movie_id',id);
   const [schedule, setSchedule] = useState([]);
   const [rooms, setRooms] = useState([]);
-
+  const [newSchedule, setNewSchedule] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/schedule")
+      .then(response => response.json())
+      .then(scheduleData => setNewSchedule(scheduleData))
+      .catch(error => console.error(error));
+  }, []);
+  let nextScheduleId = 0;
+if (newSchedule.length > 0) {
+  let sortedSchedule = newSchedule.sort((a, b) => b.id - a.id);
+  nextScheduleId = sortedSchedule[0].id + 1;
+}
   const fetchRooms = () => {
     fetch(`http://127.0.0.1:8000/api/room`)
       .then(response => response.json())
@@ -26,6 +37,7 @@ const Add = ({  id,handleCloseAddSchedule}) => {
 };
 // $("#closeModalEditBtn").click();
 
+console.log(nextScheduleId);
 const handleSubmit = async (event) => {
   console.log(12121,schedule);
     event.preventDefault();
@@ -39,6 +51,22 @@ const handleSubmit = async (event) => {
           ...schedule
         });
         setSchedule([]);
+        // for (let i = 0; i <= 40; i++) {
+        //   await axios.post('http://127.0.0.1:8000/api/ticket', {
+        //     schedule_id: nextScheduleId
+        //   });
+        // }
+        async function makeRequests() {
+          // for (let i = 0; i <= 40; i++) {
+            await axios.post('http://127.0.0.1:8000/api/ticket', {
+              schedule_id: nextScheduleId
+            });
+        
+            // await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second between each request
+          // }
+        }
+        
+        makeRequests();
         alert('Schedule added successfully!');
         setTimeout(() => {
             window.location = 'http://localhost:3000/ShowSchedule';
