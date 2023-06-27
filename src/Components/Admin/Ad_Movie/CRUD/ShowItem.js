@@ -3,7 +3,7 @@ import Delete from './Delete';
 import React from 'react';
 // import $ from "jquery";
 import { useState,useEffect } from 'react';
-const ShowItem = ({ movie,handleClickEvent }) => {
+const ShowItem = ({ movie,handleClickEditEvent,handleClickScheduleEvent }) => {
 
   const [cats, setCats] = useState([]);
   const [catNames,setCatNames]=useState([]);
@@ -37,18 +37,10 @@ const ShowItem = ({ movie,handleClickEvent }) => {
     })
     .catch(error => console.error(error));  }
   useEffect(() => {
-    // console.log(1)
     cats.forEach(cat => {
       fetchCatName(cat);
-      // console.log('cat',cat);
     });
   }, [cats]);
-  // console.log(cats);
-  // const handleEditClickEvent=(event)=>{
-  //   console.log(1,event.target.id);
-  //   setShowEdit(true);
-    
-  // }
    
     return (
       <>
@@ -61,17 +53,13 @@ const ShowItem = ({ movie,handleClickEvent }) => {
                 <td>{movie.description}</td>
                 <td>{movie.trailer}</td>
                 <td>
-                {/* {cats.map((cat, index) => (
-                  <p key={index}>{catName.name}</p>
-                ))} */}
-                
                  {catNames.map((catName, index) => (
             <p key={index}>{catName}</p>
           ))}
                 </td>
                 <td>
                   
-                  <button  type="button"  id='btn-edit' onClick={event => handleClickEvent(movie.id)}   >
+                  <button  type="button"  id='btn-edit' onClick={event => handleClickEditEvent(movie.id)}   >
                   
                   <ion-icon name="pencil-outline" class="icon-ac-edit" id={movie.id}/>
                 
@@ -81,7 +69,8 @@ const ShowItem = ({ movie,handleClickEvent }) => {
                   <Delete delete={movie.id}></Delete>
                
                  
-                  <button type='button'  data-bs-toggle='modal' data-bs-target='#scheduleModal' class='btn-schedule'   data-id={movie.id}> <ion-icon class='icon-ac-add' name='add-circle-outline'></ion-icon></button>
+                  <button type='button'  id='btn-schedule'   onClick={event => handleClickScheduleEvent(movie.id)}> 
+                  <ion-icon class='icon-ac-add' name='add-circle-outline' id={movie.id}></ion-icon></button>
                 </td>
               </tr>
             

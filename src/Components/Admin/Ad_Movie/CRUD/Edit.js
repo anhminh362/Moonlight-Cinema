@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import $ from "jquery";
+// import $ from "jquery";
 
 function Edit({ id, handleCloseEdit}){
   const [movies, setMovies] = useState([]);

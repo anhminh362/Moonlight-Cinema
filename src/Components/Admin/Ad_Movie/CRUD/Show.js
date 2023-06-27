@@ -13,11 +13,16 @@ import Edit from './Edit';
 const Show = () => {
   const [movies, setMovies] = useState([]);
   const [showEdit,setShowEdit]=useState(false);
+  const [showSchedule,setShowSchedule]=useState(false);
   const [showAdd,setShowAdd]=useState(false);
   const [id, setId] = useState(0);
 
   const handleEditCloseClick = () =>{
     setShowEdit(false);
+    console.log(222);
+  }
+  const handleScheduleCloseClick = () =>{
+    setShowSchedule(false);
     console.log(222);
   }
   const handleAddCloseClick=()=>{
@@ -27,6 +32,10 @@ const Show = () => {
     setShowAdd(true);
     console.log(111);
   }
+  // const handleScheduleClick=()=>{
+  //   setShowSchedule(true);
+  //   console.log(111);
+  // }
   const handleItemEditClick = num => {
     // 👇️ take the parameter passed from the Child component
     // setCount(current => current + num);
@@ -35,6 +44,15 @@ const Show = () => {
     setShowEdit(true);
     setId(num);
     console.log(showEdit);
+    console.log('id',num);
+  };
+  const handleAddSchedule = num => {
+    // 👇️ take the parameter passed from the Child component
+    // setCount(current => current + num);
+    
+    console.log('argument from Child: ', num);
+    setShowSchedule(true);
+    setId(num);
     console.log('id',num);
   };
   useEffect(() => {
@@ -56,7 +74,7 @@ const Show = () => {
         <b class="logo_text">MoonLight</b>
       </div>
       <div class="row">
-        <a href="" class="icon-item">
+        <a href="/ShowUser" class="icon-item">
           <ion-icon name="person" />
           <b> User</b>
         </a>
@@ -65,16 +83,14 @@ const Show = () => {
       <br />
       <div class="row">
         <a href="/Show" class="icon-film-play">
-        {/* <p class="icon-play"> */}
           <ion-icon name="play-circle" />
           <b> Films</b>
-        {/* </p> */}
         </a>
       </div>
       <br/>
       <br/>
       <div class="row">
-        <a href="" class="icon-item">
+        <a href="/ShowSchedule" class="icon-item">
           <i class="fa-solid fa-calendar-days"></i>
           <b> Schedule</b>
         </a>
@@ -135,10 +151,11 @@ const Show = () => {
         id="scheduleModal"
         tabIndex={-1}
         role="dialog"
-        class="modal fade"
+        // class="modal fade"
         data-backdrop="static"
       >
-        <AddSchedule/>
+        {showSchedule && (
+        <AddSchedule id={id} handleCloseAddSchedule={handleScheduleCloseClick}/>)}
         </div>
 
         <div class="table-responsive">
@@ -163,7 +180,7 @@ const Show = () => {
             </thead>
             <tbody id="tab">
             {movies.map((movie, index) => (
-             <ShowItem key={index} movie={movie} handleClickEvent={handleItemEditClick} />
+             <ShowItem key={index} movie={movie} handleClickEditEvent={handleItemEditClick} handleClickScheduleEvent={handleAddSchedule} />
             ))}
               
             </tbody>

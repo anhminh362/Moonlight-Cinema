@@ -12,6 +12,7 @@ import LoginForm from './Components/Auth/LoginPage';
 import VerifyCode from './Components/Auth/VerifyCodePage';
 import UserInfo from './Components/Auth/UserInfo';
 import Detail from './Components/MovieDetail/MovieDetail';
+import ShowSchedule from './Components/Admin/Ad_Schedule/CRUD/Show'
 function App() {
   return (
     // <Home/>
@@ -28,6 +29,8 @@ function App() {
       <Route path="/BlockUser/:id" element={<BlockUser/>} />
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
       <Route path="/Show" element={<Show />} />
+      <Route path="/ShowSchedule" element={<ShowSchedule/>} />
+      
     </Routes>    
     
 
