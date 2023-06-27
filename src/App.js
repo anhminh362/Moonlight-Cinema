@@ -13,6 +13,7 @@ import VerifyCode from './Components/Auth/VerifyCodePage';
 import UserInfo from './Components/Auth/UserInfo';
 import Detail from './Components/MovieDetail/MovieDetail';
 import ShowSchedule from './Components/Admin/Ad_Schedule/CRUD/Show'
+import BookTicket from './Components/Booking/BookTicket/BookTicket';
 function App() {
   return (
     // <Home/>
@@ -30,6 +31,7 @@ function App() {
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
       <Route path="/Show" element={<Show />} />
       <Route path="/ShowSchedule" element={<ShowSchedule/>} />
+      <Route path="/BookTicket" element={<BookTicket/>}/>
       
     </Routes>    
     
