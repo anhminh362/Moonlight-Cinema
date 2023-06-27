@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Search from './Search';
 
 const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [email, setEmail] = useState('');
 	const navigate = useNavigate();
-	const [searchValue, setSearchValue] = useState('');
-	const [searchResults, setSearchResults] = useState([]);
 
 	useEffect(() => {
+		// Check if there is a token in localStorage
 		const token = localStorage.getItem('token');
 		if (token) {
+			// Get the user's email from localStorage
 			const userEmail = localStorage.getItem('email');
 			setEmail(userEmail);
 			setIsLoggedIn(true);
@@ -21,58 +21,55 @@ const Header = () => {
 	}, []);
 
 	const handleLogout = () => {
+		// Remove the token and user information from localStorage
 		localStorage.removeItem('token');
 		localStorage.removeItem('email');
 		setIsLoggedIn(false);
-		alert('Đăng xuất thành công');
+		alert('Logged out successfully');
 		navigate('/');
 	};
 
-	const handleSearch = async () => {
-		try {
-			const response = await axios.get(`http://127.0.0.1:8000/api/movie?q=${searchValue}`);
-			setSearchResults(response.data.results);
-		} catch (error) {
-			console.error('Error searching:', error);
+	const handleOutsideClick = (event) => {
+		const searchSite = document.querySelector('.search_site');
+		if (!searchSite.contains(event.target)) {
+			searchSite.classList.add('display_none');
 		}
-	};
-
-	const handleResultClick = (result) => {
-		navigate(`/detail/${result.id}`);
 	};
 
 	return (
 		<div>
 			<nav className="header">
 				<div>
-					<img className="logo" src="picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png" alt="" />
+					<img
+						className="logo"
+						src="picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
+						alt=""
+					/>
 					<b className="logo_text">Moonlight</b>
 				</div>
 				<ul>
 					<li>
-						<Link to="/">Home</Link>
+						<a href="/">Home</a>
 					</li>
 					<li>
 						<a href="#">Movies</a>
 						<ul id="type-movies">
 							<li>
-								<Link to="/playing">Playing</Link>
+								<a href="playing.php">Playing</a>
 							</li>
 							<li>
-								<Link to="/upcoming">Upcoming</Link>
+								<a href="upcoming.php">Upcoming</a>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<input
-							id="search"
-							type="text"
-							value={searchValue}
-							onChange={(e) => setSearchValue(e.target.value)}
-						/>
-						<a href="#" onClick={handleSearch}>
-							<i className="fas fa-search"></i>
-						</a>
+						<div className="search_site" style={{ display: "flex" }} onClick={handleOutsideClick}>
+							<div className="search_result"><Search /></div>
+							<a href="">
+								<i className="fas fa-magnifying-glass"></i>
+							</a>
+						</div>
+
 					</li>
 					{isLoggedIn ? (
 						<li>
@@ -85,22 +82,18 @@ const Header = () => {
 						</li>
 					) : (
 						<li>
-							<Link to="/login">
+							<a href="/Login">
 								Login <i className="fas fa-user icon_user"></i>
-							</Link>
+							</a>
 						</li>
 					)}
 				</ul>
 				<label htmlFor="check" className="checkbtn"></label>
 			</nav>
 
-			<div className="search_result">
-				{searchResults && searchResults.map((result) => (
-					<div key={result.id} onClick={() => handleResultClick(result)}>
-						{result.title}
-					</div>
-				))}
-			</div>
+			{/* <div className="search_site" onClick={handleOutsideClick}>
+				<div className="search_result"><Search/></div>
+			</div> */}
 		</div>
 	);
 };
