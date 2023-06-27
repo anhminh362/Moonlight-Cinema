@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Header = () => {
@@ -10,10 +10,8 @@ const Header = () => {
 	const [searchResults, setSearchResults] = useState([]);
 
 	useEffect(() => {
-		// Kiểm tra nếu có token trong localStorage
 		const token = localStorage.getItem('token');
 		if (token) {
-			// Lấy tên người dùng từ localStorage
 			const userEmail = localStorage.getItem('email');
 			setEmail(userEmail);
 			setIsLoggedIn(true);
@@ -23,28 +21,23 @@ const Header = () => {
 	}, []);
 
 	const handleLogout = () => {
-		// Xóa token và thông tin người dùng khỏi localStorage
 		localStorage.removeItem('token');
 		localStorage.removeItem('email');
 		setIsLoggedIn(false);
-		alert('Đăng xuất thành công')
+		alert('Đăng xuất thành công');
 		navigate('/');
 	};
 
 	const handleSearch = async () => {
 		try {
-			// Gửi yêu cầu tìm kiếm đến API
 			const response = await axios.get(`http://127.0.0.1:8000/api/movie?q=${searchValue}`);
-			// Lưu kết quả tìm kiếm vào state
 			setSearchResults(response.data.results);
 		} catch (error) {
 			console.error('Error searching:', error);
 		}
 	};
 
-
 	const handleResultClick = (result) => {
-		// Chuyển hướng đến trang chi tiết khi bấm vào kết quả
 		navigate(`/detail/${result.id}`);
 	};
 
@@ -52,25 +45,21 @@ const Header = () => {
 		<div>
 			<nav className="header">
 				<div>
-					<img
-						className="logo"
-						src="picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
-						alt=""
-					/>
+					<img className="logo" src="picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png" alt="" />
 					<b className="logo_text">Moonlight</b>
 				</div>
 				<ul>
 					<li>
-						<a href="/">Home</a>
+						<Link to="/">Home</Link>
 					</li>
 					<li>
 						<a href="#">Movies</a>
 						<ul id="type-movies">
 							<li>
-								<a href="playing.php">Playing</a>
+								<Link to="/playing">Playing</Link>
 							</li>
 							<li>
-								<a href="upcoming.php">Upcoming</a>
+								<Link to="/upcoming">Upcoming</Link>
 							</li>
 						</ul>
 					</li>
@@ -82,7 +71,7 @@ const Header = () => {
 							onChange={(e) => setSearchValue(e.target.value)}
 						/>
 						<a href="#" onClick={handleSearch}>
-							<i className="fas fa-magnifying-glass"></i>
+							<i className="fas fa-search"></i>
 						</a>
 					</li>
 					{isLoggedIn ? (
@@ -96,9 +85,9 @@ const Header = () => {
 						</li>
 					) : (
 						<li>
-							<a href="/Login">
+							<Link to="/login">
 								Login <i className="fas fa-user icon_user"></i>
-							</a>
+							</Link>
 						</li>
 					)}
 				</ul>
