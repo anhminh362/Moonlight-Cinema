@@ -36,11 +36,9 @@ function App() {
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
       <Route path="/Show" element={<Show />} />
       <Route path="/ShowSchedule" element={<ShowSchedule/>} />
-
       <Route path="/Upcomingg" element={<Upcomingg/>} />
       <Route path="/Playing" element={<Playing/>} />
-
-      <Route path="/BookTicket" element={<BookTicket/>}/>
+      <Route path="/BookTicket/:id" element={<BookTicket/>}/>
       
 
     </Routes>    

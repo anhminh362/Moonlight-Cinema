@@ -68,7 +68,7 @@ const BannerDetail = () => {
                                 <i class="fi fi-sr-flag-alt"> Country</i>
                             </div>
                             <div class="col-sm-4">
-                                <button class="contry-item">{movie.county}</button>
+                                <button class="contry-item">{movie.country}</button>
                             </div>
                             <div class="col-sm-4">
                                 {/* <!--  --> */}
@@ -97,7 +97,7 @@ const BannerDetail = () => {
                         </div>
                         <div class="row">
                             <div class="col-sm-4"><br></br><br></br>
-                                <a href="#" class="book-btn">Book now</a>
+                                <a href={`/Bookticket/${movie.id}`} class="book-btn">Book now</a>
                             </div>
                             <div class="col-sm-8">
                                 {/* <!--  --> */}
