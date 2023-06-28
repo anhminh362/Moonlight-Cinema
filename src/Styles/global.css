@@ -356,18 +356,17 @@ body{
     outline: 4px solid red;
 }
 .search_site{
-    background-color: #06111D;
     width: 12%;
     z-index: 10;
     position: fixed;
-    top: 7%;
+    top: 3%;
     display: block;
-    left: 55%;
+    left: 60%;
 }
 
 
 .movie_item{
-    padding: 2px;
+    padding: 5px;
     width: 100%;
     display: grid;
     grid-template-columns: 40% 57%;
@@ -375,7 +374,7 @@ body{
 }
 .movie_card{
     margin: 10px 5px;
-    background-color: wheat;
+    background-color: rgba(0,0,0,0.8);
 }
 
 .movie_img img{
@@ -388,13 +387,11 @@ body{
 }
 .movie_info a{
     color: #000;
-    text-decoration: none;
 
 }
 .movie_info a:hover{
     color: red;
-
-
+    text-decoration: none;
 }
 
 .user-name{

@@ -7,7 +7,7 @@ const OtherSlider = () => {
 
     useEffect(() => {
         // fetch("http://localhost:3000/products")
-        fetch("https://63aa9cf0fdc006ba6046fb1c.mockapi.io/movie")
+        fetch("http://127.0.0.1:8000/api/movie")
             .then(response => response.json())
             .then(movie => setMovies(movie));
     }, []);
@@ -38,12 +38,12 @@ const OtherSlider = () => {
                     {movies.map((movie, index) => index < 5 && (
                         <>
                             <div className="item">
-                                <img src={movie.avatar} alt={movie.avatar} className="movies"></img>
+                                <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies"></img>
                                 <div className="overlay">
                                     <h5>{movie.name}</h5>
                                     <p>
                                         {movie.category} </p>
-                                    <a href=""><button type="button" className="btn btn-success">More Details</button></a>
+                                    <a  href={`/Detail/${movie.id}`}><button type="button" className="btn btn-success">More Details</button></a>
                                 </div>
                             </div>
 
