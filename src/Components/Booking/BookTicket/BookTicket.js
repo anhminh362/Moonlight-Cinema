@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useParams,  useNavigate  } from 'react-router-dom';
+
 import './BookTicket.css';
 
 function BookTicket() {
+    const navigate = useNavigate();
+    const { id } = useParams();
     const [scheduleData, setScheduleData] = useState([]);
 
     useEffect(() => {
@@ -10,9 +14,10 @@ function BookTicket() {
 
     const fetchScheduleData = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/schedule");
+            const response = await fetch(`http://127.0.0.1:8000/api/bookticket/${id}`);
             const data = await response.json();
             setScheduleData(data);
+            console.log(data);
         } catch (error) {
             console.error(error);
         }
@@ -35,50 +40,70 @@ function BookTicket() {
 
         // Thêm class 'selected' cho button được click
         button.classList.add('selected');
-    };
 
+        console.log(1,selectedValues["btn_day"],selectedValues["btn_time"]);
+
+    };
     const handleSubmit = () => {
         if (
             selectedValues["btn_day"] &&
-            selectedValues["btn_begin"] &&
-            selectedValues["btn_end"] 
+            selectedValues["btn_time"] 
         ) {
+            const encodedMovieId = encodeURIComponent(id);
+            const encodedBtnDay = encodeURIComponent(selectedValues["btn_day"]);
+            const encodedBtnTime = encodeURIComponent(selectedValues["btn_time"]);
+          
             // all values have been selected, redirect to another page or perform other actions
-            const id = document.querySelector('input[name="movie_id"]').value;
-            const url = `bookseat.php?day=${selectedValues["btn_day"]}&time=${selectedValues["btn_begin"]}&time=${selectedValues["btn_end"]}&m_id=${id}`;
-            window.location.href = url;
+            // const id = document.querySelector('input[name="movie_id"]').value;
+            // const url = `bookseat.php?day=${selectedValues["btn_day"]}&time=${selectedValues["btn_time"]}&m_id=${id}`;
+            // window.location.href = url;
+            const url = `/Bookseat?movie_id=${encodedMovieId}&btn_day=${encodedBtnDay}&btn_time=${encodedBtnTime}`;
+            navigate(url);
+               
         } else {
-            alert("Please select an option from each div");
+            alert("Please select date and time");
         }
     };
 
     return (
         <section className="book-ticket">
-            <div className="container">
+            <div className="ticket-container">
                 <div className="book-ticket-container">
                     <div className="show-date">
-                        <h2>Date:</h2>
+                        <h2 className='text'>Date:</h2>
                         <div className="date-list">
                             {scheduleData.map((schedule) => (
-                                <button key={schedule.id} type="button" className={`day ${selectedValues.btn_day === schedule.movie_date ? 'selected' : ''}`} name="btn_day" value={schedule.movie_date} fdprocessedid={`0w2i2b-${schedule.id}`} onClick={handleClick}>
+                                <button key={schedule.id} type="button" 
+                                className={`day ${selectedValues.btn_day === schedule.movie_date ? 'selected' : ''}`} 
+                                name="btn_day" value={schedule.movie_date} fdprocessedid={`0w2i2b-${schedule.id}`} 
+                                onClick={handleClick}>
                                     <span>{schedule.movie_date}</span>
                                 </button>
                             ))}
                         </div>
                     </div>
                     <div className="show-time">
-                        <h2>Time begin:</h2>
+                        <h2 className='text'>Time:</h2>
                         <div className="time">
                             {/* Replace the static buttons with schedule time values */}
                             {scheduleData.map((schedule) => (
-                                <button key={schedule.id} type="button" name="btn_time" className={`btn_begin ${selectedValues.btn_begin === schedule.time_begin ? 'selected' : ''}`} value={schedule.time_begin} fdprocessedid={`unjr3q-${schedule.id}`} onClick={handleClick}>{schedule.time_begin}</button>
-                            ))}
-                        </div>
-                        <h2>Time end:</h2>
-                        <div className="time">
-                            {/* Replace the static buttons with schedule time values */}
-                            {scheduleData.map((schedule) => (
-                                <button key={schedule.id} type="button" name="btn_time" className={`btn_end ${selectedValues.btn_end === schedule.time_end ? 'selected' : ''}`} value={schedule.time_end} fdprocessedid={`unjr3q-${schedule.id}`} onClick={handleClick}>{schedule.time_end}</button>
+                            schedule["times"].map((time) => (
+                                <button
+                                    key={time}
+                                    type="button"
+                                    name="btn_time"
+                                    // className={`btn_time ${selectedValues.btn_time === time ? 'selected' : ''}`}
+                                    className={`btn_time 
+                                     ${selectedValues.movie_date !== schedule["movie_date"] ? 'disabled' : ''} 
+                                    ${selectedValues.btn_time === time ? 'selected' : ''}`}
+
+                                    value={time}
+                                    fdprocessedid={`unjr3q-${time}`}
+                                    onClick={(e) => handleClick(e, schedule["movie_date"])}
+                                >
+                                    {time}
+                                </button>
+                                ))
                             ))}
                         </div>
                     </div>

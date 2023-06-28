@@ -25,7 +25,7 @@ function App() {
     
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Detail" element={<Detail />} />
+      <Route path="/Detail/:id" element={<Detail />} />
       <Route path="/Register" element={<Register/>} />
       <Route path="/Login" element={<LoginForm/>} />
       <Route path="/verifycode" element={<VerifyCode/>} />
@@ -36,12 +36,11 @@ function App() {
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
       <Route path="/Show" element={<Show />} />
       <Route path="/ShowSchedule" element={<ShowSchedule/>} />
-
       <Route path="/Upcomingg" element={<Upcomingg/>} />
       <Route path="/Playing" element={<Playing/>} />
-
-      <Route path="/BookTicket" element={<BookTicket/>}/>
       <Route path="/BookSeat" element={<BookSeat />} />
+      <Route path="/BookTicket/:id" element={<BookTicket/>}/>
+      
 
     </Routes>    
     

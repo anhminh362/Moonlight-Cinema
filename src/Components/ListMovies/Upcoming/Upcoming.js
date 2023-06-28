@@ -78,7 +78,7 @@ const Playing = () => {
                             <i className="fas fa-thumbs-up"></i> Like {movie.likes}
                             </Button>
                             <span>
-                            <a href={`detailmovie.php?id=${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', width: '6.5rem', height: '2.2rem', fontSize: '13px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', width: '6.5rem', height: '2.2rem', fontSize: '13px' }}>
                                 More Details
                             </a>
                             </span>
