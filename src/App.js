@@ -18,7 +18,7 @@ import Upcomingg from './Components/ListMovies/Upcoming/Upcoming';
 import Playing from './Components/ListMovies/Playing/Playing';
 
 import BookTicket from './Components/Booking/BookTicket/BookTicket';
-
+import BookSeat from './Components/Booking/BookSeat/BookSeat';
 function App() {
   return (
     // <Home/>
@@ -41,7 +41,7 @@ function App() {
       <Route path="/Playing" element={<Playing/>} />
 
       <Route path="/BookTicket" element={<BookTicket/>}/>
-      
+      <Route path="/BookSeat" element={<BookSeat />} />
 
     </Routes>    
     
