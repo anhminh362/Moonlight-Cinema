@@ -69,14 +69,14 @@ const Playing = () => {
                 <p style={{ position: 'relative', fontSize: '17px', margin: '8px', paddingLeft: '7rem' }}>
                 <a href="/"><i className="fa-sharp fa-solid fa-house" style={{ color: 'rgb(216, 216, 191)' }}></i></a>
                 <i className="fa-solid fa-chevron-right" style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', color: '#7c2f33' }}></i>
-                <span><a href="#" style={{ color: 'rgb(216, 216, 191)', textDecoration: 'none' }}>Movie</a></span>
+                <span><a href="/" style={{ color: 'rgb(216, 216, 191)', textDecoration: 'none' }}>Movie</a></span>
                 <i className="fa-solid fa-chevron-right" style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', color: '#7c2f33' }}></i>
-                <span><a href="/Upcomingg" style={{ color: 'rgb(216, 216, 191)' }}><b>Upcoming</b></a></span>
+                <span><a href="#" style={{ color: 'rgb(216, 216, 191)' }}><b>Playing</b></a></span>
                 </p>
             </div>
             <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}>
                 <Row>
-                <h3>Playing Movies</h3>
+                {/* <h3>Playing Movies</h3> */}
                 </Row>
                 <br />
                 <Row>
