@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Badge, Button, Card, Container, Row } from 'react-bootstrap';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
+
 const Playing = () => {
   const [movies, setMovies] = useState([]);
   const [cats, setCats] = useState([]);
@@ -39,6 +40,13 @@ const Playing = () => {
       .map((cat) => cat.name);
   };
 
+  const isPlaying = (premiereDate) => {
+    const now = new Date().toISOString().split("T")[0];
+    return premiereDate <= now;
+  };
+
+  const playingMovies = movies.filter((movie) => isPlaying(movie.premiere_date));
+
   return (
     <div>
       <Header/>
@@ -59,7 +67,7 @@ const Playing = () => {
                 </Row>
                 <br />
                 <Row>
-                {movies.slice(0, 13).map((movie) =>(
+                { playingMovies.map((movie) =>(
                     <div className="col-md-3" key={movie.id}>
                     <Card style={{ width: '260px', background: 'rgba(0, 0, 0, 0.3)' }}>
                         <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{ width: '100%', height: '145.35px' }} />
@@ -92,8 +100,9 @@ const Playing = () => {
             </Container>
         </div>
         <Footer/>
-    </div>
+    </div> 
   );
-}
+};
 
 export default Playing;
+
