@@ -79,7 +79,7 @@ const Header = () => {
 							</a>
 						</li>
 					) : (
-						<li>
+						<li style={{marginLeft: "15rem"}}>
 							<a href="/Login">
 								Login <i className="fas fa-user icon_user"></i>
 							</a>
