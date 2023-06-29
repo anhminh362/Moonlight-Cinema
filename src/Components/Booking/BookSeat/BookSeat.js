@@ -1,110 +1,113 @@
 import React from 'react';
-const BookSeat = () => {
-    if (window.location.href.indexOf('m_id') > -1) {
-        let urlParams = new URLSearchParams(window.location.search);
-        let id = urlParams.get('m_id');
-        let day = urlParams.get('day');
-        let time = urlParams.get('time');
-        let connect = new mysqli("localhost", "root", "", "cinema");
-        let query = `select * from movie where id='${id}'`;
-        let result = connect.query(query);
-        let row = result.fetch_assoc();
-        let schedule = connect.query(`select * from schedule where movie_id='${id}' and movie_date='${day}' and time_begin='${time}'`);
-        let result1 = schedule.fetch_assoc();
-        let price = result1['price'];
-        let schedule_id = result1['id'];
-    }
-    function SeatingChart({ schedule_id }) {
-        const [tickets, setTickets] = useState([]);
+import { useState, useEffect } from 'react';
+import "./BookSeat.css";
+import Header from '../../Common/Header';
+import Footer from '../../Common/Footer';
 
-        useEffect(() => {
-            // Fetch ticket data from API
-            fetch(`/api/tickets?schedule_id=${schedule_id}`)
-                .then(response => response.json())
-                .then(data => setTickets(data));
-        }, [schedule_id]);
+function SeatGrid({ scheduleId, connect }) {
+    const [tickets, setTickets] = useState([]);
+    const [statuses, setStatuses] = useState([]);
 
-        // Create array of rows
+    useEffect(() => {
+        const fetchTickets = async () => {
+            const response = await fetch(`api/tickets?schedule_id=${scheduleId}`);
+            const data = await response.json();
+            const ticketIds = data.tickets.map(ticket => ticket.id);
+            const ticketStatuses = data.tickets.map(ticket => ticket.status);
+            setTickets(ticketIds);
+            setStatuses(ticketStatuses);
+        }
+        fetchTickets();
+    }, [scheduleId]);
+
+    const renderSeats = () => {
         const rows = ['A', 'B', 'C', 'D', 'E'];
-    }
+        let k = 0;
+        const seats = rows.map((row) => (
+            <div className="seat-row" key={row} name={row} id={row}>
+                {[...Array(8)].map((_, index) => {
+                    const seatId = row + (index + 1);
+                    return (
+                        <div
+                            className={`seat ${statuses[k] === 0 ? 'sold' : ''}`}
+                            name={index + 1}
+                            id={seatId}
+                            key={seatId}
+                        >
+                            <input type="hidden" id="ticket_id" name="ticket_id" value={tickets[k]} />
+                        </div>
+                    );
+                    k++;
+                })}
+            </div>
+        ));
+        return seats;
+    };
+
     return (
-        <div>
-            <div class="movie-container">
-                <label>
-                    <center> Movie:</center>
-                </label>
-                <input type="text" hidden id='movie' value={{ price }} disabled></input>
-                <p>{row['name']}</p>
-            </div>
-            <ul class="showcase">
-                <li>
-                    <div class="seat"></div>
-                    <small>Available</small>
-                </li>
-                <li>
-                    <div class="seat selected"></div>
-                    <small>Selected</small>
-                </li>
-                <li>
-                    <div class="seat sold"></div>
-                    <small>Sold</small>
-                </li>
-            </ul>
-            <div class="container">
-                <div class="screen"></div>
-                <form method="post" action="">
-                    {rows.map(row => (
-                        <div className="row" key={row}>
-                            {Array.from({ length: 8 }, (_, index) => {
-                                // Find ticket with matching seat
-                                const ticket = tickets.find(
-                                    t => t.row === row && t.seat === index + 1
-                                );
+        <>
+            {renderSeats()}
+        </>
+    );
+}
 
-                                // Determine if seat is sold
-                                const isSold = ticket && ticket.status === 0;
+function BookSeat() {
+    return (
+        <>
+            <Header />
+            <div className='cinema-room'>
+                <div className="movie-container">
+                    <label>
+                        <center> Movie:</center>
+                    </label>
+                    <input type="text" hidden id='movie' value='<?= $price ?>' disabled></input>
+                    <p>Name</p>
+                </div>
+                <ul className="showcase">
+                    <li>
+                        <div className="seat"></div>
+                        <small>Available</small>
+                    </li>
+                    <li>
+                        <div className="seat selected"></div>
+                        <small>Selected</small>
+                    </li>
+                    <li>
+                        <div className="seat sold"></div>
+                        <small>Sold</small>
+                    </li>
+                </ul>
+                <div className="c-room">
+                    <div className="screen"></div>
 
-                                // Create div for seat
-                                return (
-                                    <div
-                                        className={`seat ${isSold ? 'sold' : ''}`}
-                                        key={`${row}-${index}`}
-                                    >
-                                        {ticket && (
-                                            <input type="hidden" name="ticket_id" value={ticket.id} />
-                                        )}
-                                    </div>
-                                );
-                            })}
+                    <form method="post" action="invoice.php">
+
+                        <div >
+                            <p className="text">
+                                You have selected <span id="count">0</span>  for a price of RS.<span id="total">0</span>
+                            </p>
+                            <p>Seat: <span id="code" ></span></p>
+                            <SeatGrid />
+                            <input type="hidden" name='code' id='ticket_value' ></input>
+                            <input type="hidden" name='seat_code' id='seat_code' value='' ></input>
+                            <input type="hidden" name='m_id' value='<?php echo $id ?>'></input>
+                            <input type="hidden" name='day' value='<?php echo $day ?>'></input>
+                            <input type="hidden" name='time' value='<?php echo $time ?>'></input>
+
                         </div>
-                    ))}
-                    {/* <!-- <input type="text" hidden id='schedule_id' name='schedule_id' value='0'> --> */}
-                    <div class="row" name='' id=''>
-                        {/* <!-- replace php variables with javascript --> */}
-                        <div class="seat" name='' id=''></div>
-                        {/* <!-- replace php conditional statement --> */}
-                        <input type="hidden" id="ticket_id" name="ticket_id" value='0'></input>
-                    </div>
-                    <div >
-                        <p class="text">
-                            You have selected <span id="count">0</span> for a price of RS.<span id="total">0</span>
-                        </p>
-                        <p>Seat: <span id="code"></span></p>
-                        <input type="hidden" name='code' id='ticket_value'></input>
-                        <input type="hidden" name='seat_code' id='seat_code' value=''></input>
-                        <input type="hidden" name='m_id' value='0'></input>
-                        <input type="hidden" name='day' value=''></input>
-                        <input type="hidden" name='time' value=''></input>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4"> <br></br><br></br>
-                            {/* <!-- replace php comments with javascript comments --> */}
-                            {/* <!-- <a href="invoice.php?id=0" class="book-btn">Book now</a> -->  */}
+                        <div className="row">
+                            <div className="col-sm-4"> <br></br><br></br>
+                                <input type="submit" name='submit' className="btn bg-danger text-white" value="Book now"></input>
+                            </div>
+                            <div className="col-sm-8">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }
 export default BookSeat;

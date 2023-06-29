@@ -40,8 +40,6 @@ function App() {
       <Route path="/Playing" element={<Playing/>} />
       <Route path="/BookSeat" element={<BookSeat />} />
       <Route path="/BookTicket/:id" element={<BookTicket/>}/>
-      
-
     </Routes>    
     
 
