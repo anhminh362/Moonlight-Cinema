@@ -46,7 +46,13 @@ const ShowItem = ({ movie,handleClickEditEvent,handleClickScheduleEvent }) => {
       <>
        <tr>
                 <td>{movie.id}</td>
-                <td>{movie.avatar}</td>
+                <td>
+                  <img
+                    src={`../picture/${movie.avatar}`}
+                    alt={`../picture/${movie.avatar}`}
+                    style={{ width: '110px', height: '70px' }}
+                  />
+                  </td>
                 <td>{movie.name}</td>
                 <td>{movie.premiere_date}</td>
                 <td>{movie.country}</td>
