@@ -14,7 +14,7 @@ import UserInfo from './Components/Auth/UserInfo';
 import Detail from './Components/MovieDetail/MovieDetail';
 
 import ShowSchedule from './Components/Admin/Ad_Schedule/CRUD/Show';
-import Upcomingg from './Components/ListMovies/Upcoming/Upcoming';
+import Upcoming from './Components/ListMovies/Upcoming/Upcoming';
 import Playing from './Components/ListMovies/Playing/Playing';
 
 import BookTicket from './Components/Booking/BookTicket/BookTicket';
@@ -36,7 +36,7 @@ function App() {
       <Route path="/UnBlockUser/:id" element={<UnblockUser />} />
       <Route path="/Show" element={<Show />} />
       <Route path="/ShowSchedule" element={<ShowSchedule/>} />
-      <Route path="/Upcomingg" element={<Upcomingg/>} />
+      <Route path="/Upcoming" element={<Upcoming/>} />
       <Route path="/Playing" element={<Playing/>} />
       <Route path="/BookTicket/:id" element={<BookTicket/>}/>
       
