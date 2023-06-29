@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Badge, Button, Card, Container, Row } from 'react-bootstrap';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
-const Playing = () => {
+
+const Upcomingg = () => {
   const [movies, setMovies] = useState([]);
   const [cats, setCats] = useState([]);
   const [movieCats, setMovieCats] = useState([]);
@@ -38,6 +39,12 @@ const Playing = () => {
       .filter((cat) => movieCat.includes(cat.id))
       .map((cat) => cat.name);
   };
+  const isUpcoming = (premiereDate) => {
+    const now = new Date().toISOString();
+    return premiereDate > now;
+  };
+
+  const upcomingMovies = movies.filter((movie) => isUpcoming(movie.premiere_date));
 
   return (
     <div>
@@ -59,7 +66,7 @@ const Playing = () => {
                 </Row>
                 <br />
                 <Row>
-                {movies.slice(13).map((movie) =>(
+                { upcomingMovies.map((movie) =>(
                     <div className="col-md-3" key={movie.id}>
                     <Card style={{ width: '260px', background: 'rgba(0, 0, 0, 0.3)' }}>
                         <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{ width: '100%', height: '145.35px' }} />
@@ -78,7 +85,7 @@ const Playing = () => {
                             <i className="fas fa-thumbs-up"></i> Like {movie.likes}
                             </Button>
                             <span>
-                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', width: '6.5rem', height: '2.2rem', fontSize: '13px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '13px' }}>
                                 More Details
                             </a>
                             </span>
@@ -92,8 +99,9 @@ const Playing = () => {
             </Container>
         </div>
         <Footer/>
-    </div>
+    </div> 
   );
-}
+};
 
-export default Playing;
+export default Upcomingg;
+

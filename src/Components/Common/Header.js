@@ -53,10 +53,10 @@ const Header = () => {
 						<a href="#">Movies</a>
 						<ul id="type-movies">
 							<li>
-								<a href="/playing">Playing</a>
+								<a href="/Playing">Playing</a>
 							</li>
 							<li>
-								<a href="/upcoming">Upcoming</a>
+								<a href="/Upcoming">Upcoming</a>
 							</li>
 						</ul>
 					</li>
