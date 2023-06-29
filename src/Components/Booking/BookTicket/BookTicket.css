@@ -12,17 +12,10 @@ body{
     display: flex;
     height: 100vh;
 }
-span{
-    
-}
-
-.container {
+.ticket-container {
     max-width: 1220px;
     margin: auto;
-    
-    
 }
-
 .book-ticket-container {
     background-color:#0B1A2A;
     border-top: 2px;
@@ -58,28 +51,17 @@ span{
     border-top: 2px solid rgb(212, 202, 202);
     border-bottom: 2px solid rgb(212, 202, 202);
 }
-/* .place {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    position: relative;
-} */
 .time {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    
 }
 button{
     font-size: 20px;
     font-family: serif;
-    
     border: none;
     border-radius: 3px;
-    
-
 }
-
 .day {
     border: 2px solid whitesmoke;
     color: rgb(212, 202, 202);
@@ -131,10 +113,10 @@ button{
 }
 h2{
     font-family: serif;
-    font-size: 20px;
+    font-size: 25px;
     color: rgb(212, 202, 202);
 }
-.place button:hover, .time button:hover {
+.place button:hover, .time button:hover, #submit-btn:hover {
     background-color: #d8bd24;
     border: none;
 }
@@ -143,22 +125,18 @@ h2{
     display: flex;
 }
 
-  
   .btn_time{
     padding-left: 2rem;
     padding-right: 2rem;
     margin-right: 1rem;
   }
-  .btn_begin{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-right: 1rem;
-  }
-  .btn_end{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-right: 1rem;
-  }
+ 
 #submit-btn{
-    margin-top:2rem
+    margin-top:2rem;
+    font-size: 2em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.text{
+    margin-bottom: 2.5rem;
 }

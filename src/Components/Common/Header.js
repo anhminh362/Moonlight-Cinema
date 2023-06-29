@@ -56,7 +56,7 @@ const Header = () => {
 								<a href="/Playing">Playing</a>
 							</li>
 							<li>
-								<a href="/Upcomingg">Upcoming</a>
+								<a href="/Upcoming">Upcoming</a>
 							</li>
 						</ul>
 					</li>
@@ -79,7 +79,7 @@ const Header = () => {
 							</a>
 						</li>
 					) : (
-						<li>
+						<li style={{marginLeft: "15rem"}}>
 							<a href="/Login">
 								Login <i className="fas fa-user icon_user"></i>
 							</a>

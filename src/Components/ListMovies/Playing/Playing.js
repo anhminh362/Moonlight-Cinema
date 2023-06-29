@@ -4,9 +4,11 @@ import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
 
 const Playing = () => {
+  const [likeData, setLikeData] = useState([]);
   const [movies, setMovies] = useState([]);
   const [cats, setCats] = useState([]);
   const [movieCats, setMovieCats] = useState([]);
+  const [num, setNum] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -29,7 +31,7 @@ const Playing = () => {
       console.error(error);
     }
   };
-
+  
   const getMovieCats = (movieId) => {
     const movieCat = movieCats
       .filter((item) => item.movie_id === movieId)
@@ -39,7 +41,27 @@ const Playing = () => {
       .filter((cat) => movieCat.includes(cat.id))
       .map((cat) => cat.name);
   };
+  const fetchLikeData = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/like/${id}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    const updateNum = async () => {
+      const likeDataArray = await Promise.all(
+        movies.slice(0, 13).map((movie) => fetchLikeData(movie.id))
+      );
+      setNum(likeDataArray);
+      console.log(num);
+    };
 
+    updateNum();
+  }, [movies]);
+ 
   const isPlaying = (premiereDate) => {
     const now = new Date().toISOString().split("T")[0];
     return premiereDate <= now;
@@ -55,19 +77,18 @@ const Playing = () => {
                 <p style={{ position: 'relative', fontSize: '17px', margin: '8px', paddingLeft: '7rem' }}>
                 <a href="/"><i className="fa-sharp fa-solid fa-house" style={{ color: 'rgb(216, 216, 191)' }}></i></a>
                 <i className="fa-solid fa-chevron-right" style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', color: '#7c2f33' }}></i>
-                <span><a href="#" style={{ color: 'rgb(216, 216, 191)', textDecoration: 'none' }}>Movie</a></span>
+                <span><a href="/" style={{ color: 'rgb(216, 216, 191)', textDecoration: 'none' }}>Movie</a></span>
                 <i className="fa-solid fa-chevron-right" style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', color: '#7c2f33' }}></i>
-                <span><a href="/Upcomingg" style={{ color: 'rgb(216, 216, 191)' }}><b>Upcoming</b></a></span>
+                <span><a href="#" style={{ color: 'rgb(216, 216, 191)' }}><b>Playing</b></a></span>
                 </p>
             </div>
-            <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}
- >
+            <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}>
                 <Row>
-                <h3>Playing Movies</h3>
+                {/* <h3>Playing Movies</h3> */}
                 </Row>
                 <br />
                 <Row>
-                { playingMovies.map((movie) =>(
+                { playingMovies.map((movie,index) =>(
                     <div className="col-md-3" key={movie.id}>
                     <Card style={{ width: '260px', background: 'rgba(0, 0, 0, 0.3)' }}>
                         <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{ width: '100%', height: '145.35px' }} />
@@ -75,18 +96,22 @@ const Playing = () => {
                         <Card.Title>{movie.name}</Card.Title>
                         
                         <Card.Text>
-                            {getMovieCats(movie.id).map((cat_name, index) => (
+                            {getMovieCats(movie.id).map((cat_name, index) => index < 3 && (
                             <Badge variant="primary" className="mr-1" key={index}>
                                 {cat_name}
                             </Badge>
                             ))}
                         </Card.Text>
                         <p>
-                            <Button variant="primary" disabled={movie.user_liked} style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
-                            <i className="fas fa-thumbs-up"></i> Like {movie.likes}
+                        {/* {getLikeData(movie.id).map((id, index) =>(setNum(index)))} */}
+                            <Button variant="primary"  
+                            // onClick={likeClick()}
+                            // disabled={movie.user_liked} 
+                            style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
+                            <i className="fas fa-thumbs-up"></i> Like  {num[index]}
                             </Button>
                             <span>
-                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', width: '6.5rem', height: '2.2rem', fontSize: '13px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '1px' }}>
                                 More Details
                             </a>
                             </span>
