@@ -8,6 +8,8 @@ function BookTicket() {
     const { id } = useParams();
     const [scheduleData, setScheduleData] = useState([]);
 
+    const [date,setDate]=useState('');
+    const [times,setTimes]=useState([]);
     useEffect(() => {
         fetchScheduleData();
     }, []);
@@ -17,6 +19,10 @@ function BookTicket() {
             const response = await fetch(`http://127.0.0.1:8000/api/bookticket/${id}`);
             const data = await response.json();
             setScheduleData(data);
+            if(data.length>0){
+                setDate(data[0].movie_date);
+                setTimes(data[0].times)
+            }
             console.log(data);
         } catch (error) {
             console.error(error);
@@ -26,6 +32,14 @@ function BookTicket() {
     const [selectedValues, setSelectedValues] = useState({});
 
     const handleClick = (e) => {
+        console.log(scheduleData);
+        for(let i=0;i<scheduleData.length;i++){
+            // console.log(scheduleData[i]);
+            if(scheduleData[i].movie_date===e.target.value){
+                console.log(scheduleData[i]);
+                setTimes(scheduleData[i].times)
+            }
+        }
         const button = e.target.closest('button');
         const name = button.getAttribute('name');
         const value = button.getAttribute('value');
@@ -86,25 +100,23 @@ function BookTicket() {
                         <h2 className='text'>Time:</h2>
                         <div className="time">
                             {/* Replace the static buttons with schedule time values */}
-                            {scheduleData.map((schedule) => (
-                            schedule["times"].map((time) => (
+                            {/* {scheduleData.map((schedule) => ( */}
+                            {times.map((time) => (
                                 <button
                                     key={time}
                                     type="button"
                                     name="btn_time"
                                     // className={`btn_time ${selectedValues.btn_time === time ? 'selected' : ''}`}
-                                    className={`btn_time 
-                                     ${selectedValues.movie_date !== schedule["movie_date"] ? 'disabled' : ''} 
-                                    ${selectedValues.btn_time === time ? 'selected' : ''}`}
-
+                                    className={`btn_time`}
                                     value={time}
                                     fdprocessedid={`unjr3q-${time}`}
-                                    onClick={(e) => handleClick(e, schedule["movie_date"])}
+                                    onClick={(e) => handleClick(e)}
                                 >
                                     {time}
                                 </button>
                                 ))
-                            ))}
+                            }
+                            {/* )} */}
                         </div>
                     </div>
                     <center><button id="submit-btn" onClick={handleSubmit}>Ok</button></center>
