@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Badge, Button, Card, Container, Row } from 'react-bootstrap';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
+import Like from '../Like';
 
-const Playing = () => {
+const Playing = ({ movieId, userId }) => {
   const [likeData, setLikeData] = useState([]);
   const [movies, setMovies] = useState([]);
   const [cats, setCats] = useState([]);
@@ -108,7 +109,7 @@ const Playing = () => {
                             // onClick={likeClick()}
                             // disabled={movie.user_liked} 
                             style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
-                            <i className="fas fa-thumbs-up"></i> Like  {num[index]}
+                            <Like movieId={movieId} userId={userId}/>
                             </Button>
                             <span>
                             <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '1px' }}>
