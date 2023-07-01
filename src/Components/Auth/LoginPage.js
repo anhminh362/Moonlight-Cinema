@@ -23,26 +23,30 @@ const LoginForm = () => {
     console.log('Password:', password);
   
     try {
-      const response = await axios.post('http://localhost:8000/api/Login', {
+      const response = await axios.post('http://127.0.0.1:8000/api/Login', {  // Updated endpoint to lowercase 'login'
         email,
         password,
       });
-    
-      const { token, account } = response.data;
-    
+  
+      const { token,account,  user_id } = response.data;  // Updated response data to match Laravel's response
+  
       console.log('Checking token:', token);
       if (!token) {
-        throw new Error('Không tìm thấy tài khoản, vui lòng đăng nhập lại và tạo tài khoản mới');
+        throw new Error('Không tìm thấy tài khoản,');
       }
-    
+  
       // Lưu token vào localStorage
       localStorage.setItem('token', token);
-    
+  
+      // Lưu user ID vào localStorage
+      localStorage.setItem('user_id', user_id);  
+      // Updated key to match Laravel's response
+      console.log(user_id);
       // Lưu thông tin người dùng vào localStorage
       localStorage.setItem('account', JSON.stringify(account));
       // Gửi token với mỗi lần gọi API sau này
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    
+  
       // Chuyển hướng đến trang Home
       alert('Đăng nhập thành công');
       navigate('/');
@@ -50,8 +54,8 @@ const LoginForm = () => {
       console.error(error);
       setError(error.message);
     }
-    
   };
+  
   
   return (
     <div className='body'>
