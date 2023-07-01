@@ -118,7 +118,7 @@ const VerifyCode = () => {
         const resendResponse = await axios.post(`http://127.0.0.1:8000/api/resend/${response.data[0].id}`);
         if (resendResponse.status === 200) {
           alert('Resend successful');
-          // Chèn phần logic bổ sung nếu cần thiết ở đây
+          
         } else {
           setErrorMessage('Mã xác minh bạn nhập không đúng. Vui lòng thử lại');
         }
