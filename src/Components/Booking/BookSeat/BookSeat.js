@@ -62,12 +62,12 @@ function SeatGrid({handleClickEvent}) {
     console.log('ticketID', selectedTickets);
         console.log('seatID',selectedSeats);
     // Use ticketValue as needed.
-    setTimeout(() => {
+    // setTimeout(() => {
         
-        console.log('ticketID', selectedTickets);
-        console.log('seatID',selectedSeats);
-    }, 10000);
-    handleClickEvent(selectedTickets,selectedSeats,scheduleId)
+    //     console.log('ticketID', selectedTickets);
+    //     console.log('seatID',selectedSeats);
+    // }, 10000);
+    // handleClickEvent(selectedTickets,selectedSeats,scheduleId)
   };
   
    
@@ -142,7 +142,7 @@ function BookSeat() {
       console.log('Selected Seats:', selectedSeats);
       console.log('Selected Tickets:', selectedTickets);
       console.log('Selected schedule:', scheduleID);
-      if (selectedSeats && selectedTickets
+      if (selectedSeats.length > 0 && selectedTickets.length > 0 
     ) {
         const url = `/Invoice?tickets=${selectedTickets}&seats=${selectedSeats}&scheduleId=${scheduleID}`;
         navigate(url);
