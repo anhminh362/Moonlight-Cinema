@@ -67,11 +67,7 @@ function BookTicket() {
             const encodedBtnDay = encodeURIComponent(selectedValues["btn_day"]);
             const encodedBtnTime = encodeURIComponent(selectedValues["btn_time"]);
           
-            // all values have been selected, redirect to another page or perform other actions
-            // const id = document.querySelector('input[name="movie_id"]').value;
-            // const url = `bookseat.php?day=${selectedValues["btn_day"]}&time=${selectedValues["btn_time"]}&m_id=${id}`;
-            // window.location.href = url;
-            const url = `/Bookseat?movie_id=${encodedMovieId}&btn_day=${encodedBtnDay}&btn_time=${encodedBtnTime}`;
+            const url = `/Bookseat?movieId=${encodedMovieId}&day=${encodedBtnDay}&time=${encodedBtnTime}`;
             navigate(url);
                
         } else {
