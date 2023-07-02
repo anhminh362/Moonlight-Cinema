@@ -26,7 +26,6 @@ const BannerDetail = () => {
         }, []);
     return (
         <div>
-
             <div class="container" style={{ backgroundImage: `url('../picture/${movie.avatar}')`}}>
                 {/* <br></br><br></br><br></br><br></br><br></br><br></br> */}
                 <div class="row" style={{ marginTop: 3 + "em" }}>

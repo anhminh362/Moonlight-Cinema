@@ -10,7 +10,7 @@ const Footer = () => {
                         <ul>
                             <li>
                                 <div><img className="logo"
-                                    src="picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
+                                    src="../picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
                                     alt=""></img>Moonlight
                                 </div>
                             </li>

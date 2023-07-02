@@ -9,7 +9,7 @@ import './MovieDetail.css';
 const Detail = () => {
     return (
         <div>
-            <Header/>
+            <Header />
             <BannerDetail />
             <DetailTrailer />
             <OtherSlider />
