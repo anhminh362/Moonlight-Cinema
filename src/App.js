@@ -19,6 +19,7 @@ import Playing from './Components/ListMovies/Playing/Playing';
 
 import BookTicket from './Components/Booking/BookTicket/BookTicket';
 import BookSeat from './Components/Booking/BookSeat/BookSeat';
+import Invoice from './Components/Booking/Invoice/Invoice';
 function App() {
   return (
     // <Home/>
@@ -40,6 +41,7 @@ function App() {
       <Route path="/Playing" element={<Playing/>} />
       <Route path="/BookSeat" element={<BookSeat />} />
       <Route path="/BookTicket/:id" element={<BookTicket/>}/>
+      <Route path='/Invoice' element={<Invoice/>}/>
     </Routes>    
     
 
