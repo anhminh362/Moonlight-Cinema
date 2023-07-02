@@ -1,29 +1,76 @@
 import React from 'react';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import "./BookSeat.css";
-
-function SeatGrid() {
+import { useNavigate, Link } from 'react-router-dom';
+function SeatGrid({handleClickEvent}) {
     const [selectedSeats, setSelectedSeats] = useState([]);
-    
+    const [selectedTickets, setSelectedTickets] = useState([]);
+    const [movie_id, setMovie_id] = useState('');
+    const [movie_date, setMovie_date] = useState('');
+    const [time_begin, setTime_begin] = useState('');
+    const [scheduleId,setScheduleId]=useState('');
+    const [tickets, setTickets] = useState([]);
+    const [statuses, setStatuses] = useState([]);
+
+  
+    useEffect(() => {
+      // Lấy email từ query param trong URL
+      const searchParams = new URLSearchParams(window.location.search);
+      const movieIdParam = searchParams.get('movieId');
+      const dayParam = searchParams.get('day');
+      const timeParam = searchParams.get('time');
+      setMovie_id(movieIdParam);
+      setMovie_date(dayParam);
+      setTime_begin(timeParam);
+      // Lấy scheduleID
+      
+    }, []);
+    useEffect(()=>{
+        const fetchScheduleId = async () => {
+            try{
+                const response = await axios.post('http://127.0.0.1:8000/api/scheduleId/', {
+                    movie_id,
+                    movie_date,
+                    time_begin
+                });
+                // console.log('data1',response.data.id);
+                setScheduleId(response.data.id)
+                // console.log(scheduleId);
+            }
+                catch(error) {
+                    console.error(error);
+                }
+                // const scheduleId=response.data
+          }
+          fetchScheduleId();
+          
+    })
   const handleSeatClick = (seatId, ticketValue) => {
+    console.log(1,ticketValue);
+    
     setSelectedSeats((prevSelectedSeats) =>
       prevSelectedSeats.includes(seatId)
         ? prevSelectedSeats.filter((seat) => seat !== seatId)
         : [...prevSelectedSeats, seatId]
     );
-
+    setSelectedTickets((prevSelectedTickets) =>
+      prevSelectedTickets.includes(ticketValue)
+        ? prevSelectedTickets.filter((ticket) => ticket !== ticketValue)
+        : [...prevSelectedTickets, ticketValue]
+    );
+    console.log('ticketID', selectedTickets);
+        console.log('seatID',selectedSeats);
     // Use ticketValue as needed.
-    console.log('Selected Ticket Value:', ticketValue);
+    // setTimeout(() => {
+        
+    //     console.log('ticketID', selectedTickets);
+    //     console.log('seatID',selectedSeats);
+    // }, 10000);
+    // handleClickEvent(selectedTickets,selectedSeats,scheduleId)
   };
   
-    // const updateSelectedCount = () => {
-    //   // Logic to update the selected seats count and state
-
-    // };
-    let scheduleId=26;
-    const [tickets, setTickets] = useState([]);
-    const [statuses, setStatuses] = useState([]);
-
+   
     useEffect(() => {
         const fetchTickets = async () => {
             const response = await fetch(`http://127.0.0.1:8000/api/bookseat/${scheduleId}`);
@@ -48,6 +95,7 @@ function SeatGrid() {
                 {[...Array(8)].map((_, index) => {
                     const seatId = row + (index + 1);
                     const isSelected = selectedSeats.includes(seatId);
+                    const ticketValue = tickets[k];
                     k++;
                     return (
                         <div
@@ -55,12 +103,11 @@ function SeatGrid() {
                             name={index + 1}
                             id={seatId}
                             key={seatId}
-                            onClick={() => handleSeatClick(seatId, row)}
+                            onClick={event => handleSeatClick(seatId, ticketValue)}
                         >
-                            <input type="hidden" id="ticket_id" name="ticket_id" value={tickets[k]} />
+                            <input type="hidden" id="ticket_id" name="ticket_id" value={ticketValue} />
                         </div>
                     );
-                    // k++;
                 })}
             </div>
         ));
@@ -75,6 +122,37 @@ function SeatGrid() {
 }
 
 function BookSeat() {
+    const [selectedSeats, setSelectedSeats] = useState([]);
+    const [selectedTickets, setSelectedTickets] = useState([]);
+    const [scheduleID, setScheduleID] = useState(0);
+
+    const navigate = useNavigate();
+
+    const handleTicketSelected = (ticket,seat,scheduleId) => {
+        
+        console.log('argument from Child: ', ticket,seat,scheduleId);
+        setSelectedSeats(seat)
+        setSelectedTickets(ticket)
+        setScheduleID(scheduleId)        
+      };
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+      // Access selectedSeats and selectedTickets here in the handleSubmit function
+      console.log('Selected Seats:', selectedSeats);
+      console.log('Selected Tickets:', selectedTickets);
+      console.log('Selected schedule:', scheduleID);
+      if (selectedSeats.length > 0 && selectedTickets.length > 0 
+    ) {
+        const url = `/Invoice?tickets=${selectedTickets}&seats=${selectedSeats}&scheduleId=${scheduleID}`;
+        navigate(url);
+           
+    } else {
+        alert("Please select seats");
+    }
+    //   navigate(`/VerifyCode?tickets=${encodeURIComponent(selectedTickets)}`);
+
+    };
     return (
         <>
             <div className='cinema-room'>
@@ -102,19 +180,16 @@ function BookSeat() {
                 <div className="c-room">
                     <div className="screen"></div>
 
-                    <form method="post" action="invoice.php">
+                    <form onSubmit={(event) => handleSubmit(event)}>
 
                         <div >
                             <p className="text">
                                 You have selected <span id="count">0</span>  for a price of RS.<span id="total">0</span>
                             </p>
                             <p>Seat: <span id="code" ></span></p>
-                            <SeatGrid />
-                            <input type="hidden" name='code' id='ticket_value' ></input>
-                            <input type="hidden" name='seat_code' id='seat_code' value='' ></input>
-                            <input type="hidden" name='m_id' value='<?php echo $id ?>'></input>
-                            <input type="hidden" name='day' value='<?php echo $day ?>'></input>
-                            <input type="hidden" name='time' value='<?php echo $time ?>'></input>
+                            <SeatGrid 
+                            handleClickEvent={handleTicketSelected}
+                            />
 
                         </div>
                         <div className="row">

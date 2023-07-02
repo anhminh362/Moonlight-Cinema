@@ -5,10 +5,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../Auth/register.css';
 
 const Register = () => {
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [c_password, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
