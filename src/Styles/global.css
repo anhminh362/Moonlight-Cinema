@@ -299,6 +299,7 @@ body{
         height: 2rem;
         background-color: var(--title--color);
         color: var(--text--color);
+        
     }
     .container .row .col-sm-3 button:hover{
         background-color: var(--text--color);
@@ -404,4 +405,22 @@ body{
 }
 .user-name:hover #log-out{
     display: block;
+} 
+.col-sm-3 .text-footer{
+    color:#fff;
+}
+.container .row .col-sm-3 ul li a{
+    font-size: 17px;
+    padding-left: 20px;
+}
+.contact_icon {
+    top: 5px;
+}
+.container .row .col-sm-3 .text{
+    font-size: 17px;
+} 
+.container .row .col-sm-3 .btn {
+    position: relative;
+    left: 40rem;
+    bottom: 2.5rem;
 }
