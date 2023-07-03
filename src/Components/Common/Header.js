@@ -82,9 +82,6 @@ const Header = () => {
               <div className="search_result">
                 <Search />
               </div>
-              <a href="#">
-                <i className="fas fa-magnifying-glass"></i>
-              </a>
             </div>
           </li>
           {isLoggedIn ? (

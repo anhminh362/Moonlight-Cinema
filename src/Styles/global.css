@@ -32,12 +32,14 @@
     width: 90px;
 }
 .logo_text{
-    /* position: relative; */
+    position: relative;
     left: 80px;
     top: 10px;
     font-family: 'Dancing Script', cursive;
-    font-size: 25px;
+    font-size: 30px;
     color: var(--title--color);
+    left: 10px;
+    
 }
 .header ul {
     display: flex;
