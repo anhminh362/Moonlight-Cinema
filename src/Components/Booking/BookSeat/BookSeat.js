@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import "./BookSeat.css";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function SeatGrid({handleClickEvent}) {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [selectedTickets, setSelectedTickets] = useState([]);
@@ -34,18 +34,16 @@ function SeatGrid({handleClickEvent}) {
                     movie_date,
                     time_begin
                 });
-                // console.log('data1',response.data.id);
                 setScheduleId(response.data.id)
-                // console.log(scheduleId);
             }
                 catch(error) {
                     console.error(error);
                 }
-                // const scheduleId=response.data
           }
           fetchScheduleId();
           
     })
+    
   const handleSeatClick = (seatId, ticketValue) => {
     console.log(1,ticketValue);
     
@@ -59,18 +57,11 @@ function SeatGrid({handleClickEvent}) {
         ? prevSelectedTickets.filter((ticket) => ticket !== ticketValue)
         : [...prevSelectedTickets, ticketValue]
     );
-    console.log('ticketID', selectedTickets);
-        console.log('seatID',selectedSeats);
-    // Use ticketValue as needed.
-    // setTimeout(() => {
-        
-    //     console.log('ticketID', selectedTickets);
-    //     console.log('seatID',selectedSeats);
-    // }, 10000);
-    // handleClickEvent(selectedTickets,selectedSeats,scheduleId)
-  };
+    };
   
-   
+        useEffect(() => {
+            handleClickEvent(selectedTickets, selectedSeats, scheduleId);
+          }, [selectedTickets, selectedSeats, scheduleId]);
     useEffect(() => {
         const fetchTickets = async () => {
             const response = await fetch(`http://127.0.0.1:8000/api/bookseat/${scheduleId}`);
@@ -125,15 +116,52 @@ function BookSeat() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [selectedTickets, setSelectedTickets] = useState([]);
     const [scheduleID, setScheduleID] = useState(0);
+    const [totalPrice,setTotalPrice]=useState(0);
+    const [data, setData] = useState(null);
+    const [movieName,setMovieName]=useState('');
+    const [movie_id, setMovie_id] = useState('');
+    useEffect(() => {
+    const fetchPrice = async () => {
+        const response = await fetch(`http://127.0.0.1:8000/api/schedule/${scheduleID}`);
+        const data = await response.json();
+        setData(data);
+    };
+    
+    fetchPrice();
+    }, [scheduleID]);
+    useEffect(() => {
+        // Lấy email từ query param trong URL
+        const searchParams = new URLSearchParams(window.location.search);
+        const movieIdParam = searchParams.get('movieId');
+        setMovie_id(movieIdParam);
+        
+      }, []);
+    useEffect(() => {
+    const fetchMovieName = async () => {
+        const response = await fetch(`http://127.0.0.1:8000/api/movie/${movie_id}`);
+        const movieData = await response.json();
+        
+        setMovieName(movieData.name);
+    };
 
+    fetchMovieName();
+    },);
     const navigate = useNavigate();
-
+    
     const handleTicketSelected = (ticket,seat,scheduleId) => {
+        // console.log(data);
         
         console.log('argument from Child: ', ticket,seat,scheduleId);
         setSelectedSeats(seat)
         setSelectedTickets(ticket)
-        setScheduleID(scheduleId)        
+        setScheduleID(scheduleId)    
+
+          // Assuming data.price represents the price of a single ticket
+          if (data) {
+            const totalPrice = ticket.length * data.price;
+            setTotalPrice(totalPrice);
+            // console.log(totalPrice);
+          }
       };
     const handleSubmit = (e) => {
 
@@ -150,8 +178,6 @@ function BookSeat() {
     } else {
         alert("Please select seats");
     }
-    //   navigate(`/VerifyCode?tickets=${encodeURIComponent(selectedTickets)}`);
-
     };
     return (
         <>
@@ -160,8 +186,8 @@ function BookSeat() {
                     <label>
                         <center> Movie:</center>
                     </label>
-                    <input type="text" hidden id='movie' value='<?= $price ?>' disabled></input>
-                    <p>Name</p>
+                    {/* <input type="text" hidden id='movie' value='' disabled></input> */}
+                    <p>{movieName}</p>
                 </div>
                 <ul className="showcase">
                     <li>
@@ -184,7 +210,7 @@ function BookSeat() {
 
                         <div >
                             <p className="text">
-                                You have selected <span id="count">0</span>  for a price of RS.<span id="total">0</span>
+                                Total price: <span id="total" value={totalPrice}>{totalPrice}</span>
                             </p>
                             <p>Seat: <span id="code" ></span></p>
                             <SeatGrid 
