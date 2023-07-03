@@ -419,8 +419,3 @@ body{
 .container .row .col-sm-3 .text{
     font-size: 17px;
 } 
-.container .row .col-sm-3 .btn {
-    position: relative;
-    left: 40rem;
-    bottom: 2.5rem;
-}
