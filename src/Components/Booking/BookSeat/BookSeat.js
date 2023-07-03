@@ -179,6 +179,14 @@ function BookSeat() {
         alert("Please select seats");
     }
     };
+    const handePaymentClick = (amount) => {
+        console.log(amount);
+        const response = axios.post('http://127.0.0.1:8000/api/MomoPayment', {
+            amount
+        }).then(response => {
+            window.location.href=response.data;
+        })
+    }
     return (
         <>
             <div className='cinema-room'>
@@ -206,7 +214,7 @@ function BookSeat() {
                 <div className="c-room">
                     <div className="screen"></div>
 
-                    <form onSubmit={(event) => handleSubmit(event)}>
+                    <form>
 
                         <div >
                             <p className="text">
@@ -221,6 +229,7 @@ function BookSeat() {
                         <div className="row">
                             <div className="col-sm-4"> <br></br><br></br>
                                 <input type="submit" name='submit' className="btn bg-danger text-white" value="Book now"></input>
+                                <button type="button" name='payUrl' className="btn bg-danger text-white" onClick={event => handePaymentClick(50000)}>Payment</button>
                             </div>
                             <div className="col-sm-8">
                             </div>
