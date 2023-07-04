@@ -12,11 +12,10 @@ import LoginForm from './Components/Auth/LoginPage';
 import VerifyCode from './Components/Auth/VerifyCodePage';
 import UserInfo from './Components/Auth/UserInfo';
 import Detail from './Components/MovieDetail/MovieDetail';
-
+import PaymentResult from './Components/Payment/PaymentResult';
 import ShowSchedule from './Components/Admin/Ad_Schedule/CRUD/Show';
 import Upcoming from './Components/ListMovies/Upcoming/Upcoming';
 import Playing from './Components/ListMovies/Playing/Playing';
-
 import BookTicket from './Components/Booking/BookTicket/BookTicket';
 import BookSeat from './Components/Booking/BookSeat/BookSeat';
 import Invoice from './Components/Booking/Invoice/Invoice';
@@ -41,7 +40,8 @@ function App() {
       <Route path="/Playing" element={<Playing/>} />
       <Route path="/BookSeat" element={<BookSeat />} />
       <Route path="/BookTicket/:id" element={<BookTicket/>}/>
-      <Route path='/Invoice' element={<Invoice/>}/>
+      <Route path='/Invoice' element={<Invoice />} />
+      <Route path='/PaymentResult' element={<PaymentResult />} />
     </Routes>    
     
 
