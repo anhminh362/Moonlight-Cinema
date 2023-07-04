@@ -12,7 +12,7 @@ const Footer = () => {
                                 <div><img className="logo"
                                     src="../picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
                                     alt=""></img>Moonlight
-                                </div>
+                                </div>                                            
                             </li>
                             <li><p className="text">We guarantee quality and satisfaction when coming to our movie ticket booking
                                 site.</p></li>
@@ -26,7 +26,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="col-sm-3"><br></br>
-                        <h4 className="text-footer">Quick Link</h4>
+                        <h5 className="text-footer">Quick Link</h5>
                         <ul>
                             <li><a href="homepage.php">About Us</a></li>
                             <li><a href="homepage.php">Movies</a></li>
@@ -43,11 +43,11 @@ const Footer = () => {
                             <li><a href="homepage.php">Contact Us</a></li>
                         </ul>
                     </div>
-                    <div className="col-sm-3"><br></br>
+                    <div className="col-sm-3"><br></br>                                 
                         <h5 className="text-footer">Contact</h5>
                         <ul>
                             <li><p className="text">Subscribe our newsletter to get latest update & news.</p></li>
-                            <li><input type="text" name="Send" className="Send" placeholder="   Enter Email"></input>
+                            <li><input type="text" name="Send" className="Send" placeholder="Enter Email"></input>
                                 <button type="submit" className="btn btn-primary">Send</button>
                             </li>
                         </ul>
