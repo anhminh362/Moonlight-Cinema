@@ -204,7 +204,7 @@
         position: relative;
         left: 3rem;
     }
-
+                                                                                                                                                                                         
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 540px) {
@@ -239,4 +239,8 @@
     height: 45rem;
     position: relative;
     left: 7.3rem;
+}
+.text-title{
+    padding-left: 80px;
+    font-size: 25px;
 }

@@ -32,12 +32,14 @@
     width: 90px;
 }
 .logo_text{
-    /* position: relative; */
+    position: relative;
     left: 80px;
     top: 10px;
     font-family: 'Dancing Script', cursive;
-    font-size: 25px;
+    font-size: 30px;
     color: var(--title--color);
+    left: 10px;
+    
 }
 .header ul {
     display: flex;
@@ -297,6 +299,7 @@ body{
         height: 2rem;
         background-color: var(--title--color);
         color: var(--text--color);
+        
     }
     .container .row .col-sm-3 button:hover{
         background-color: var(--text--color);
@@ -403,3 +406,17 @@ body{
 .user-name:hover #log-out{
     display: block;
 }
+
+.col-sm-3 .text-footer{
+    color:#fff;
+}
+.container .row .col-sm-3 ul li a{
+    font-size: 17px;
+    padding-left: 20px;
+}
+.contact_icon {
+    top: 5px;
+}
+.container .row .col-sm-3 .text{
+    font-size: 17px;
+} 
