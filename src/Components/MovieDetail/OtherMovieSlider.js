@@ -28,11 +28,13 @@ const OtherSlider = () => {
     };
     return (
         <div>
-            <h4 class="new-item">Latest Episodes</h4>
+            <div style={{marginTop: "2rem"}}>
+            <h5 class="text-title">Latest Episodes</h5>
             <div className="direction">
                 <button id="prev2" onClick={handlePrev}><b>{"<"}</b></button>
                 <button id="next2" onClick={handleNext}><b>{">"}</b></button>
             </div>
+                </div>
             <div id="formlist" ref={scrollRef}>
                 <div id="list">
                     {movies.map((movie, index) => index < 5 && (
@@ -43,7 +45,7 @@ const OtherSlider = () => {
                                     <h5>{movie.name}</h5>
                                     <p>
                                         {movie.category} </p>
-                                    <a  href={`/Detail/${movie.id}`}><button type="button" className="btn btn-success">More Details</button></a>
+                                    <a href={`/Detail/${movie.id}`}><button type="button" className="btn btn-success">More Details</button></a>
                                 </div>
                             </div>
 

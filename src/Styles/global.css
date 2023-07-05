@@ -405,7 +405,8 @@ body{
 }
 .user-name:hover #log-out{
     display: block;
-} 
+}
+
 .col-sm-3 .text-footer{
     color:#fff;
 }
