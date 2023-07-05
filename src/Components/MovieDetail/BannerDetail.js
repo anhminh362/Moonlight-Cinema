@@ -26,63 +26,63 @@ const BannerDetail = () => {
         }, []);
     return (
         <div>
-            <div class="container" style={{ backgroundImage: `url('../picture/${movie.avatar}')`}}>
+            <div className="container" style={{ backgroundImage: `url('../picture/${movie.avatar}')`,Opacity:0.5,}}>
                 {/* <br></br><br></br><br></br><br></br><br></br><br></br> */}
-                <div class="row" style={{ marginTop: 3 + "em" }}>
+                <div className="row" style={{ marginTop: 3 + "em" }}>
 
-                    <div class="col-sm-5">
-                        <img class="card-item" src={`../picture/${movie.avatar}`} alt=""></img>
+                    <div className="col-sm-5">
+                        <img className="card-item" src={`../picture/${movie.avatar}`} alt=""></img>
                     </div>
-                    <div class="col-sm-5">
-                        <h1 class="title-film">{movie.name}</h1>
-                        <div class="row">
-                            <div class="col-sm-3">
+                    <div className="col-sm-5">
+                        <h1 className="title-film">{movie.name}</h1>
+                        <div className="row">
+                            <div className="col-sm-3">
 
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css"></link>
-                                <i class="fi fi-rs-star"> 7.4</i>
+                                <i className="fi fi-rs-star"> 7.4</i>
                             </div>
-                            <div class="col-sm-3">
+                            <div className="col-sm-3">
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css"></link>
-                                <i class="fi fi-br-clock-five">
+                                <i className="fi fi-br-clock-five">
                                     unknown
                                 </i>
                             </div>
-                            <div class="col-sm-3">
+                            <div className="col-sm-3">
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"></link>
-                                <i class="fi fi-rr-social-network"> 90</i>
+                                <i className="fi fi-rr-social-network"> 90</i>
                             </div>
-                            <div class="col-sm-3">
+                            <div className="col-sm-3">
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css"></link>
-                                <i class="fi fi-ss-calendar"> {movie.premiere_date}</i>
+                                <i className="fi fi-ss-calendar"> {movie.premiere_date}</i>
                             </div>
                         </div>
                         <br></br>
-                        <div class="row"><p class="text-detail">
+                        <div className="row"><p className="text-detail">
                                 {movie.description}
                             </p>
                         </div> <br></br><br></br><br></br>
-                        <div class="row">
-                            <div class="col-sm-4">
+                        <div className="row">
+                            <div className="col-sm-4">
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css"></link>
-                                <i class="fi fi-sr-flag-alt"> Country</i>
+                                <i className="fi fi-sr-flag-alt"> Country</i>
                             </div>
-                            <div class="col-sm-4">
-                                <button class="contry-item">{movie.country}</button>
+                            <div className="col-sm-4">
+                                <button className="contry-item">{movie.country}</button>
                             </div>
-                            <div class="col-sm-4">
+                            <div className="col-sm-4">
                                 {/* <!--  --> */}
                             </div>
                         </div> <br></br><br></br>
-                        <div class="row">
-                            <div class="col-sm-4">
+                        <div className="row">
+                            <div className="col-sm-4">
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css"></link>
-                                <i class="fi fi-ss-tags"> Genres</i>
+                                <i className="fi fi-ss-tags"> Genres</i>
                             </div>
-                            <div class="col-sm-6">
+                            <div className="col-sm-6">
                                 {cats.map((cat, index) => (
                                 movieCats.map((movieCat) => (
                                     movieCat.movie_id === movie.id && movieCat.cat_id === cat.id && (
-                                    <p variant="primary" className="mr-1" key={index}>
+                                    <p variant="primary" classNameName="mr-1" key={index}>
                                     {cat.name}
                                     </p>
                                     )
@@ -90,26 +90,26 @@ const BannerDetail = () => {
                                      ))}
                                 </div>
 
-                            <div class="col-sm-2">
+                            <div className="col-sm-2">
                                 {/* <!--  --> */}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-4"><br></br><br></br>
-                                <a href={`/Bookticket/${movie.id}`} class="book-btn">Book now</a>
+                        <div className="row">
+                            <div className="col-sm-4"><br></br><br></br>
+                                <a href={`/Bookticket/${movie.id}`} className="book-btn">Book now</a>
                             </div>
-                            <div class="col-sm-8">
+                            <div className="col-sm-8">
                                 {/* <!--  --> */}
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-1"> <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                    <div className="col-sm-1"> <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                         {/* <!-- traller film --> */}
-                        <div class="play-btn" onclick="playVideo('https://youtu.be/gq2xKJXYZ80')">
-                            <ion-icon name="play-circle" role="img" class="md hydrated"></ion-icon>
+                        <div className="play-btn" onclick="playVideo('https://youtu.be/gq2xKJXYZ80')">
+                            <ion-icon name="play-circle" role="img" className="md hydrated"></ion-icon>
                         </div>
-                    </div><div class="col-sm-1"><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                        <h5 class="watch-trailer">{movie.trailer}</h5>
+                    </div><div className="col-sm-1"><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                        <h5 className="watch-trailer"></h5>
                     </div>
 
                 </div>

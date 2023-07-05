@@ -268,10 +268,24 @@ video:focus{
     .container{
         text-align: center;
         --title--color: #E00813;
+        
     }
     .container .col-sm-3 .hr{
         position: relative;
         left: 40px;
+        
     }
 
+}
+/* .col-sm-5 .card-item{
+        opacity: 0.2;
+} */
+
+.container {
+    opacity: 0,5;
+}
+div .container .backgroundImage{
+    opacity: 0.5;
+    opacity: 0.1;
+     position: absolute
 }
