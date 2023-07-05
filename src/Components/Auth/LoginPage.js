@@ -28,7 +28,8 @@ const LoginForm = () => {
         password,
       });
   
-      const { token,account,  user_id } = response.data;  // Updated response data to match Laravel's response
+      const { token, account, user_id } = response.data;
+      // Updated response data to match Laravel's response
   
       console.log('Checking token:', token);
       if (!token) {
@@ -39,7 +40,8 @@ const LoginForm = () => {
       localStorage.setItem('token', token);
   
       // Lưu user ID vào localStorage
-      localStorage.setItem('user_id', user_id);  
+      localStorage.setItem('user_id', user_id);
+
       // Updated key to match Laravel's response
       console.log(user_id);
       // Lưu thông tin người dùng vào localStorage

@@ -85,7 +85,7 @@ const Upcomingg = () => {
                             <i className="fas fa-thumbs-up"></i> Like {movie.likes}
                             </Button>
                             <span>
-                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '13px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.0rem', fontSize: '11px' }}>
                                 More Details
                             </a>
                             </span>

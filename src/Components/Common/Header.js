@@ -8,6 +8,7 @@ const Header = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const navigate = useNavigate();
+  const userID = localStorage.getItem('user_id');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
