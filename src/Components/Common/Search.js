@@ -42,7 +42,7 @@ function Search() {
                             <img alt="" src={`../picture/${movie.avatar}`} />
                         </div>
                         <div className="movie_info">
-                            <a href={`detailmovie.php?id=${movie.id}`}>{movie.name}</a>
+                            <a href={`/Detail/${movie.id}`}>{movie.name}</a>
                         </div>
                     </div>
                 </div>
