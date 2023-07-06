@@ -10,7 +10,7 @@ const Like = () =>{
 	}
 	return (
 		<p className={"" + (isLike ? "text-primary": "")}>
-			<i style={{fontSize:"20px"}} className="fa fa-thumbs-up" onClick={onLikeClick}> {like}</i>
+			<i  className="fa fa-thumbs-up" onClick={onLikeClick}> {like}</i>
 		</p>
 	)
 }
