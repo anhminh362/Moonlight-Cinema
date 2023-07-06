@@ -29,7 +29,8 @@ const Upcomingg = () => {
       console.error(error);
     }
   };
-
+  const userid = localStorage.getItem('user_id');
+  console.log('userid',userid);
   const getMovieCats = (movieId) => {
     const movieCat = movieCats
       .filter((item) => item.movie_id === movieId)
