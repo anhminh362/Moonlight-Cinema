@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams,  useNavigate  } from 'react-router-dom';
-
+import axios from 'axios';
+// import { json } from 'react-router-dom';
 const Invoice = () => {
     const [tickets, setTickets] = useState([]);
     const [seats, setSeats] = useState([]);
-    const [scheduleId, setScheduleId] = useState(0);
+    const [schedule_id, setSchedule_id] = useState(0);
+    const [price, setPrice] = useState(0);
 
     useEffect(() => {
         // Lấy email từ query param trong URL
@@ -13,15 +14,64 @@ const Invoice = () => {
         const ticketsParam = searchParams.get('tickets');
         const seatsParam = searchParams.get('seats');
         const scheduleIdParam = searchParams.get('scheduleId');
-        setTickets(ticketsParam);
-        setSeats(seatsParam);
-        setScheduleId(scheduleIdParam);
+        const priceParam = searchParams.get('price');
+        const ticketsArray = ticketsParam.split(',');
+        const seatsArray = seatsParam.split(',');
+        setTickets(ticketsArray);
+        setSeats(seatsArray);
+        setSchedule_id(scheduleIdParam);
+        setPrice(priceParam)
         // Lấy scheduleID
-        // console.log(ticketsParam,seatsParam,scheduleIdParam);
+        console.log(ticketsParam,seatsParam,scheduleIdParam);
     }, []);
-    console.log(tickets,seats,scheduleId);
+    const user_id=21;
+    console.log(seats,tickets,schedule_id);
+    (async () => {
+      try {
+        await axios.post('http://127.0.0.1:8000/api/sendmail', {
+          user_id,
+          seats,
+          schedule_id,
+          price,
+        });
+      } catch (error) {
+        console.error(error.response);
+      }
+    })();
+    function generateRandomCode() {
+      const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const numbers = '0123456789';
+    
+      let code = '';
+    
+      // Generate 3 random letters
+      for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * letters.length);
+        code += letters[randomIndex];
+      }
+    
+      // Generate 6 random numbers
+      for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * numbers.length);
+        code += numbers[randomIndex];
+      }
+    
+      return code;
+    }
+    
+    const code = generateRandomCode();
+    tickets.map((ticket, index) => {
+      console.log(ticket, index);
+      const response = axios.post('http://127.0.0.1:8000/api/invoice', {
+        ticket_id: ticket,
+        user_id,
+        code,
+        total_price:price,
+      });
+      axios.put(`http://127.0.0.1:8000/api/ticket/${ticket}`);
+    });
     return (
-        <div>invoice</div>
+        <div></div>
     )
 }
 export default Invoice;
