@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import '../Auth/userinfo.css';
 const UserInfo = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,51 +70,61 @@ const UserInfo = () => {
 
   return (
     <div className="body">
-    <div className="form-login">
-      <form onSubmit={handleSubmit}>
-        <h1>
-          <strong>Your Information</strong>
-        </h1>
-        <div className="form-group">
-          <label htmlFor="name">Full name</label>
-          <br />
-          <div className="form-input">
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+      <div className="container" style={{  background:'#06121E'}}>
+        <div className="row justify-content-center" >
+          <div className="col-lg-6">
+            <div >
+            <form style={{ background:'#fff', borderRadius:'15px' }} onSubmit={handleSubmit}>
+              <h1 style={{ color:'#000000' }}>
+                <strong>Your Information</strong>
+              </h1>
+              <div className="form-group">
+                <label htmlFor="name">Full name</label>
+                <br />
+                <div className="form-input">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Type your name"
+                    required
+                  />
+                </div>
+                {nameError && <span className="error">{nameError}</span>}
+              </div>
+              <div className="form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <br />
+                <div className="form-input">
+                  <input
+                    type="tel"
+                    className="form-control"
+                    id="phone"
+                    name="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Type your  phone"
+                    required
+                  />
+                </div>
+                {phoneError && <span className="error">{phoneError}</span>}
+              </div>
+              <button type="submit" className="btn btn-primary" name="btn">
+                Save
+              </button>
+            </form>
+              {errorMessage && <span className="error">{errorMessage}</span>}
+            </div>
           </div>
-          {nameError && <span className="error">{nameError}</span>}
         </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number</label>
-          <br />
-          <div className="form-input">
-            <input
-              type="tel"
-              className="form-control"
-              id="phone"
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
-          {phoneError && <span className="error">{phoneError}</span>}
-        </div>
-        <button type="submit" className="btn btn-default" name="btn">
-          Save
-        </button>
-      </form>
-      {errorMessage && <span className="error">{errorMessage}</span>}
+      </div>
     </div>
-  </div>
-);
+  );
+  
+  
 };
 
 export default UserInfo;

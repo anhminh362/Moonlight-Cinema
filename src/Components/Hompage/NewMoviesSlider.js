@@ -1,90 +1,91 @@
-import React from 'react';
-
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { Container, Button } from 'react-bootstrap';
 
 const New = () => {
-    const [movies, setMovies] = useState([]);
-    const [cats, setCat] = useState([]);
-    const [movieCats, setMovieCats] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [cats, setCat] = useState([]);
+  const [movieCats, setMovieCats] = useState([]);
 
-    useEffect(() => {
-        // Lấy danh sách phim từ API
-        fetch("http://127.0.0.1:8000/api/movie")
-          .then(response => response.json())
-          .then(movie => setMovies(movie));
-      }, []);
-    
-      useEffect(() => {
-        // Lấy danh sách thể loại từ API
-        fetch("http://127.0.0.1:8000/api/cat")
-          .then(response => response.json())
-          .then(cat => setCat(cat));
-      }, []);
-    
-      useEffect(() => {
-        // Lấy danh sách liên kết phim-thể loại từ API
-        fetch("http://127.0.0.1:8000/api/movieCat")
-          .then(response => response.json())
-          .then(movieCat => setMovieCats(movieCat));
-      }, []);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/movie")
+      .then(response => response.json())
+      .then(movie => setMovies(movie));
+  }, []);
 
-      const getMovieCats = (movieId) => {
-        // Lấy danh sách thể loại cho phim dựa trên movieId
-        const movieCat = movieCats
-          .filter(item => item.movie_id === movieId)
-          .map(item => item.cat_id);
-    
-        return cats
-          .filter(cat => movieCat.includes(cat.id))
-          .map(cat => cat.name);
-      };
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/cat")
+      .then(response => response.json())
+      .then(cat => setCat(cat));
+  }, []);
 
-    // import { , useState } from 'react';
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/movieCat")
+      .then(response => response.json())
+      .then(movieCat => setMovieCats(movieCat));
+  }, []);
 
-    // const New = () => {
-    const scrollRef = useRef();
-    const [scrollLeft, setScrollLeft] = useState(0);
+  const getMovieCats = (movieId) => {
+    const movieCat = movieCats
+      .filter(item => item.movie_id === movieId)
+      .map(item => item.cat_id);
 
-    const handleNext = () => {
-        const widthItem = document.querySelector(".item").offsetWidth;
-        setScrollLeft(scrollLeft + widthItem);
-        scrollRef.current.scrollLeft = scrollLeft + widthItem;
-    };
+    return cats
+      .filter(cat => movieCat.includes(cat.id))
+      .map(cat => cat.name);
+  };
 
-    const handlePrev = () => {
-        const widthItem = document.querySelector(".item").offsetWidth;
-        setScrollLeft(scrollLeft - widthItem);
-        scrollRef.current.scrollLeft = scrollLeft - widthItem;
-    };
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  };
 
-    return (
-        <>
-            <h5 className="text-title">New</h5>
-            <div className="direction">
-                <button id="prev2" onClick={handlePrev}><b>{"<"}</b></button>
-                <button id="next2" onClick={handleNext}><b>{">"}</b></button>
+  return (
+    <div>
+      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}>
+        <div style={{ marginTop: "2rem" }}>
+          <h5 className="text-title">New</h5><br></br>
+        </div>
+        <Slider {...settings}>
+          {movies.map((movie, index) => index > 7 && index <= 12 && (
+            <div id="formlist" key={index} className="item">
+              <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
+              <div className="overlay">
+                <h5>{movie.name}</h5>
+                <p>{getMovieCats(movie.id).join('/')}</p>
+                <a href={`/Detail/${movie.id}`}><Button variant="success">More Details</Button></a>
+              </div>
             </div>
+          ))}
+        </Slider>
+      </Container>
+    </div>
+  );
+};
 
-            <div id="formlist" ref={scrollRef}>
-                <div id="list">
-                    {movies.map((movie, index) => index > 7 && index <=12 && (
-                        <>
-                            <div className="item">
-                                <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
-                                <div className="overlay">
-                                    <h5>{movie.name}</h5>
-                                    <p>{getMovieCats(movie.id).join('/')}</p>
-                                    <a href={`/Detail/${movie.id}`}><button type="button" className="btn btn-success">More Details</button></a>
-                                </div>
-                            </div>
-
-                        </>
-                    ))}
-                </div>
-
-
-            </div>
-        </>
-    )
-}
 export default New;

@@ -88,11 +88,11 @@ const Playing = ({ movieId, userId }) => {
                 {/* <h3>Playing Movies</h3> */}
                 </Row>
                 <br />
-                <Row>
+                <Row  className="custom-row" style={{  }}>
                 { playingMovies.map((movie,index) =>(
-                    <div className="col-md-3" key={movie.id}>
-                    <Card style={{ width: '260px', background: 'rgba(0, 0, 0, 0.3)' }}>
-                        <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{ width: '100%', height: '145.35px' }} />
+                    <div className="col-xs-12 col-sm-6 col-lg-4"   key={movie.id}>
+                    <Card className="custom-card" style={{ width: '100%', background: 'rgba(0, 0, 0, 0.3)' }}>
+                        <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{width: '100%', height: '250px' }} />
                         <Card.Body>
                         <Card.Title>{movie.name}</Card.Title>
                         
@@ -105,11 +105,11 @@ const Playing = ({ movieId, userId }) => {
                         </Card.Text>
                         <p>
                         {/* {getLikeData(movie.id).map((id, index) =>(setNum(index)))} */}
-                            <Button variant="primary"  
+                            <Button variant="primary"   
                             // onClick={likeClick()}
                             // disabled={movie.user_liked} 
                             style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
-                            <Like movieId={movieId} userId={userId}/>
+                            {/* <Like movieId={movieId} userId={userId}/> */}
                             </Button>
                             <span>
                             <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '1px' }}>

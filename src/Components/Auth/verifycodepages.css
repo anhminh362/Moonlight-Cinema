@@ -97,7 +97,7 @@
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    user-select: none;
+    /* user-select: none; */
     cursor: pointer;  
     border-radius: 0.1rem solid transparent;
     margin: 0px 0px 20px 0px;

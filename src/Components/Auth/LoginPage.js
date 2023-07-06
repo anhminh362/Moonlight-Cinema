@@ -58,72 +58,83 @@ const LoginForm = () => {
   
   
   return (
-    <div className='body'>
-      <div className="form-login">
-        <form onSubmit={handleSubmit}>
-          <h1>
-            <strong>Login</strong>
-          </h1>
-          <div className="form-group">
-            <label htmlFor="username">Email</label> <br />
-            <div className="form-input">
-              <input
-                type="text"
-                className="form-control"
-                id="email"
-                name="email"
-                placeholder="Type your email"
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="pwd">Password</label>
-            <br />
-            <div className="form-input">
-              <input
-                type="password"
-                className="form-control"
-                id="pwd"
-                name="pwd"
-                placeholder="Type your password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group register">
+    <div className="body">
+      <div className="container" style={{ background:'#06121E' }}>
+        <div className="row justify-content-center">
+          <div className="col-lg-6">
             <div>
-              <p>
-                <a href="/Register/">Register</a>
-              </p>
-            </div>
-            <div>
-              <p>
-                <a href="/">Home</a>
-              </p>
-            </div>
-            <div>
-              <p>
-                <a href="">Forgot password ?</a>
-              </p>
+              <form style={{ background:'#fff' ,borderRadius:'15px' }} onSubmit={handleSubmit}>
+                <h1 style={{ color:'#000000' }}>
+                  <strong>Login</strong>
+                </h1>
+                <div className="form-group">
+                  <label htmlFor="username">Email</label> <br />
+                  <div className="form-input">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Type your email"
+                      value={email}
+                      onChange={handleEmailChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="pwd">Password</label>
+                  <br />
+                  <div className="form-input">
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="pwd"
+                      name="pwd"
+                      placeholder="Type your password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="form-group register">
+                  <div className="row" style={{ margin:'auto' }}>
+                    <div className="col-12 col-sm-4">
+                      <p>
+                        <a href="/Register/">Register</a>
+                      </p>
+                    </div>
+                    <div className="col-12 col-sm-4">
+                      <p>
+                        <a href="/">Home</a>
+                      </p>
+                    </div>
+                    <div className="col-12 col-sm-4">
+                      <p>
+                        <a href="" >Forgot password?</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+
+                <button type="submit" className="btn btn-primary" name="btn">
+                  LOGIN
+                </button>
+                <div>
+                  <br />
+                  <br />
+                </div>
+                {error && <div className="error">{error}</div>}
+            </form>
             </div>
           </div>
-          <button type="submit" className="btn btn-default" name="btn">
-            LOGIN
-          </button>
-          <div>
-            <br />
-            <br />
-          </div>
-          {error && <div className="error">{error}</div>}
-        </form>
+        </div>
       </div>
     </div>
   );
+  
 };
 
 export default LoginForm;

@@ -99,25 +99,28 @@ const Register = () => {
   };
 
   return (
-    <div className="body">
-      <div className="form-register">
-        <form onSubmit={handleFormSubmit} action="/verifycode">
-          <h1>Register</h1>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <div className="form-input">
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                required
-                value={email}
-                  onChange={handleEmailChange}
-                  />
+      <div className="body">
+        <div className="container" style={{ background: '#06121E' }} >
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <form style={{ background: '#fff',borderRadius:'15px' }}  className='form-register' onSubmit={handleFormSubmit}>
+                <h1 style={{ color:' #000000' }}>Register</h1>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <div className="form-input">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      required
+                      value={email}
+                        onChange={handleEmailChange}
+                        placeholder="Type your email"
+                        />
+                      </div>
                 </div>
-              </div>
-              <div className="form-group">
+                <div className="form-group">
                 <label htmlFor="pwd">Password</label>
                 <div className="form-input">
                   <input
@@ -128,6 +131,7 @@ const Register = () => {
                     required
                     value={password}
                     onChange={handlePasswordChange}
+                    placeholder="Type your password"
                   />
                 </div>
               </div>
@@ -144,27 +148,31 @@ const Register = () => {
                     required
                     value={c_password}
                     onChange={handleConfirmPasswordChange}
+                    placeholder="Type your confilmpassword"
                   />
                 </div>
               </div>
-              {errors.length > 0 && (
-                <div className="error-message">
-                  {errors.map((error, index) => (
-                    <p key={index}>{error}</p>
-                  ))}
-                </div>
-              )}
-              <button type="submit" className="btn btn-default" name="btn">
-                Register
-              </button>
-              <p>
-                <Link to="/login">LoginForm</Link>
-              </p>
-            </form>
+                {errors.length > 0 && (
+                  <div className="alert alert-danger">
+                    {errors.map((error, index) => (
+                      <p key={index}>{error}</p>
+                    ))}
+                  </div>
+                )}
+                <button type="submit"className="btn btn-primary">
+                  Register
+                </button>
+                <p style={{ color:'#000000' }}>
+                  Already have an account? <Link to="/login">Login</Link>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
-      );
-    };
-    
+      </div>
+    );
+  };
+  
+
     export default Register;
     

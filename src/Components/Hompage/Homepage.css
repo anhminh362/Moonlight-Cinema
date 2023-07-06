@@ -185,7 +185,17 @@
 #slider .carousel-inner {
     color: var(--text--color);
 }
-
+.trailer {
+    width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .trailer {
+      width: 100%;
+      max-height: 300px;
+    }
+  } 
 /* ========================================= */
 /* Responsive */
 @media only screen and (min-device-width : 320px) and (max-device-width : 540px) {
@@ -198,13 +208,13 @@
         left: 40px;
     }
 
-    .trailer {
+    /* .trailer {
         width: 10rem;
         height: 2rem;
         position: relative;
         left: 3rem;
     }
-                                                                                                                                                                                         
+                                                                                                                                                                                          */
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 540px) {
@@ -225,21 +235,21 @@
         height: 75%;
     }
 
-    .trailer {
+     /* .trailer {
         width: 10rem;
         height: 2rem;
         position: relative;
         left: 3rem;
-    }
+    } */
 
 }
 
-.trailer {
+/* .trailer {
     width: 70rem;
     height: 45rem;
     position: relative;
     left: 7.3rem;
-}
+} */
 .text-title{
     padding-left: 80px;
     font-size: 25px;

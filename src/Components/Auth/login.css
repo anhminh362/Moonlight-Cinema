@@ -13,21 +13,6 @@
     align-items: center;
     height: 100vh;
     font-family: Poppins-Regular,sans-serif;
-    padding-top: 100px;
-}
-.form-login{
-   
-    display: block;
-    width: 40%;
-    max-height: fit-content;
-    background: #fff;
-    border-radius: 10px;
-    justify-content: center;
-    text-align: center;
-    line-height: 1em;
-    font-size: 1.0em;
-    margin-left: 450px;
-    
 }
 .form-group{
   
