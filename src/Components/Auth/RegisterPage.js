@@ -100,16 +100,17 @@ const Register = () => {
 
   return (
       <div >
-        <div className="container" style={{ background: '#06121E',paddingTop:'100px' }} >
+        <div className="container" style={{ background: '#06121E',height:'auto',padding:'auto' }} >
           <div className="row justify-content-center">
             <div className="col-md-6">
               <form style={{ background: '#fff',borderRadius:'15px',height:'auto'
             }}  className='form-register' onSubmit={handleFormSubmit}>
                 <h1 style={{ color:' #000000' }}>Register</h1>
                 <div className="form-group">
-                  <label htmlFor="email" style={{ color:'#000000' }}>Email</label>
+                  <label  htmlFor="email" style={{ color:'#000000', fontSize:'15px' }}>Email</label>
                   <div className="form-input">
                     <input
+                    style={{ height:'25px' }}
                       type="email"
                       className="form-control"
                       id="email"
@@ -122,9 +123,10 @@ const Register = () => {
                       </div>
                 </div>
                 <div className="form-group">
-                <label style={{ color:'#000000' }} htmlFor="pwd">Password</label>
+                <label style={{ color:'#000000', fontSize:'15px' }} htmlFor="pwd">Password</label>
                 <div className="form-input">
-                  <input
+                  <input 
+                  style={{ height:'25px' }}
                     type="password"
                     className="form-control"
                     id="pwd"
@@ -137,11 +139,12 @@ const Register = () => {
                 </div>
               </div>
               <div className="form-group">
-                <label style={{ color:'#000000' }} className="label" htmlFor="confirm-pwd">
+                <label style={{ color:'#000000', fontSize:'15px' }} className="label" htmlFor="confirm-pwd">
                   Confirm Password
                 </label>
                 <div className="form-input">
                   <input
+                  style={{ height:'25px' }}
                     type="password"
                     className="form-control"
                     id="confirm-pwd"
@@ -160,12 +163,12 @@ const Register = () => {
                     ))}
                   </div>
                 )}
-                <button type="submit"className="btn btn-register-primary">
-                  Register
-                </button>
                 <p style={{ color:'#000000' }}>
                   Already have an account? <Link to="/login">Login</Link>
                 </p>
+                <button type="submit"className="btn btn-register-primary">
+                  Register
+                </button>
               </form>
             </div>
           </div>
