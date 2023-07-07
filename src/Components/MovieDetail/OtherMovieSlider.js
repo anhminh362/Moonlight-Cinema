@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Container, Button } from 'react-bootstrap';
+import "../Hompage/movieslide.css";
 
 const OtherSlider = () => {
   const [movies, setMovies] = useState([]);
@@ -69,7 +70,7 @@ const OtherSlider = () => {
 
   return (
      <div>
-     <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}>
+      <div className='movieslide'>
        <div style={{ marginTop: "2rem" }}>
          <h5 className="text-title">Trending</h5><br></br>
        </div>
@@ -85,7 +86,7 @@ const OtherSlider = () => {
            </div>
          ))}
        </Slider>
-     </Container>
+     </div>
    </div>
   );
 };
