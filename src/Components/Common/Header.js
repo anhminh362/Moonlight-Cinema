@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Search from './Search';
+import "./header.css";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,30 +55,32 @@ const Header = () => {
   return (
     <div>
       <nav className="header">
-        <div>
+        <div style={{whiteSpace: "nowrap"}}>
+          <a href='/' style={{textDecoration: "none"}}>
           <img
             className="logo"
             src="../picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
             alt=""
           />
-          <b className="logo_text">Moonlight</b>
+            <b className="logo_text">Moonlight</b>
+          </a>
         </div>
-        <ul>
-          <li>
+        <ul className='ul-nav'>
+          <li className='li-nav'>
             <a href="/">Home</a>
           </li>
-          <li>
+          <li className='li-nav' style={{ position: "relative" }}>
             <a href="#">Movies</a>
             <ul id="type-movies">
-              <li>
+              <li className='li-nav li-drop'>
                 <a href="/Playing">Playing</a>
               </li>
-              <li>
+              <li className='li-nav li-drop'>
                 <a href="/Upcoming">Upcoming</a>
               </li>
             </ul>
           </li>
-          <li>
+          <li className='li-nav'>
             <div className="search_site" style={{ display: 'flex' }} onClick={handleOutsideClick}>
               <div className="search_result">
                 <Search />
@@ -94,9 +97,9 @@ const Header = () => {
               </a>
             </li>
           ) : (
-            <li style={{ marginLeft: '15rem' }}>
+            <li className='li-nav'>
               <a href="/Login">
-                Login <i className="fas fa-user icon_user"></i>
+                Login <i className="fas fa-user icon_user"></i> 
               </a>
             </li>
           )}
