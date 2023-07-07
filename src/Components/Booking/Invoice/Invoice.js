@@ -7,7 +7,8 @@ const Invoice = () => {
     const [seats, setSeats] = useState([]);
     const [schedule_id, setSchedule_id] = useState(0);
     const [price, setPrice] = useState(0);
-
+    const token = localStorage.getItem('token');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     useEffect(() => {
         // Lấy email từ query param trong URL
         const searchParams = new URLSearchParams(window.location.search);
@@ -24,12 +25,14 @@ const Invoice = () => {
         // Lấy scheduleID
         console.log(ticketsParam,seatsParam,scheduleIdParam);
     }, []);
-    const user_id=21;
+    // const user_id=21;
     console.log(seats,tickets,schedule_id);
     (async () => {
       try {
         await axios.post('http://127.0.0.1:8000/api/sendmail', {
-          user_id,
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
           seats,
           schedule_id,
           price,
@@ -63,8 +66,10 @@ const Invoice = () => {
     tickets.map((ticket, index) => {
       console.log(ticket, index);
       const response = axios.post('http://127.0.0.1:8000/api/invoice', {
+        headers: {
+					Authorization: `Bearer ${token}`
+				},
         ticket_id: ticket,
-        user_id,
         code,
         total_price:price,
       });
