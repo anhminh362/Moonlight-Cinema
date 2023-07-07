@@ -192,10 +192,8 @@ function BookSeat() {
             <div className='cinema-room'>
                 <div className="movie-container">
                     <label>
-                        <center> Movie:</center>
+                        <center> Movie:</center><p>{movieName}</p>
                     </label>
-                    {/* <input type="text" hidden id='movie' value='' disabled></input> */}
-                    <p>{movieName}</p>
                 </div>
                 <ul className="showcase">
                     <li>

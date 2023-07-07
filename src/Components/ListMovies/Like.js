@@ -98,7 +98,7 @@ useEffect(() => {
 	return (
 		<Button onClick={onLikeClick} ariant="primary"
 		className={"" + (isLike ? "text-primary": "")}  
-		style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
+		style={{ fontSize: '12px', width: '5.5rem', height: '2rem' }}>
 			<i  className="fa fa-thumbs-up" > {num}</i>
 		</Button>
 	)

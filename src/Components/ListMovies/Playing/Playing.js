@@ -87,7 +87,7 @@ const Playing = ({ movieId, userId }) => {
                         <p>
                             <Like movieId={movie.id} />
                             <span>
-                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '1px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '1rem', height: '2rem', fontSize: '13px' }}>
                                 More Details
                             </a>
                             </span>
