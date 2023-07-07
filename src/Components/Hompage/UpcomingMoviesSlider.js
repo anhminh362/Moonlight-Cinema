@@ -66,7 +66,7 @@ const Upcoming = () => {
   };
 
   return (
-      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))',height:'auto' }}>
+    <div className='movieslide'>
         <div style={{ marginTop: "2rem" }}>
           <h5 className="text-title">Upcoming</h5><br></br>
         </div>
@@ -82,7 +82,7 @@ const Upcoming = () => {
             </div>
           ))}
         </Slider>
-      </Container>
+      </div>
   );
 };
 

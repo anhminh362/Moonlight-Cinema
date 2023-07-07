@@ -7,6 +7,7 @@ import Header from '../Common/Header';
 import Footer from '../Common/Footer';
 import Trailer from './Trailer';
 import "./Homepage.css";
+import "./movieslide.css";
 
 
 const Home = () => {
