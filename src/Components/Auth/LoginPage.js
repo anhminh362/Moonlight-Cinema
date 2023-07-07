@@ -97,14 +97,14 @@ const LoginForm = () => {
           </div>
           <div className="form-group register">
             <div>
-              <p>
+              <p2>
                 <a href="/Register/">Register</a>
-              </p>
+              </p2>
             </div>
             <div>
-              <p>
+              <p1>
                 <a href="/">Home</a>
-              </p>
+              </p1>
             </div>
             <div>
               <p>
@@ -112,7 +112,7 @@ const LoginForm = () => {
               </p>
             </div>
           </div>
-          <button type="submit" className="btn btn-default" name="btn">
+          <button type="submit" className="btn btn-danger" name="btn">
             LOGIN
           </button>
           <div>
