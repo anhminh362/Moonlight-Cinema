@@ -51,10 +51,12 @@ const LoginForm = () => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   
       // Chuyển hướng đến trang Home
+
       alert('Đăng nhập thành công');
       if(role){navigate('/');
     console.log(1,role);}
       else{navigate('/Show');}
+
     } catch (error) {
       console.error(error);
       setError(error.message);
@@ -64,7 +66,7 @@ const LoginForm = () => {
   
   return (
     <div >
-      <div className="container" style={{ background:'#06121E',paddingTop:'90px',height:'auto' }}>
+      <div className="container" style={{ background:'#06121E',paddingTop:'100px',height:'auto' }}>
         <div className="row justify-content-center">
           <div className="col-lg-6">
             <div>
@@ -73,9 +75,9 @@ const LoginForm = () => {
                   <strong>Login</strong>
                 </h1>
                 <div className="form-group">
-                  <label style={{ color:'#000000' }} htmlFor="username">Email</label> <br />
+                  <label style={{ color:'#000000', fontSize:'15px' }} htmlFor="username">Email</label> <br />
                   <div className="form-input">
-                    <input
+                    <input style={{ height:'25px' }}
                       type="text"
                       className="form-control"
                       id="email"
@@ -88,10 +90,10 @@ const LoginForm = () => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label style={{ color:'#000000' }} htmlFor="pwd">Password</label>
+                  <label style={{ color:'#000000', fontSize:'15px' }} htmlFor="pwd">Password</label>
                   <br />
                   <div className="form-input">
-                    <input
+                    <input style={{ height:'25px' }}
                       type="password"
                       className="form-control"
                       id="pwd"
@@ -105,21 +107,21 @@ const LoginForm = () => {
                 </div>
                 <div className="form-group register">
                   <div className="row" style={{ margin:'auto' }}>
-                    <div className="col-12 col-sm-4">
+                    <div className="col-6 col-sm-6">
                       <p>
                         <a href="/Register/">Register</a>
                       </p>
                     </div>
-                    <div className="col-12 col-sm-4">
+                    <div className="col-6 col-sm-6">
                       <p>
                         <a href="/">Home</a>
                       </p>
                     </div>
-                    <div className="col-12 col-sm-4">
+                    {/* <div className="col-12 col-sm-4">
                       <p>
                         <a href="" >Forgot password?</a>
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -127,11 +129,12 @@ const LoginForm = () => {
                 <button type="submit" className="btn btn-login-primary" name="btn">
                   LOGIN
                 </button>
+             
                 <div>
                   <br />
                   <br />
                 </div>
-                {error && <div className="error">{error}</div>}
+                {error && <div style={{ color: '#000000' }} className="error">{error}</div>}
             </form>
             </div>
           </div>
