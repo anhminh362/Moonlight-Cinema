@@ -26,7 +26,7 @@ const BannerDetail = () => {
         }, []);
     return (
         <div>
-            <div className="container" style={{ backgroundImage: `url('../picture/${movie.avatar}')`,Opacity:0.5,}}>
+            <div className="container" style={{ backgroundImage: `url('../picture/${movie.avatar} ')`, Opacity: 0.5, backgroundRepeat: "no-repeat",backgroundSize: "cover"}}>
                 {/* <br></br><br></br><br></br><br></br><br></br><br></br> */}
                 <div className="row" style={{ marginTop: 3 + "em" }}>
 
@@ -76,23 +76,19 @@ const BannerDetail = () => {
                         <div className="row">
                             <div className="col-sm-4">
                                 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css"></link>
-                                <i className="fi fi-ss-tags"> Genres</i>
+                                <i className="fi fi-ss-tags"> Genres:</i>
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col-sm-6" style={{display:'flex'}}>
                                 {cats.map((cat, index) => (
                                 movieCats.map((movieCat) => (
                                     movieCat.movie_id === movie.id && movieCat.cat_id === cat.id && (
                                     <p variant="primary" classNameName="mr-1" key={index}>
-                                    {cat.name}
+                                    {cat.name}|
                                     </p>
                                     )
                                      ))
                                      ))}
                                 </div>
-
-                            <div className="col-sm-2">
-                                {/* <!--  --> */}
-                            </div>
                         </div>
                         <div className="row">
                             <div className="col-sm-4"><br></br><br></br>

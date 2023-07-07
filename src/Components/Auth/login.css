@@ -18,7 +18,8 @@
 .form-login{
    
     display: block;
-    width: 40%;
+    width: 35%;
+    max-height: -moz-fit-content;
     max-height: fit-content;
     background: #fff;
     border-radius: 10px;
@@ -26,7 +27,7 @@
     text-align: center;
     line-height: 1em;
     font-size: 1.0em;
-    margin-left: 450px;
+    margin: 0 auto;
     
 }
 .form-group{
@@ -104,4 +105,13 @@ a:hover{
 h1{
     font-size: 1.8rem;
     padding-top: 2rem;
+}
+
+
+p1 a {
+    margin-left: 75px;
+}
+
+.form-group label{
+    font-size: 15px;
 }

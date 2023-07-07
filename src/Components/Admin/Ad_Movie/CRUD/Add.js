@@ -66,48 +66,48 @@ const handleCheckboxChange = (e, categoryId) => {
    
 
     return (
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title">FOMR ADD</h5>
+            <div className="modal-dialog" role="document">
+            <div className="modal-content">
+                <div className="modal-header">
+                <h5 className="modal-title">FOMR ADD</h5>
                 <button 
                 type="button" 
-                class="btn-close"  
+                className="btn-close"  
                 onClick={() => handleCloseAdd()}
                 >
                     {/* <span aria-hidden="true">&times;</span> */}
                 </button>
                 </div>
-                <div class="modal-body">
-                <form class="form-form" onSubmit={onSubmitHandle} encType="multipart/form-data">
+                <div className="modal-body">
+                <form className="form-form" onSubmit={onSubmitHandle} encType="multipart/form-data">
                     <br />
                     {/* <input type="hidden" name="id" defaultValue=""/> */}
-                    <label htmlFor="name" class="title-title">Name:</label>
-                    <input type="text" class="input-btn" name="name" id='name'/>
+                    <label htmlFor="name" className="title-title">Name:</label>
+                    <input type="text" className="input-btn" name="name" id='name'/>
                     <br />
                     <br />
-                    <label htmlFor="avatar" class="title-title">Avatar:</label>
-                    <input type="file" style={{ color: "white" }} class="input-btn" name="avatar" id='avatar'/>
+                    <label htmlFor="avatar" className="title-title">Avatar:</label>
+                    <input type="file" style={{ color: "white" }} className="input-btn" name="avatar" id='avatar'/>
                     <br />
                     <br />
-                    <label htmlFor="date" class="title-title">Premiere date:</label>
-                    <input type="date" class="input-btn" name="premiere_date" id='premiere_date'/>
+                    <label htmlFor="date" className="title-title">Premiere date:</label>
+                    <input type="date" className="input-btn" name="premiere_date" id='premiere_date'/>
                     <br />
                     <br />
-                    <label htmlFor="country" class="title-title">Country:</label>
-                    <input type='text' class="input-btn" name="country" id='country' />
+                    <label htmlFor="country" className="title-title">Country:</label>
+                    <input type='text' className="input-btn" name="country" id='country' />
                     <br />
                     <br />
-                    <label htmlFor="describe" class="title-title">Describe:</label>
-                    < textarea  type="text"  class="input-btn" name="description" id='description'/>
+                    <label htmlFor="describe" className="title-title">Describe:</label>
+                    < textarea  type="text"  className="input-btn" name="description" id='description'/>
                     <br />
                     <br />
-                    <label htmlFor="trailer" class="title-title">Trailer:</label>
-                    <input type="file"  class="input-btn"  name="trailer" style={{ color: "white" }} />
+                    <label htmlFor="trailer" className="title-title">Trailer:</label>
+                    <input type="file"  className="input-btn"  name="trailer" style={{ color: "white" }} />
                     <br />
                     <br />
-                    <label htmlFor="name" class="title-title">Category:</label>
-                    <div class="category">
+                    <label htmlFor="name" className="title-title">Category:</label>
+                    <div className="category">
                         {cats && cats.map((cat)=> (
                         <label key={cat.id}>
                             <input type="checkbox" name={cat.name} id={cat.id} value={cat.name}  
@@ -118,11 +118,11 @@ const handleCheckboxChange = (e, categoryId) => {
                         </label>
                         ))}
                     </div>
-                    <div className="modal-footer">
+                    <div classNameName="modal-footer">
                     <input
                         type="submit"
                         name="submit"
-                        className="btn bg-danger text-white"
+                        classNameName="btn bg-danger text-white"
                         defaultValue="Add"
                     />
                     </div>
