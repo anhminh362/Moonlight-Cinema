@@ -8,7 +8,7 @@ const AdminUsersCRUD = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/users?include=account');
+        const response = await axios.get('http://127.0.0.1:8000/api/users');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -84,7 +84,7 @@ const AdminUsersCRUD = () => {
                 <tr>
                   <th>ID</th>
                   <th>Full name</th>
-                  <th>Create at</th>
+                  {/* <th>Create at</th> */}
                   <th>Phone</th>
                   <th>Email</th>
                   <th>Role</th>
@@ -97,23 +97,23 @@ const AdminUsersCRUD = () => {
                   <tr key={user.id}>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
-                    <td>{user.created_at}</td>
+                    {/* <td>{user.created_at}</td> */}
                     <td>{user.phone}</td>
-                    <td>{user.account?.email || ''}</td>
-                    <td>{user.role === '1' ? 'user' : 'admin'}</td>
+                    <td>{user.email}</td>
+                    <td>{user.role === 1 ? 'user' : 'admin'}</td>
                     <td>{user.status ? 'Active' : <p style={{ color: 'gray' }}>Inactive</p>}</td>
                     <td>
                       <Link to={`/Delete/${user.id}`}><button id="btn_act"><ion-icon name="trash-outline" className="del-icon"></ion-icon></button></Link>
                       {user.status ? (
                             <Link to={`/BlockUser/${user.id}`}>
                               <button id="btn_act">
-                                <ion-icon name="lock-open-outline" className="unlock-icon"></ion-icon>
+                               <ion-icon name="lock-closed-outline" className="del-icon"></ion-icon>
                               </button>
                             </Link>
                           ) : (
                             <Link to={`/UnblockUser/${user.id}`}>
                               <button id="btn_act">
-                                <ion-icon name="lock-closed-outline" className="del-icon"></ion-icon>
+                                <ion-icon name="lock-open-outline" className="unlock-icon"></ion-icon>
                               </button>
                             </Link>
                           )}
