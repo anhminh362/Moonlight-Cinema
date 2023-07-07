@@ -94,7 +94,7 @@ return (
                     required
                   />
                 </div>
-                {nameError && <span className="error">{nameError}</span>}
+                {nameError && <span style={{ color:"#000000" }}  className="error">{nameError}</span>}
               </div>
               <div className="form-group">
                 <label style={{ color:'#000000', fontSize:'15px' }} htmlFor="phone">Phone Number</label>
@@ -112,7 +112,7 @@ return (
                     required
                   />
                 </div>
-                {phoneError && <span className="error">{phoneError}</span>}
+                {phoneError && <span style={{ color:"#000000" }}  className="error">{phoneError}</span>}
               </div>
               <button type="submit" className="btn btn-user-primary" name="btn">
                 Save

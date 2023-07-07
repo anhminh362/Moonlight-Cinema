@@ -107,13 +107,13 @@ const AdminUsersCRUD = () => {
                       {user.status ? (
                             <Link to={`/BlockUser/${user.id}`}>
                               <button id="btn_act">
-                               <ion-icon name="lock-closed-outline" className="del-icon"></ion-icon>
+                               <ion-icon name="lock-open-outline" className="del-icon"></ion-icon>
                               </button>
                             </Link>
                           ) : (
                             <Link to={`/UnblockUser/${user.id}`}>
                               <button id="btn_act">
-                                <ion-icon name="lock-open-outline" className="unlock-icon"></ion-icon>
+                                <ion-icon name="lock-closed-outline" className="unlock-icon"></ion-icon>
                               </button>
                             </Link>
                           )}
