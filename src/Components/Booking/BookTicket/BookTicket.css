@@ -117,7 +117,7 @@ h2{
     color: rgb(212, 202, 202);
 }
 .place button:hover, .time button:hover, #submit-btn:hover {
-    background-color: #d8bd24;
+    background-color: black;
     border: none;
 }
 
@@ -140,3 +140,18 @@ h2{
 .text{
     margin-bottom: 2.5rem;
 }
+h1{
+    color: #d8bd24;
+    
+
+}
+#submit-btn {
+    background-color: yellow;
+    color: black;
+    font-size: 25px;
+  }
+  #submit-btn:hover {
+    background-color: black;
+    color: white;
+   
+  }

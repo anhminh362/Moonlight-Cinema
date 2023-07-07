@@ -28,18 +28,21 @@ const LoginForm = () => {
         password,
       });
   
-      const { token,account,  user_id } = response.data;  // Updated response data to match Laravel's response
+      const { token,account,  user_id,role } = response.data;  // Updated response data to match Laravel's response
   
       console.log('Checking token:', token);
       if (!token) {
         throw new Error('Không tìm thấy tài khoản,');
       }
-  
+      
       // Lưu token vào localStorage
       localStorage.setItem('token', token);
   
       // Lưu user ID vào localStorage
       localStorage.setItem('user_id', user_id);  
+      // Lưu role vào localStorage
+      localStorage.setItem('role', role);  
+
       // Updated key to match Laravel's response
       console.log(user_id);
       // Lưu thông tin người dùng vào localStorage
@@ -48,8 +51,12 @@ const LoginForm = () => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   
       // Chuyển hướng đến trang Home
-      alert('Đăng nhập thành công!');
-      navigate('/');
+
+      alert('Đăng nhập thành công');
+      if(role){navigate('/');
+    console.log(1,role);}
+      else{navigate('/Show');}
+
     } catch (error) {
       console.error(error);
       setError(error.message);
