@@ -180,17 +180,24 @@
     margin: 0 auto;
     width: 80%;
 }
-
-.text-footer{
-    color: white;
-}
-.a{
-    color: white;
-}
-.container{
-    max-width: 100%;
-    background-color: #1A293C;
+.footer-container {
+    /* max-width: 100%; */
+    /* background-color: #1A293C; */
     /* border-radius: 1rem; */
+    padding: 4rem;
+    text-align: center;
+    color: #ffff;
+}
+
+.text-footer {
+    color: white;
+}
+
+.a {
+    color: white;
+}
+
+.container {
     padding: 4rem;
     text-align: center;
     color: #ffff;
