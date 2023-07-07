@@ -69,11 +69,11 @@ const Playing = ({ movieId, userId }) => {
                 {/* <h3>Playing Movies</h3> */}
                 </Row>
                 <br />
-                <Row>
+                <Row  className="custom-row" style={{  }}>
                 { playingMovies.map((movie,index) =>(
-                    <div className="col-md-3" key={movie.id}>
-                    <Card style={{ width: '260px', background: 'rgba(0, 0, 0, 0.3)' }}>
-                        <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{ width: '100%', height: '145.35px' }} />
+                    <div className="col-xs-12 col-sm-6 col-lg-4"   key={movie.id}>
+                    <Card className="custom-card" style={{ width: '100%', background: 'rgba(0, 0, 0, 0.3)' }}>
+                        <Card.Img variant="top" src={`../picture/${movie.avatar}`} style={{width: '100%', height: '250px' }} />
                         <Card.Body>
                         <Card.Title>{movie.name}</Card.Title>
                         

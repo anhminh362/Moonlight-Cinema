@@ -99,26 +99,30 @@ const Register = () => {
   };
 
   return (
-    <div className="body">
-      <div className="form-register">
-        <form onSubmit={handleFormSubmit} action="/verifycode">
-          <h1>Register</h1>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <div className="form-input">
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                required
-                value={email}
-                  onChange={handleEmailChange}
-                  />
+      <div >
+        <div className="container" style={{ background: '#06121E',paddingTop:'100px' }} >
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <form style={{ background: '#fff',borderRadius:'15px',height:'auto'
+            }}  className='form-register' onSubmit={handleFormSubmit}>
+                <h1 style={{ color:' #000000' }}>Register</h1>
+                <div className="form-group">
+                  <label htmlFor="email" style={{ color:'#000000' }}>Email</label>
+                  <div className="form-input">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      required
+                      value={email}
+                        onChange={handleEmailChange}
+                        placeholder="Type your email"
+                        />
+                      </div>
                 </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="pwd">Password</label>
+                <div className="form-group">
+                <label style={{ color:'#000000' }} htmlFor="pwd">Password</label>
                 <div className="form-input">
                   <input
                     type="password"
@@ -128,11 +132,12 @@ const Register = () => {
                     required
                     value={password}
                     onChange={handlePasswordChange}
+                    placeholder="Type your password"
                   />
                 </div>
               </div>
               <div className="form-group">
-                <label className="label" htmlFor="confirm-pwd">
+                <label style={{ color:'#000000' }} className="label" htmlFor="confirm-pwd">
                   Confirm Password
                 </label>
                 <div className="form-input">
@@ -144,27 +149,31 @@ const Register = () => {
                     required
                     value={c_password}
                     onChange={handleConfirmPasswordChange}
+                    placeholder="Type your confilmpassword"
                   />
                 </div>
               </div>
-              {errors.length > 0 && (
-                <div className="error-message">
-                  {errors.map((error, index) => (
-                    <p key={index}>{error}</p>
-                  ))}
-                </div>
-              )}<p>
-                <Link to="/login">LoginForm</Link>
-              </p>
-          <button type="submit" className="btn btn-default" style={{ width: "10rem", minWidth: "unset"}} name="btn">
-                Register
-              </button>
-              
-            </form>
+                {errors.length > 0 && (
+                  <div className="alert alert-danger">
+                    {errors.map((error, index) => (
+                      <p key={index}>{error}</p>
+                    ))}
+                  </div>
+                )}
+                <button type="submit"className="btn btn-register-primary">
+                  Register
+                </button>
+                <p style={{ color:'#000000' }}>
+                  Already have an account? <Link to="/login">Login</Link>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
-      );
-    };
-    
+      </div>
+    );
+  };
+  
+
     export default Register;
     

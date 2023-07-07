@@ -13,25 +13,11 @@
     align-items: center;
     height: 100vh;
     font-family: Poppins-Regular,sans-serif;
-    padding-top: 100px;
+   
     
 }
 
-.form-register{
-   
-    display: block;
-    width: 35%;
-    max-height: -moz-fit-content;
-    max-height: fit-content;
-    background: #fff;
-    border-radius: 10px;
-    justify-content: center;
-    text-align: center;
-    line-height: 1em;
-    font-size: 1.0em;
-    margin: 0 auto;
-    
-}
+
 .form-group{
   
     margin:2rem;
@@ -65,7 +51,7 @@
 #email, #pwd, #confirm-pwd{
     font-size: 0.7rem;
     font-family: Poppins-Regular,sans-serif;
-    /* padding-bottom: 0.1rem; */
+    padding-bottom: 0.1rem;
     width: 100%;
 }
 
@@ -82,7 +68,7 @@ a{ text-decoration: none;}
 a:hover{
     text-decoration: underline;
 }
-.btn-default{
+.btn-register-primary{
     border: none;
     padding: 0.5rem 3rem;
     margin: 3em;
@@ -110,3 +96,4 @@ h1{
     font-size: 1.8rem;
     padding-top: 2rem;
 }
+

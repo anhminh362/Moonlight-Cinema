@@ -16,7 +16,7 @@
 }
 /* card-img */
 .card-item{
-    max-width: 500px;
+    width: 100%;
     max-height: 500px;
     border: 3px solid #E00813;
     border-radius: 5px;
