@@ -176,9 +176,7 @@
 /* Footer */
 .footer{
     /* background-color:#091725; */
-    display: flex;
-    margin: 0 auto;
-    width: 80%;
+    width: 100%;
 }
 .footer-container {
     /* max-width: 100%; */
