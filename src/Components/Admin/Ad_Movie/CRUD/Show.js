@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // import { Link } from 'react-router-dom';
 import Add from './Add'
 import '../Ad_Movie.css'; 
@@ -11,6 +13,14 @@ import Edit from './Edit';
 
 
 const Show = () => {
+  const navigate = useNavigate();
+  const role = localStorage.getItem('role');
+  console.log(role);
+  if(role==1){
+    alert('Please Log in as administrator');
+    navigate('/');
+  
+  }
   const [movies, setMovies] = useState([]);
   const [showEdit,setShowEdit]=useState(false);
   const [showSchedule,setShowSchedule]=useState(false);
@@ -56,21 +66,26 @@ const Show = () => {
     console.log('id',num);
   };
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/movie")
+    
+      fetch("http://127.0.0.1:8000/api/movie")
       .then(response => response.json())
       .then(movie => setMovies(movie));
       console.log(movies);
+    
   }, []);
+  
   return (
     // <div>
   <div class="row">
     <div class="col-lg-2 background-left ">
       <div>
+        <a href='/'>
         <img
           class="logo"
           src="/asset/picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
           alt=""
         />
+        </a>
         <b class="logo_text">MoonLight</b>
       </div>
       <div class="row">
