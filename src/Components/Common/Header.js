@@ -88,8 +88,8 @@ const Header = () => {
             </div>
           </li>
           {isLoggedIn ? (
-            <li>
-              <a id="log_out" href="#" onClick={handleLogout}>
+            <li className='li-nav'>
+              <a id="log_out"  href="#" onClick={handleLogout}>
                 <div className="user-name">
                   <i className="fas fa-user"></i>
                   {name}Logout
