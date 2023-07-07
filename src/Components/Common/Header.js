@@ -55,18 +55,22 @@ const Header = () => {
   return (
     <div>
       <nav className="header">
-        <div style={{whiteSpace: "nowrap"}}>
-          <a href='/' style={{textDecoration: "none"}}>
-          <img
-            className="logo"
-            src="../picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
-            alt=""
-          />
+        <input type='checkbox' id="checkbox"></input>
+        <label htmlFor="checkbox" className='check-btn-res'>
+          <i className='fas fa-bars'></i>
+        </label>
+        <div style={{ whiteSpace: "nowrap" }}>
+          <a href='/' style={{ textDecoration: "none" }}>
+            <img
+              className="logo"
+              src="../picture/3e1b693d-9dc1-43e7-b517-763a153989af-removebg-preview (2).png"
+              alt=""
+            />
             <b className="logo_text">Moonlight</b>
           </a>
         </div>
-        <ul className='ul-nav'>
-          <li className='li-nav'>
+        <ul className='ul-nav' id='ul-nav'>
+          <li className='li-nav firstnav'>
             <a href="/">Home</a>
           </li>
           <li className='li-nav' style={{ position: "relative" }}>
@@ -88,8 +92,8 @@ const Header = () => {
             </div>
           </li>
           {isLoggedIn ? (
-            <li className='li-nav'>
-              <a id="log_out"  href="#" onClick={handleLogout}>
+            <li className='li-nav auth'>
+              <a id="log_out" href="#" onClick={handleLogout}>
                 <div className="user-name">
                   <i className="fas fa-user"></i>
                   {name}Logout
@@ -97,14 +101,14 @@ const Header = () => {
               </a>
             </li>
           ) : (
-            <li className='li-nav'>
+            <li className='li-nav auth'>
               <a href="/Login">
-                Login <i className="fas fa-user icon_user"></i> 
+                Login <i className="fas fa-user icon_user"></i>
               </a>
             </li>
           )}
         </ul>
-        <label htmlFor="check" className="checkbtn"></label>
+
       </nav>
     </div>
   );
