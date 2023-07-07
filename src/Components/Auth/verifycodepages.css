@@ -5,18 +5,6 @@
     margin: 0;
     padding: 0;
 }
-.body{
-    width: 100vw;
-    height: 100vh;
-    flex-wrap: wrap;
-    align-items: center;
-    background-color: #06121E;
-    align-items: center;
-    height: 100vh;
-    font-family: Poppins-Regular,sans-serif;
-    padding-top: 100px;
-    
-}
 :root{
     --maincolor: #06111D;
     --title--color: #E00813;
@@ -45,7 +33,16 @@
     background-size: 100% auto ;
     background-repeat: no-repeat;
 } */
-
+.veri-container{
+    background-color: #1A293C;
+    padding: 4rem;
+    width: 40rem;
+    width: 35%;
+    border-radius: 10px;
+    text-align: center;
+    color: #ffff;
+    margin: 0 auto;
+}
 .code-container{
     display: flex;
     align-items: center;

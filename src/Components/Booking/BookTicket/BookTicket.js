@@ -13,10 +13,14 @@ function BookTicket() {
     useEffect(() => {
         fetchScheduleData();
     }, []);
+    const token = localStorage.getItem('token');
 
     const fetchScheduleData = async () => {
+        if(token){
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/bookticket/${id}`);
+            const response = await fetch(`http://127.0.0.1:8000/api/bookticket/${id}`,{headers: {
+                Authorization: `Bearer ${token}`
+            }});
             const data = await response.json();
             setScheduleData(data);
             if(data.length>0){
@@ -27,8 +31,14 @@ function BookTicket() {
         } catch (error) {
             console.error(error);
         }
-    };
+        }
+        else {
+			alert('Bạn chưa đăng nhập vui lòng đăng nhập hoặc đăng ký để thực hiện chức năng này.');
+			window.location.href = '/Login';
+		
 
+		}
+}
     const [selectedValues, setSelectedValues] = useState({});
 
     const handleClick = (e) => {
