@@ -11,7 +11,6 @@ const Banner = () => {
   }, []);
 
   return (
-    <div>
       <div id="slider" className="carousel carousel-light slide" data-bs-ride="carousel">
         <div className="carousel-inner">
           {movies.map((movie, index) => index < 3 && (
@@ -35,7 +34,6 @@ const Banner = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
   );
 };
 

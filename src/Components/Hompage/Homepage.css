@@ -56,8 +56,8 @@
     display: block;
     position: relative;
     z-index: 0;
-    bottom: 10rem;
-    left: 20px;
+    bottom: 9rem;
+    left: 5px;
     margin-bottom: -150px;
     color: #fff;
     opacity: 0.8;
@@ -189,6 +189,38 @@
     width: 100%;
     height: auto;
   }
+
+  .item {
+    position: relative;
+  }
+  
+  .overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 900px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .item:hover .overlay1 {
+    opacity: 1;
+  }
+  
+  .overlay1 h5,
+  .overlay1 p,
+  .overlay1 a {
+    margin: 0;
+  }
+  
   
   @media (max-width: 768px) {
     .trailer {

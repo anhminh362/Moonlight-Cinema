@@ -59,7 +59,7 @@ const LoginForm = () => {
   
   return (
     <div >
-      <div className="container" style={{ background:'#06121E' }}>
+      <div className="container" style={{ background:'#06121E',paddingTop:'90px',height:'auto' }}>
         <div className="row justify-content-center">
           <div className="col-lg-6">
             <div>

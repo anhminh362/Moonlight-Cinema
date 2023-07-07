@@ -68,9 +68,9 @@ const UserInfo = () => {
     }
   };
 
-  return (
+return (
     <div >
-      <div className="container" style={{  background:'#06121E'}}>
+      <div className="container" style={{  background:'#06121E',paddingTop:'150px'}}>
         <div className="row justify-content-center" >
           <div className="col-lg-6">
             <div >

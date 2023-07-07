@@ -65,11 +65,8 @@ const Upcoming = () => {
     ]
   };
 
-  //thư viện nhé cái này show ra slide thôi k cần hieur show đâu
-
   return (
-    <div>
-      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}>
+      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))',height:'auto' }}>
         <div style={{ marginTop: "2rem" }}>
           <h5 className="text-title">Upcoming</h5><br></br>
         </div>
@@ -77,7 +74,7 @@ const Upcoming = () => {
           {movies.slice(13, 14).map((movie, index) => (
             <div key={index} className="item">
               <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
-              <div className="overlay">
+              <div className="overlay1">
                 <h5>{movie.name}</h5>
                 <p>{getMovieCats(movie.id).join('/')}</p>
                 <a href={`/Detail/${movie.id}`}><Button variant="success">More Details</Button></a>
@@ -86,7 +83,6 @@ const Upcoming = () => {
           ))}
         </Slider>
       </Container>
-    </div>
   );
 };
 

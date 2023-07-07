@@ -131,9 +131,9 @@ const VerifyCode = () => {
 
   return (
     <div className="body">
-      <div className="container">
-        <div className="form-register">
-          <form onSubmit={handleFormSubmit}>
+        <div  >
+          <form onSubmit={handleFormSubmit} >
+              <div className="container">
             <h2>Verify Your Account</h2>
             <p className="info">An OTP has been sent to {email}</p>
             <div className="code-container">
@@ -159,10 +159,10 @@ const VerifyCode = () => {
             <button type="button" className="btn btn-link" onClick={handleResend}>
               Resend Code
             </button>
+            </div>
           </form>
         </div>
       </div>
-    </div>
   );
 };
 

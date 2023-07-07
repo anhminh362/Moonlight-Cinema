@@ -66,8 +66,7 @@ const Trending = () => {
   };
 
   return (
-    <div>
-      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))' }}>
+      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))',height:'auto'  }}>
         <div style={{ marginTop: "2rem" }}>
           <h5 className="text-title">Trending</h5><br></br>
         </div>
@@ -84,7 +83,6 @@ const Trending = () => {
           ))}
         </Slider>
       </Container>
-    </div>
   );
 };
 

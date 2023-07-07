@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
 }
-.body{
+/* .body{
     width: 100%;
     height: auto;
     flex-wrap: wrap;
@@ -13,7 +13,7 @@
     align-items: center;
     height: 100vh;
     font-family: Poppins-Regular,sans-serif;
-}
+} */
 .form-group{
   
     margin:2rem;
