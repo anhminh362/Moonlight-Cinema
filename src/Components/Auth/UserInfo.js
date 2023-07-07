@@ -69,7 +69,7 @@ const UserInfo = () => {
   };
 
   return (
-    <div className="body">
+    <div >
       <div className="container" style={{  background:'#06121E'}}>
         <div className="row justify-content-center" >
           <div className="col-lg-6">
@@ -79,7 +79,7 @@ const UserInfo = () => {
                 <strong>Your Information</strong>
               </h1>
               <div className="form-group">
-                <label htmlFor="name">Full name</label>
+                <label style={{ color:'#000000' }} htmlFor="name">Full name</label>
                 <br />
                 <div className="form-input">
                   <input
@@ -96,7 +96,7 @@ const UserInfo = () => {
                 {nameError && <span className="error">{nameError}</span>}
               </div>
               <div className="form-group">
-                <label htmlFor="phone">Phone Number</label>
+                <label style={{ color:'#000000' }}  htmlFor="phone">Phone Number</label>
                 <br />
                 <div className="form-input">
                   <input

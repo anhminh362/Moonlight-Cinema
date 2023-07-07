@@ -24,7 +24,7 @@
    
     display: block;
     width: 200%;
-    max-height: fit-content;
+    /* max-height: fit-content; */
     background: #fff;
     border-radius: 10px;
     justify-content: center;
@@ -37,7 +37,7 @@
 .form-register{
     display: block;
     width: 200%;
-    max-height: fit-content;
+    /* max-height: fit-content; */
 
     background: #fff;
     border-radius: 10px;

@@ -50,7 +50,7 @@
 #email, #pwd, #confirm-pwd{
     font-size: 0.7rem;
     font-family: Poppins-Regular,sans-serif;
-    /* padding-bottom: 0.1rem; */
+    padding-bottom: 0.1rem;
     width: 100%;
 }
 

@@ -58,7 +58,7 @@ const LoginForm = () => {
   
   
   return (
-    <div className="body">
+    <div >
       <div className="container" style={{ background:'#06121E' }}>
         <div className="row justify-content-center">
           <div className="col-lg-6">
@@ -68,7 +68,7 @@ const LoginForm = () => {
                   <strong>Login</strong>
                 </h1>
                 <div className="form-group">
-                  <label htmlFor="username">Email</label> <br />
+                  <label style={{ color:'#000000' }} htmlFor="username">Email</label> <br />
                   <div className="form-input">
                     <input
                       type="text"
@@ -83,7 +83,7 @@ const LoginForm = () => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="pwd">Password</label>
+                  <label style={{ color:'#000000' }} htmlFor="pwd">Password</label>
                   <br />
                   <div className="form-input">
                     <input

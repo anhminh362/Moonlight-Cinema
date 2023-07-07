@@ -99,14 +99,14 @@ const Register = () => {
   };
 
   return (
-      <div className="body">
-        <div className="container" style={{ background: '#06121E' }} >
+      <div >
+        <div className="container" style={{ background: '#06121E',paddingTop:'100px' }} >
           <div className="row justify-content-center">
             <div className="col-md-6">
-              <form style={{ background: '#fff',borderRadius:'15px' }}  className='form-register' onSubmit={handleFormSubmit}>
+              <form style={{ background: '#fff',borderRadius:'15px',paddingBottom:'' }}  className='form-register' onSubmit={handleFormSubmit}>
                 <h1 style={{ color:' #000000' }}>Register</h1>
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email" style={{ color:'#000000' }}>Email</label>
                   <div className="form-input">
                     <input
                       type="email"
@@ -121,7 +121,7 @@ const Register = () => {
                       </div>
                 </div>
                 <div className="form-group">
-                <label htmlFor="pwd">Password</label>
+                <label style={{ color:'#000000' }} htmlFor="pwd">Password</label>
                 <div className="form-input">
                   <input
                     type="password"
@@ -136,7 +136,7 @@ const Register = () => {
                 </div>
               </div>
               <div className="form-group">
-                <label className="label" htmlFor="confirm-pwd">
+                <label style={{ color:'#000000' }} className="label" htmlFor="confirm-pwd">
                   Confirm Password
                 </label>
                 <div className="form-input">
