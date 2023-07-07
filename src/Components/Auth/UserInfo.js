@@ -107,7 +107,7 @@ const UserInfo = () => {
           </div>
           {phoneError && <span className="error">{phoneError}</span>}
         </div>
-        <button type="submit" className="btn btn-default" name="btn">
+          <button type="submit" className="btn btn-default" style={{ width: "10rem", minWidth: "unset" }} name="btn">
           Save
         </button>
       </form>

@@ -18,7 +18,8 @@
 .form-login{
    
     display: block;
-    width: 40%;
+    width: 35%;
+    max-height: -moz-fit-content;
     max-height: fit-content;
     background: #fff;
     border-radius: 10px;
@@ -26,7 +27,7 @@
     text-align: center;
     line-height: 1em;
     font-size: 1.0em;
-    margin-left: 450px;
+    margin: 0 auto;
     
 }
 .form-group{

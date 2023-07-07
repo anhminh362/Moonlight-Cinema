@@ -112,7 +112,7 @@ const LoginForm = () => {
               </p>
             </div>
           </div>
-          <button type="submit" className="btn btn-danger" name="btn">
+          <button type="submit" className="btn btn-default" style={{ width: "10rem", minWidth: "unset" }}  name="btn">
             LOGIN
           </button>
           <div>

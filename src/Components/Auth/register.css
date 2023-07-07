@@ -20,16 +20,16 @@
 .form-register{
    
     display: block;
-    width: 40%;
+    width: 35%;
+    max-height: -moz-fit-content;
+    max-height: fit-content;
     background: #fff;
     border-radius: 10px;
     justify-content: center;
     text-align: center;
-    align-items: center;
     line-height: 1em;
-    margin-left: 450px;
     font-size: 1.0em;
-    /* padding-bottom: 30px; */
+    margin: 0 auto;
     
 }
 .form-group{

@@ -153,13 +153,13 @@ const Register = () => {
                     <p key={index}>{error}</p>
                   ))}
                 </div>
-              )}
-              <button type="submit" className="btn btn-default" name="btn">
-                Register
-              </button>
-              <p>
+              )}<p>
                 <Link to="/login">LoginForm</Link>
               </p>
+          <button type="submit" className="btn btn-default" style={{ width: "10rem", minWidth: "unset"}} name="btn">
+                Register
+              </button>
+              
             </form>
           </div>
         </div>

@@ -36,7 +36,8 @@
 .container{
     background-color: #1A293C;
     padding: 4rem;
-    width: 40rem;
+    width: 35%;
+    border-radius: 10px;
     text-align: center;
     color: #ffff;
 }
