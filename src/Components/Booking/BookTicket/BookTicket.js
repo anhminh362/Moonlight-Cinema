@@ -89,8 +89,9 @@ function BookTicket() {
         <section className="book-ticket">
             <div className="ticket-container">
                 <div className="book-ticket-container">
+                    <h1>BookTicket</h1>
                     <div className="show-date">
-                        <h2 className='text'>Date:</h2>
+                        <h2 className='text'>Date</h2>
                         <div className="date-list">
                             {scheduleData.map((schedule) => (
                                 <button key={schedule.id} type="button" 
@@ -103,7 +104,7 @@ function BookTicket() {
                         </div>
                     </div>
                     <div className="show-time">
-                        <h2 className='text'>Time:</h2>
+                        <h2 className='text'>Time</h2>
                         <div className="time">
                             {/* Replace the static buttons with schedule time values */}
                             {/* {scheduleData.map((schedule) => ( */}
@@ -125,7 +126,7 @@ function BookTicket() {
                             {/* )} */}
                         </div>
                     </div>
-                    <center><button id="submit-btn" onClick={handleSubmit}>Ok</button></center>
+                    <center><button id="submit-btn" onClick={handleSubmit}>Book</button></center>
                 </div>
             </div>
         </section>
