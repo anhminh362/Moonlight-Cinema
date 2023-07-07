@@ -120,10 +120,7 @@ const handleCheckboxChange = (e, categoryId) => {
                     </div>
                     <div classNameName="modal-footer">
                     <input
-                        type="submit"
-                        name="submit"
-                        classNameName="btn bg-danger text-white"
-                        defaultValue="Add"
+                        input type="submit" name="submit" class="btn bg-danger text-white" defaultValue="Add"
                     />
                     </div>
                 </form>
