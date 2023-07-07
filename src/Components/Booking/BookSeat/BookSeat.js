@@ -172,7 +172,7 @@ function BookSeat() {
       console.log('Selected schedule:', scheduleID);
       if (selectedSeats.length > 0 && selectedTickets.length > 0 
     ) {
-        const url = `/Invoice?tickets=${selectedTickets}&seats=${selectedSeats}&scheduleId=${scheduleID}`;
+        const url = `/Invoice?tickets=${selectedTickets}&seats=${selectedSeats}&scheduleId=${scheduleID}&price=${totalPrice}`;
         navigate(url);
            
     } else {
@@ -191,11 +191,7 @@ function BookSeat() {
         <>
             <div className='cinema-room'>
                 <div className="movie-container">
-                    <label>
-                        <center> Movie:</center>
-                    </label>
-                    {/* <input type="text" hidden id='movie' value='' disabled></input> */}
-                    <p>{movieName}</p>
+                    <label>Movie: <span>{movieName}</span></label>
                 </div>
                 <ul className="showcase">
                     <li>
@@ -227,11 +223,13 @@ function BookSeat() {
 
                         </div>
                         <div className="row">
-                            <div className="col-sm-4"> <br></br><br></br>
-                                <input type="submit" name='submit' className="btn bg-danger text-white" value="Book now"></input>
+                            <div className="col-sm-4"></div>
+                            <div className="col-sm-5"> <br></br><br></br>
+                                <button type="button" name='submit' className="btn bg-danger text-white" onClick={event => handleSubmit(event)}>Book now</button>
+                                <br/><br/>
                                 <button type="button" name='payUrl' className="btn bg-danger text-white" onClick={event => handePaymentClick(50000)}>Payment</button>
                             </div>
-                            <div className="col-sm-8">
+                            <div className="col-sm-3">
                             </div>
                         </div>
                     </form>

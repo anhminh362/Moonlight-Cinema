@@ -77,7 +77,7 @@ a{ text-decoration: none;}
 a:hover{
     text-decoration: underline;
 }
-.btn-primary{
+.btn-user-primary{
     border: none;
     padding: 0.5rem 3rem;
     margin: 3em;

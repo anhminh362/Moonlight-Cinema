@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Badge, Button, Card, Container, Row } from 'react-bootstrap';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
+import Like from '../Like';
 
 const Upcomingg = () => {
   const [movies, setMovies] = useState([]);
@@ -81,11 +82,9 @@ const Upcomingg = () => {
                             ))}
                         </Card.Text>
                         <p>
-                            <Button variant="primary" disabled={movie.user_liked} style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
-                            <i className="fas fa-thumbs-up"></i> Like {movie.likes}
-                            </Button>
+                          <Like movieId={movie.id} />
                             <span>
-                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '13px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '1rem', height: '2rem', fontSize: '12px' }}>
                                 More Details
                             </a>
                             </span>

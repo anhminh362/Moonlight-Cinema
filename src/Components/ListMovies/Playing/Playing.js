@@ -5,11 +5,10 @@ import Footer from '../../Common/Footer';
 import Like from '../Like';
 
 const Playing = ({ movieId, userId }) => {
-  const [likeData, setLikeData] = useState([]);
+ 
   const [movies, setMovies] = useState([]);
   const [cats, setCats] = useState([]);
   const [movieCats, setMovieCats] = useState([]);
-  const [num, setNum] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -42,26 +41,8 @@ const Playing = ({ movieId, userId }) => {
       .filter((cat) => movieCat.includes(cat.id))
       .map((cat) => cat.name);
   };
-  const fetchLikeData = async (id) => {
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/like/${id}`);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    const updateNum = async () => {
-      const likeDataArray = await Promise.all(
-        movies.slice(0, 13).map((movie) => fetchLikeData(movie.id))
-      );
-      setNum(likeDataArray);
-      console.log(num);
-    };
-
-    updateNum();
-  }, [movies]);
+ 
+  
  
   const isPlaying = (premiereDate) => {
     const now = new Date().toISOString().split("T")[0];
@@ -104,15 +85,9 @@ const Playing = ({ movieId, userId }) => {
                             ))}
                         </Card.Text>
                         <p>
-                        {/* {getLikeData(movie.id).map((id, index) =>(setNum(index)))} */}
-                            <Button variant="primary"   
-                            // onClick={likeClick()}
-                            // disabled={movie.user_liked} 
-                            style={{ fontSize: '12px', width: '5.5rem', height: '1.9rem' }}>
-                            {/* <Like movieId={movieId} userId={userId}/> */}
-                            </Button>
+                            <Like movieId={movie.id} />
                             <span>
-                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '25px', height: '2.2rem', fontSize: '1px' }}>
+                            <a href={`/Detail/${movie.id}`} className="btn btn-success" style={{ marginLeft: '1rem', height: '2rem', fontSize: '13px' }}>
                                 More Details
                             </a>
                             </span>

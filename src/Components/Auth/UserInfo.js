@@ -112,7 +112,7 @@ return (
                 </div>
                 {phoneError && <span className="error">{phoneError}</span>}
               </div>
-              <button type="submit" className="btn btn-primary" name="btn">
+              <button type="submit" className="btn btn-user-primary" name="btn">
                 Save
               </button>
             </form>

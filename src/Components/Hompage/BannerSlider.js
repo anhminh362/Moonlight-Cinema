@@ -19,7 +19,7 @@ const Banner = () => {
               <div className="carousel-caption d-none d-md-block">
                 <h3 className="text-movie">{movie.name}</h3>
                 <p className="text-movies">{movie.description}<br />
-                  <a href={`/Detail/${movie.id}`}></a>
+                  <a href={`/Detail/${movie.id}`}>Movie Detail</a>
                 </p>
               </div>
             </div>
