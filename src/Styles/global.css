@@ -176,9 +176,7 @@
 /* Footer */
 .footer{
     /* background-color:#091725; */
-    display: flex;
-    margin: 0 auto;
-    width: 80%;
+    width: 100%;
 }
 
 .text-footer{
@@ -188,9 +186,8 @@
     color: white;
 }
 .container{
-    max-width: 100%;
     background-color: #1A293C;
-    /* border-radius: 1rem; */
+    border-radius: 1rem;
     padding: 4rem;
     text-align: center;
     color: #ffff;

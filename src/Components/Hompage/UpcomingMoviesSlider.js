@@ -41,7 +41,7 @@ const Upcoming = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
       {
@@ -67,22 +67,22 @@ const Upcoming = () => {
 
   return (
     <div className='movieslide'>
-      <div>
-        <h5 className="text-title">Upcoming</h5><br></br>
-      </div>
-      <Slider {...settings}>
-        {movies.map((movie, index) => index > 8 && index <= 12 && (
-          <div id="formlist" key={index} className="item">
-            <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
-            <div className="overlay">
-              <h5>{movie.name}</h5>
-              <p>{getMovieCats(movie.id).join('/')}</p>
-              <a href={`/Detail/${movie.id}`}><Button variant="success">More Details</Button></a>
+        <div style={{ marginTop: "2rem" }}>
+          <h5 className="text-title">Upcoming</h5><br></br>
+        </div>
+        <Slider {...settings}>
+          {movies.slice(13, 14).map((movie, index) => (
+            <div key={index} className="item">
+              <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
+              <div className="overlay1">
+                <h5>{movie.name}</h5>
+                <p>{getMovieCats(movie.id).join('/')}</p>
+                <a href={`/Detail/${movie.id}`}><Button variant="success">More Details</Button></a>
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
+          ))}
+        </Slider>
+      </div>
   );
 };
 

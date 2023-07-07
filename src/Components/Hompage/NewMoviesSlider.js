@@ -66,23 +66,22 @@ const New = () => {
   };
 
   return (
-    <div className='movieslide'>
-      <div>
-        <h5 className="text-title">New</h5><br></br>
-      </div>
-      <Slider {...settings}>
-        {movies.map((movie, index) => index > 7 && index <= 12 && (
-          <div id="formlist" key={index} className="item">
-            <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
-            <div className="overlay">
-              <h5>{movie.name}</h5>
-              <p>{getMovieCats(movie.id).join('/')}</p>
-              <a href={`/Detail/${movie.id}`}><Button variant="success">More Details</Button></a>
+    <div className='movieslide'>  <div style={{ marginTop: "2rem" }}>
+          <h5 className="text-title">New</h5><br></br>
+        </div>
+        <Slider {...settings}>
+          {movies.map((movie, index) => index > 7 && index <= 12 && (
+            <div id="formlist" key={index} className="item">
+              <img src={`../picture/${movie.avatar}`} alt={`../picture/${movie.avatar}`} className="movies" />
+              <div className="overlay">
+                <h5>{movie.name}</h5>
+                <p>{getMovieCats(movie.id).join('/')}</p>
+                <a href={`/Detail/${movie.id}`}><Button variant="success">More Details</Button></a>
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
+          ))}
+        </Slider>
+      </div>
   );
 };
 
