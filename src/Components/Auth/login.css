@@ -105,3 +105,12 @@ h1{
     font-size: 1.8rem;
     padding-top: 2rem;
 }
+
+
+p1 a {
+    margin-left: 75px;
+}
+
+.form-group label{
+    font-size: 15px;
+}
