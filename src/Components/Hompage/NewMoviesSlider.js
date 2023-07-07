@@ -66,8 +66,7 @@ const New = () => {
   };
 
   return (
-      <Container style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 6, 1), rgba(0, 0, 0, 0.3))',height:'auto' }}>
-        <div style={{ marginTop: "2rem" }}>
+    <div className='movieslide'>  <div style={{ marginTop: "2rem" }}>
           <h5 className="text-title">New</h5><br></br>
         </div>
         <Slider {...settings}>
@@ -82,7 +81,7 @@ const New = () => {
             </div>
           ))}
         </Slider>
-      </Container>
+      </div>
   );
 };
 

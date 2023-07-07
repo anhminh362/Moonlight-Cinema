@@ -1,0 +1,43 @@
+.movieslide {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin: 2rem auto;
+    padding-top: 2rem;
+}
+
+.movies {
+    width: 100%;
+    height: 200px;
+    /* border-radius: 10px; */
+    position: relative;
+    display: block;
+    object-fit: cover;
+    overflow: hidden;
+    margin: 25px;
+    transition: transform 0.25s;
+}
+.item:hover .movies{
+    transform: scale(1.1);
+    opacity: 0.4;
+}
+
+.overlay {
+    display: none;
+}
+
+.item:hover .overlay{
+    display: block;
+    position: relative;
+    z-index: 0;
+    bottom: 10rem;
+    left: 5px;
+    margin-bottom: -110px;
+    color: #fff;
+    transition: 0.8s;
+}
+
+.item .movies{
+    display: block;
+    object-fit: cover;
+}
