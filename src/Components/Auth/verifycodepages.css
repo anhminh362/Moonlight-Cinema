@@ -33,14 +33,15 @@
     background-size: 100% auto ;
     background-repeat: no-repeat;
 } */
-.container{
+.veri-container{
     background-color: #1A293C;
     padding: 4rem;
-    /* width: 40rem; */
-    /* width: 35%;
-    border-radius: 10px; */
+    width: 40rem;
+    width: 35%;
+    border-radius: 10px;
     text-align: center;
     color: #ffff;
+    margin: 0 auto;
 }
 .code-container{
     display: flex;

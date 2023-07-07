@@ -133,7 +133,7 @@ const VerifyCode = () => {
     <div className='body'>
       <div>
         <form onSubmit={handleFormSubmit}>
-          <div className="container">
+          <div className="veri-container">
             <h2>Verify Your Account</h2>
             &nbsp;
             <p className="info">An OTP has been sent to {email}</p>

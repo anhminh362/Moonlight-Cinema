@@ -124,6 +124,13 @@ footer{
 .text-footer{
     color: var(--title--color);
 }
+.container{
+    background-color: #1A293C;
+    border-radius: 1rem;
+    padding: 4rem;
+    text-align: center;
+    color: #ffff;
+}
 .container .row .col-sm-3 ul li{
     list-style-type: none;
     position: relative;
