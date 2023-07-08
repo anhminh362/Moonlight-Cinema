@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import "./like.css"
 const Like = ({ movieId }) =>{
 	// console.log(movieId);
 	const [likeData, setLikeData] = useState([]);
@@ -97,7 +98,7 @@ useEffect(() => {
 	}
 	return (
 		<Button onClick={onLikeClick} ariant="primary"
-		className={"" + (isLike ? "text-primary": "")}  
+		className={"" + (isLike ? "text-primary liked-btn": "")}  
 		style={{ fontSize: '12px', width: '5.5rem', height: '2rem' }}>
 			<i  className="fa fa-thumbs-up" > {num}</i>
 		</Button>
