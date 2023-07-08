@@ -56,6 +56,7 @@ const handleCheckboxChange = (e, categoryId) => {
               }
             $("#avatar").val("");
             alert("Thêm thành công");
+            handleCloseAdd();
             // $("#closeModalAddBtn").click();
 
         } catch (error) {

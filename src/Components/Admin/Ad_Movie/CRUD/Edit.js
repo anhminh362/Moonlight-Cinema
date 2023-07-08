@@ -86,7 +86,7 @@ const handleSubmit = async (event) => {
         }
         setSelectedCategories([])
         alert('Product edited successfully!');
-
+        handleCloseEdit();
         setTimeout(() => {
             window.location = 'http://localhost:3000/Show';
         }, 100);
