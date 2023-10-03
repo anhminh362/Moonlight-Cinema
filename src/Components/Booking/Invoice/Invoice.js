@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import { json } from 'react-router-dom';
 const Invoice = () => {
+    const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
     const [seats, setSeats] = useState([]);
     const [schedule_id, setSchedule_id] = useState(0);
     const [price, setPrice] = useState(0);
+    const [book, setBook] = useState(false);
     const token = localStorage.getItem('token');
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     useEffect(() => {
@@ -75,6 +78,8 @@ const Invoice = () => {
       });
       axios.put(`http://127.0.0.1:8000/api/ticket/${ticket}`);
     });
+    alert('Book successfully. Please check your mail')
+    navigate("/")
     return (
         <div></div>
     )

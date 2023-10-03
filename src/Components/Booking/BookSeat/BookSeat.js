@@ -227,7 +227,7 @@ function BookSeat() {
                             <div className="col-sm-5"> <br></br><br></br>
                                 <button type="button" name='submit' className="btn bg-danger text-white" onClick={event => handleSubmit(event)}>Book now</button>
                                 <br/><br/>
-                                <button type="button" name='payUrl' className="btn bg-danger text-white" onClick={event => handePaymentClick(50000)}>Payment</button>
+                                <button type="button" name='payUrl' className="btn bg-danger text-white" onClick={event => handePaymentClick({totalPrice})}>Payment</button>
                             </div>
                             <div className="col-sm-3">
                             </div>
